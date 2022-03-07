@@ -1,7 +1,13 @@
 # D09
+- Erasto Akbar Adjie
+- Nadia Sabrina
+- Muhammad Glend Angga Dwitama
+- Dzul Fiqar Aditya Widhiartanto
 
-
-
+# SIPEMP Psikologi UI
+## Sistem Informasi Penerimaan Program Magister Profesi - Fakultas Psikologi UI
+## [penerimaan-psikologi.herokuapp.com](penerimaan-psikologi.herokuapp.com)  
+  
 ## Getting started
 
 To make it easy for you to get started with GitLab, here's a list of recommended next steps.
