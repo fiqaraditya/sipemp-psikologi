@@ -7,7 +7,7 @@
     <title>SIPeMP Psikologi UI</title>
 </head>
 <body>
-    <h1>SELAMAT DATANG di SIPeMP Psikologi UI !</h1>
+    <h1>SELAMAT DATANG di SIPeMP Psikologi UI !!</h1>
     <p>Sistem Informasi Penerimaan Program Magister Profesi <br> Fakultas Psikologi UI</p>
     <img src="img/logo.png" alt=5>
 </body>
