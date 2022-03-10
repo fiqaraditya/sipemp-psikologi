@@ -20,7 +20,7 @@
     
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#"> <img src="img/logo.png" alt=5  width="205" height="82"> </a>
+        <a class="navbar-brand" href="#" style="margin-left: 50px"> <img src="img/logo.png" alt=5  width="205px" height="82px"> </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -45,21 +45,18 @@
         </div>
     </div>
     <div style="margin-right:20px">
-        <a type="button" href="/login" class="btn btn-primary" style="background-color:#E48700; border:0px; width:80px">Masuk</a>
+        <a type="button" href="/login" class="btn btn-primary" style="background-color:#E48700; border:0px; width:80px;margin-right:50px">Masuk</a>
     </div>
     </nav>
-    <div style="width:1440px;border:2px solid #C9C1C1;"></div>
+    <div style="width:1440px;border:2px solid #C9C1C1;width:100%"></div>
 
     
-
-    <footer class="footer" style="position:fixed; bottom:0">
-      <div style="width:1440px; height: 100px; background-color:#58CCF4; padding:10px; display:flex">
-      <img src="img/logo 2.png" alt=5  width="205" height="82">
-      <div style="text-align:right"> 
-         
+    
+    <footer class="footer" style="position:fixed; bottom:0;width:100%">
+        <div style="width:100%; height: 100px; background-color:#58CCF4; padding:10px; display:flex; overflow:hidden;">
+            <img src="img/logo 2.png" alt=5  width="205" height="82" style="margin-left: 50px">
+            <div style="text-align:right"> 
         </div>
-      
-      </div>
     </footer>
 
         
