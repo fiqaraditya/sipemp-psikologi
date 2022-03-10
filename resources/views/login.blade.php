@@ -31,36 +31,41 @@
     
   </head>
   <body>
-    <div class="container-fluid">
-        <a class="navbar-brand href="#"> <img src="img/logo.png" alt=5  width="290" height="115"> </a>
-    </div>
-
-    <div class="d-flex flex-row" style="margin-left:30px display:flex">
-        <div style="margin-top:20px">
-        <img src="img/icon1.png" width="400" height="400">
-        </div>
-      
-        <div class="card card-login" style="width: 40rem;">
-            <div class="card-body">
-                <h5 class="card-title">Selamat Datang di SIPeMP Psikologi UI </h5>
-                <h1 class="card-text">Sign In</h1>
-                <form>
-                <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                    <label for="floatingInput">Email address</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                    <label for="floatingPassword">Password</label>
-                </div>
-                <div class="d-grid">
-                    <button class="btn btn-login text-uppercase fw-bold" style="background-color:#E48700; color:white" type="submit">Masuk</button>
-                </div>
-                </form>
+    <nav>
+        <a class="navbar-brand" href="#"> <img src="img/logo.png" alt=5  width="290" height="115"> </a>
+    </nav>
+    <div class="container-fluid" style="margin-top:5%">
+        <div class="d-flex flex-row" style="margin-left:30px display:flex">
+            <div style="margin-top:20px">
+            <img src="img/icon1.png" width="400" height="400">
             </div>
-        </div>
-        <div style="width:350px;border:1px solid black;">
-        <img src="img/icon2.png" width="343" height="588">
+          
+            <div class=" shadow card card-login" style="width: 40rem;border-radius: 10%;height:580px;border:0px">
+                <div class="card-body" style="margin-top: 5%;">
+                    <h5 class="card-title">Selamat Datang di SIPeMP Psikologi UI </h5>
+                    <h1 class="card-text">Sign In</h1>                
+                    <form style="margin-top:5%">
+                    <h5>Email</h5>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                        <label for="floatingInput">Masukkan email kamu disini</label>
+                    </div>
+                    <br>
+                    <h5>Password</h5>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                        <label for="floatingPassword">Masukkan password kamu disini</label>
+                    </div>
+                    <br>
+                    <div class="d-grid">
+                        <button class="btn btn-login text-uppercase fw-bold" style="background-color:#E48700; color:white" type="submit">Masuk</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+            <div style="width:350px;">
+                <img src="img/icon2.png" width="343" height="580">
+            </div>
         </div>
     </div>
 
