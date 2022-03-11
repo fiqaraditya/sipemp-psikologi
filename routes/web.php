@@ -28,3 +28,21 @@ Route::get('/register', function () {
 Route::get('/about', function () {
     return view('welcome');
 });
+
+Route::get('/submit-file-1', function () {
+    return view('submit1');
+});
+
+Route::get('/submit-file-2', function () {
+    return view('submit2');
+});
+
+Route::get('/submit-file-3', function () {
+    return view('submit3');
+});
+
+
+Route::get('/submit-email', function () {
+    return view('submit-email');
+});
+
