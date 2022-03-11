@@ -50,12 +50,12 @@
     </nav>
     <div style="width:1440px;border:2px solid #C9C1C1;width:100%"></div>
 
-    <div class="container-fluid" style="margin-top:3%">
-        <div class="row" style="margin-left: 5%;margin-right:5%">
-            <div class="col-3">
+    <div class="container-fluid" style="margin-top:3% ">
+        <div class="row" style="margin-left: 5%;margin-right:5%;padding-bottom:5%">
+            <div class="col-4">
                 <iframe src="https://calendar.google.com/calendar/embed?src=c_d156qcj9ogqjgu6qncosvmnebs%40group.calendar.google.com&ctz=Asia%2FJakarta" style="border: 0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
             </div>
-            <div class="col-8">
+            <div class="col-8" style="margin-top: 2%">
                 <h1>Pengumuman Penerimaan</h1>
                 <br>
                 <div class="shadow card">
@@ -71,14 +71,14 @@
                 </div>
             </div>
         </div>
+        
     </div>
-    
-    <footer class="footer" style="position:fixed; bottom:0;width:100%">
+    <footer class="footer" style="width:100%">
         <div style="width:100%; height: 100px; background-color:#58CCF4; padding:10px; display:flex; overflow:hidden;">
             <img src="img/logo 2.png" alt=5  width="205" height="82" style="margin-left: 50px">
-            <div style="text-align:right"> 
         </div>
     </footer>
+    
 
         
   </body>

@@ -34,13 +34,13 @@
     <nav>
         <a class="navbar-brand" href="#"> <img src="img/logo.png" alt=5  width="290" height="115"> </a>
     </nav>
-    <div class="container-fluid" style="margin-top:5%">
+    <div class="container-fluid" style="margin-top:2%;position: fixed;">
         <div class="d-flex flex-row" style="margin-left:30px display:flex">
             <div style="margin-top:20px">
             <img src="img/icon1.png" width="400" height="400">
             </div>
           
-            <div class=" shadow card card-login" style="width: 40rem;border-radius: 10%;height:580px;border:0px">
+            <div class=" shadow card card-login" style="width: 40rem;border-radius: 10%;height:540px;border:0px">
                 <div class="card-body" style="margin-top: 5%;">
                     <h5 class="card-title">Selamat Datang di SIPeMP Psikologi UI </h5>
                     <h1 class="card-text">Sign In</h1>                
