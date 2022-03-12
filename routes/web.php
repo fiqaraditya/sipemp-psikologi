@@ -46,3 +46,10 @@ Route::get('/submit-email', function () {
     return view('submit-email');
 });
 
+Route::get('/pengumuman', function () {
+    return view('daftar_pengumuman');
+});
+
+Route::get('/create-pengumuman', function () {
+    return view('create_pengumuman');
+});
