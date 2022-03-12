@@ -73,7 +73,7 @@
         </div>
         
     </div>
-    <footer class="footer" style="width:100%">
+    <footer class="mt-auto" style="width:100%">
         <div style="width:100%; height: 100px; background-color:#58CCF4; padding:10px; display:flex; overflow:hidden;">
             <img src="img/logo 2.png" alt=5  width="205" height="82" style="margin-left: 50px">
         </div>
