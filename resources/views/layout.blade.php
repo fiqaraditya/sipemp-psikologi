@@ -49,8 +49,17 @@
             </div>
         </div>
         <div style="margin-right:20px">
+            @auth
+            <form action="/logout" method="post">
+                @csrf
+                <button type="submit" class="btn btn-primary"
+                style="background-color:#E48700; border:0px; width:80px;margin-right:50px">Keluar</button>
+            </form>
+            @else
             <a type="button" href="/login" class="btn btn-primary"
                 style="background-color:#E48700; border:0px; width:80px;margin-right:50px">Masuk</a>
+            @endauth
+
         </div>
     </nav> @yield('content')
     <footer class="mt-auto" style="width:100%;">

@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Login SIPeMP</title>
+    <title>Register SIPeMP</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/navbar-fixed/">
 
     <!-- Bootstrap core CSS -->
@@ -36,7 +36,7 @@
 
 <body>
     <div class="container-fluid">
-        <a class="navbar-brand href=" #"> <img src="img/logo.png" alt=5 width="290" height="115"> </a>
+        <a class="navbar-brand href="> <img src="img/logo.png" alt=5 width="290" height="115"> </a>
     </div>
 
     <div class="d-flex flex-row" style="margin-left:30px display:flex">
@@ -48,19 +48,32 @@
             <div class="card-body">
                 <h5 class="card-title">Selamat Datang di SIPeMP Psikologi UI </h5>
                 <h1 class="card-text">Register</h1>
-                <form>
+                <form action="/register" method="post">
+                    @csrf
+                    <div class="form-check form-check-inline my-3">
+                        <input class="form-check-input" type="radio" name="role" id="role1" value="admin">
+                        <label class="form-check-label" for="role1">
+                          Admin
+                        </label>
+                      </div>
+                      <div class="form-check form-check-inline my-3">
+                        <input class="form-check-input" type="radio" name="role" id="role2" value="pewawancara">
+                        <label class="form-check-label" for="role2">
+                          Pewawancara
+                        </label>
+                      </div>
+
                     <div class="form-floating mb-3">
-                        <input disabled type="email" class="form-control" id="floatingInput"
-                            placeholder="Admin/Pewawancara">
-                        <label for="floatingInput">Role</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="name">
+                        <label for="name">Name</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                        <label for="floatingInput">Email address</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="email@example.com">
+                        <label for="email">Email address</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                        <label for="floatingPassword">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                        <label for="password">Password</label>
                     </div>
                     <div class="d-grid">
                         <button class="btn btn-login text-uppercase fw-bold"
