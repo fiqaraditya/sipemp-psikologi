@@ -31,10 +31,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-left:200px" class="mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#"><b><u>Beranda</u></b></a>
+                        <a class="nav-link active" aria-current="page" href="/"><b><u>Beranda</u></b></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Pengumuman</a>
+                        <a class="nav-link active" aria-current="page" href="{{route('daftar_pengumuman')}}">Pengumuman</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Admin</a>
