@@ -48,17 +48,18 @@
                 <div class="card-body" style="margin-top: 5%;">
                     <h5 class="card-title">Selamat Datang di SIPeMP Psikologi UI </h5>
                     <h1 class="card-text">Sign In</h1>
-                    <form style="margin-top:5%">
+                    <form action="/login" method="post" style="margin-top:5%">
+                        @csrf
                         <h5>Email</h5>
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                            <label for="floatingInput">Masukkan email kamu disini</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" autofocus required>
+                            <label for="email">Masukkan email kamu disini</label>
                         </div>
                         <br>
                         <h5>Password</h5>
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                            <label for="floatingPassword">Masukkan password kamu disini</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                            <label for="password">Masukkan password kamu disini</label>
                         </div>
                         <br>
                         <div class="d-grid">
