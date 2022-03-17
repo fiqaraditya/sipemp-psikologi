@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\AnnouncementController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -28,6 +29,12 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'store']);
 
+Route::get('/pengumuman',[AnnouncementController::class, 'index'])->name("daftar_pengumuman");
+Route::get('/create-pengumuman',[AnnouncementController::class, 'create'])->name("create_pengumuman");
+Route::get('/update-pengumuman/{id}',[AnnouncementController::class, 'edit'])->name("update_pengumuman");
+Route::post('/save-pengumuman',[AnnouncementController::class, 'store'])->name("save_pengumuman");
+Route::post('/updated-pengumuman/{id}',[AnnouncementController::class, 'update'])->name("updated_pengumuman");
+Route::get('/delete-pengumuman/{id}',[AnnouncementController::class, 'destroy'])->name("delete_pengumuman");
 
 Route::get('/about', function () {
     return view('welcome');
@@ -50,10 +57,4 @@ Route::get('/submit-email', function () {
     return view('submit-email');
 });
 
-Route::get('/pengumuman', function () {
-    return view('daftar_pengumuman');
-});
 
-Route::get('/create-pengumuman', function () {
-    return view('create_pengumuman');
-});
