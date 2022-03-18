@@ -11,7 +11,7 @@ class Announcement extends Model
     protected $table = "announcements";
     protected $primarykey = "id";
     protected $fillable = [
-        'judul', 'isi'
+        'judul', 'isi', 'file_path'
     ];
     protected $guarded = ['id'];
     protected $attributes = [

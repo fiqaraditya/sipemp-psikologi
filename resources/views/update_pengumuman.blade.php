@@ -15,7 +15,7 @@
             <div class="form-group">
                 <label for="exampleFormControlInput1">Isi Pengumuman</label>
                 <input type="text" class="form-control" id="exampleFormControlInput1"
-                    placeholder="Masukkan Pesan Pengumuman" rows="10" name="isi" value="{{$pen-> isi}}"> </input>
+                    placeholder="Masukkan Pesan Pengumuman" rows="10" name="isi" value="{{$pen-> isi}}"> 
             </div>
         <br>
         <h5>Lampiran</h5>

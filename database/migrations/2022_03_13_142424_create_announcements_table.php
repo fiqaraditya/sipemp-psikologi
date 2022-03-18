@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('admin_id'); 
             $table->string('judul');
             $table->text("isi")->nullable();
-            //FILEPATH HAHA HIHI GIMANA
+            $table->string('file_path')->nullable();
         });
     }
 
