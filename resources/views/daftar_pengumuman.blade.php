@@ -31,7 +31,14 @@
                         <h5 style="font-weight: normal"> {{ $item-> isi }}
                         </h5>
                     </div>
+
+                    @if (is_null($item-> file_path ))
+                    <br>
+                    @else
+                    <a href="{{url('/download',$item->id)}}">Download Dokumen</a>
+                    @endif
                 </div>
+
             </div>
             @endforeach
             @include('sweetalert::alert')

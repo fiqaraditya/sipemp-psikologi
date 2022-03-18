@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Announcement;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 class AnnouncementController extends Controller
 {
     /**
@@ -38,10 +39,29 @@ class AnnouncementController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        Announcement::create([
-            'judul' => $request->judul,
-            'isi' => $request->isi,
-        ]);
+        if($_FILES['file']['size'] == 0){
+           
+            Announcement::create([
+                'judul' => $request->judul,
+                'isi' => $request->isi
+            ]);
+        }
+        else{
+        
+            $request->validate([
+                'file' => 'required|file|mimes:jpg,jpeg,bmp,png,doc,docx,csv,rtf,xlsx,xls,txt,pdf,zip'
+            ]);
+    
+            $filepath = Storage::putFile(
+                        'public/announcements',
+                        $request->file('file'));
+    
+            Announcement::create([
+                'judul' => $request->judul,
+                'isi' => $request->isi,
+                'file_path' => $filepath
+            ]);
+        }
 
          return redirect('pengumuman')->with('success', 'Pengumuman berhasil ditambahkan');
              
@@ -70,6 +90,13 @@ class AnnouncementController extends Controller
         return view('update_pengumuman', compact('pen'));
     }
 
+    public function download($id)
+    {
+        $filepath = DB::table('announcements')->where('id',$id)->value('file_path');
+        Storage::download($filepath);
+        return redirect('pengumuman')->with('success', 'File berhasil didownload');
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -93,7 +120,13 @@ class AnnouncementController extends Controller
     public function destroy($id)
     {
         $pen = Announcement::findorfail($id);
+        $filepath = DB::table('announcements')->where('id',$id)->value('file_path');
         $pen->delete();
+        // $filepath = Announcement::select('filepath')->where('id',$id)-> pluck()->first();
+        if(!empty($filepath)){
+            Storage::delete($filepath);
+        }
+        // unlink(storage_path('public/announcements/3A2nSdjWgFnL8LEMzRkO8OsgP2t6Ny9hGfpEkHNB.docx'));
         return back()->with('info', 'Pengumuman berhasil dihapus');
     }
 }
