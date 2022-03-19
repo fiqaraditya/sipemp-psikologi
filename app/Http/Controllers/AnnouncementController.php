@@ -94,7 +94,7 @@ class AnnouncementController extends Controller
     {
         $filepath = DB::table('announcements')->where('id',$id)->value('file_path');
         Storage::download($filepath);
-        return redirect('pengumuman')->with('success', 'File berhasil didownload');
+        return Storage::download($filepath);
     }
 
     /**
@@ -106,8 +106,11 @@ class AnnouncementController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // $filepath_old = DB::table('announcements')->where('id',$id)->value('file_path');
         $pen = Announcement::findorfail($id);
         $pen->update($request->all());
+        
+        // dd($pen->file_path);
         return redirect('pengumuman')->with('success', 'Pengumuman berhasil diubah');
     }
 

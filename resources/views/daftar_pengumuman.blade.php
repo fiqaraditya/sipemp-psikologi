@@ -20,7 +20,7 @@
                             <h5> Oleh {{ $item-> admin_id }} </h5>
                         </div>
                         <div class="col-1">
-                            <a class="btn btn-warning" href="{{url('/update-pengumuman',$item->id)}}"> Ubah</a>
+                            <a class="btn btn-warning" href="{{url('/update-pengumuman',$item->id,$item->file_path)}}"> Ubah</a>
                         </div>
                         <div class="col-1">
                             <a class="btn btn-danger" href="{{url('/delete-pengumuman',$item->id)}}" >Hapus</a>
