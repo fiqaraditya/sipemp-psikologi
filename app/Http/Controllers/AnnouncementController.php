@@ -124,11 +124,16 @@ class AnnouncementController extends Controller
                 $request->file('file'));
                 
                 $pen = Announcement::findorfail($id);
+
+                if(!empty($pen->file_path)){
+                    Storage::delete($filepath_old);
+                }
+                
                 $pen->judul = $request->judul;
                 $pen->isi = $request->isi;
                 $pen->file_path = $filepath;
                 $pen->save();
-                Storage::delete($filepath_old);
+                
         }
         
         return redirect('pengumuman')->with('success', 'Pengumuman berhasil diubah');
