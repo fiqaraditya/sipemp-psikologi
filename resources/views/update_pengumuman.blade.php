@@ -20,14 +20,24 @@
         <br>
         <h5>Lampiran</h5>
         <!-- <form class="box" method="post" action="" enctype="multipart/form-data"> -->
-            <div class="box__input">
-                <input class="box__file" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected"
-                    multiple />
-                <br>
-                <br>
+            @if (is_null($pen-> file_path ))
+            <div class="custom-file">
+                <input type="file" name="file" class="custom-file-input" id="chooseFile">
+                <label class="custom-file-label" for="chooseFile">Select file</label>
+            </div>
+            @else
+            <a href="{{url('/download',$pen->id)}}">Download Dokumen</a>
+            <br>
+            <div class="custom-file">
+                <input type="file" name="file" class="custom-file-input" id="chooseFile">
+                <label class="custom-file-label" for="chooseFile">Ubah file</label>
+            </div>      
+            @endif
             </div>
             <button type="submit" class="btn btn-primary" style="border-radius: 40px; width:20%;"> Ubah Pengumuman</button>
             <button type="button" class="btn btn-danger" style="border-radius: 40px; width:20%;">Batalkan</button>
         </form>
+        <br>
+        <br>
     </div>
 @endsection

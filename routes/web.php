@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AnnouncementController;
+use App\Models\Announcement;
 use Illuminate\Support\Facades\Route;
 
 
@@ -35,7 +36,7 @@ Route::get('/update-pengumuman/{id}',[AnnouncementController::class, 'edit'])->n
 Route::post('/save-pengumuman',[AnnouncementController::class, 'store'])->name("save_pengumuman");
 Route::post('/updated-pengumuman/{id}',[AnnouncementController::class, 'update'])->name("updated_pengumuman");
 Route::get('/delete-pengumuman/{id}',[AnnouncementController::class, 'destroy'])->name("delete_pengumuman");
-
+Route::get('/download/{id}',[AnnouncementController::class, 'download'])->name('download_pengumuman');
 Route::get('/about', function () {
     return view('welcome');
 });
