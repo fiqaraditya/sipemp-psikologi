@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\DocumentController;
 use App\Models\Announcement;
 use Illuminate\Support\Facades\Route;
 
@@ -41,21 +42,13 @@ Route::get('/about', function () {
     return view('welcome');
 });
 
-Route::get('/submit-file-1', function () {
-    return view('submit1');
-});
-
-Route::get('/submit-file-2', function () {
-    return view('submit2');
-});
-
-Route::get('/submit-file-3', function () {
-    return view('submit3');
-});
-
-
-Route::get('/submit-email', function () {
-    return view('submit-email');
-});
+Route::get('/submit-file-1', [DocumentController::class, 'create_lk'])->name("page_lk");
+Route::get('/save-file-1', [DocumentController::class, 'store_lk'])->name("save_lk");
+Route::get('/submit-file-2', [DocumentController::class, 'create_psikotest'])->name("page_psikotest");
+Route::get('/save-file-2', [DocumentController::class, 'store_psikotest'])->name("save_psikotest");
+Route::get('/submit-email', [DocumentController::class, 'create_email'])->name("page_email");
+Route::get('/save-email', [DocumentController::class, 'store_email'])->name("save_lk");
+Route::get('/submit-file-3', [DocumentController::class, 'create_rekomendasi'])->name("page_rekomendasi");
+Route::get('/save-file-3', [DocumentController::class, 'store_rekomendasi'])->name("save_rekomendasi");
 
 

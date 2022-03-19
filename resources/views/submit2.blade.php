@@ -14,14 +14,15 @@
                         Contoh :Consecetur_Adipiscing_Elit_Etiam
                     </h6>
                     <br>
-                    <form class="box" method="post" action="" enctype="multipart/form-data">
-                        <div class="box__input">
-                            <input class="box__file" type="file" name="files[]" id="file"
-                                data-multiple-caption="{count} files selected" multiple />
+                    <form action="{{route('save_psikotest')}}"  method="POST" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                            <div class="custom-file">
+                                <input type="file" name="file" class="custom-file-input" id="chooseFile">
+                                <label class="custom-file-label" for="chooseFile">Select file</label>
+                            </div>
                             <br>
-                            <br>
-                            <button type="submit" class="btn btn-primary mb-2">Upload</button>
-                        </div>
+                            <button type="submit" class="btn btn-primary" style="border-radius: 40px; width:20%;"> Post </button>
+                            <button type="button" class="btn btn-danger" style="border-radius: 40px; width:20%;">Batalkan </button>
                     </form>
                 </div>
             </div>

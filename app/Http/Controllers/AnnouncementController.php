@@ -61,6 +61,7 @@ class AnnouncementController extends Controller
                 'isi' => $request->isi,
                 'file_path' => $filepath
             ]);
+
         }
 
          return redirect('pengumuman')->with('success', 'Pengumuman berhasil ditambahkan');
@@ -106,11 +107,30 @@ class AnnouncementController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $filepath_old = DB::table('announcements')->where('id',$id)->value('file_path');
-        $pen = Announcement::findorfail($id);
-        $pen->update($request->all());
+        $filepath_old = DB::table('announcements')->where('id',$id)->value('file_path');
+
+        if($_FILES['file']['size'] == 0){
+            $pen = Announcement::findorfail($id);
+            $pen->update($request->all());
+        }
+        else{
+            
+            $request->validate([
+                'file' => 'required|file|mimes:jpg,jpeg,bmp,png,doc,docx,csv,rtf,xlsx,xls,txt,pdf,zip'
+            ]);
+            
+            $filepath = Storage::putFile(
+                'public/announcements',
+                $request->file('file'));
+                
+                $pen = Announcement::findorfail($id);
+                $pen->judul = $request->judul;
+                $pen->isi = $request->isi;
+                $pen->file_path = $filepath;
+                $pen->save();
+                Storage::delete($filepath_old);
+        }
         
-        // dd($pen->file_path);
         return redirect('pengumuman')->with('success', 'Pengumuman berhasil diubah');
     }
 
