@@ -27,6 +27,10 @@ Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/pengumuman',[AnnouncementController::class, 'index'])->name("daftar_pengumuman");
+
+});
 
 Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'store']);
@@ -50,5 +54,6 @@ Route::get('/submit-email', [DocumentController::class, 'create_email'])->name("
 Route::get('/save-email', [DocumentController::class, 'store_email'])->name("save_lk");
 Route::get('/submit-file-3', [DocumentController::class, 'create_rekomendasi'])->name("page_rekomendasi");
 Route::get('/save-file-3', [DocumentController::class, 'store_rekomendasi'])->name("save_rekomendasi");
+Route::get('/kelengkapan-berkas', [DocumentController::class, 'kelengkapan_berkas'])->name("kelengkapan_berkas");
 
 

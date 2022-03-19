@@ -28,7 +28,9 @@
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            @auth
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+           
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-left:200px" class="mx-auto">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/"><b><u>Beranda</u></b></a>
@@ -47,6 +49,8 @@
                     </li>
                 </ul>
             </div>
+            @else
+            @endauth
         </div>
         <div style="margin-right:20px">
             @auth
