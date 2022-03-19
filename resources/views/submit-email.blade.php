@@ -15,7 +15,6 @@
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
-                                <th scope="col">Pemberi Rekomendasi</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Status</th>
                             </tr>
@@ -23,7 +22,6 @@
                         <tbody>
                             <tr>
                                 <th scope="row">1</th>
-                                <td>Lorem Ipsum</td>
                                 <td>Dolor@Sit.amet</td>
                                 <td>Belum ada</td>
                             </tr>
@@ -41,15 +39,17 @@
                         Pastikan Bahwa Email Yang Diinput Sudah Benar dan Tidak Ada Di List Email Yang Telah Dikirim
                     </h6>
                     <br>
-                    <form>
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Email address</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1"
-                                placeholder="name@example.com">
-                        </div>
+                    
+                    <form action="{{route('save_pengumuman')}}"  method="POST">
+                        {{ csrf_field() }}
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Email address</label>
+                                <input type="email" class="form-control" id="exampleFormControlInput1"
+                                    placeholder="name@example.com">
+                            </div>
+                        <br>
+                            <button type="submit" class="btn btn-primary" style="border-radius: 40px; width:20%;"> Submit</button>
                     </form>
-                    <br>
-                    <button type="submit" class="btn btn-primary mb-2">Submit</button>
                 </div>
             </div>
         </div>

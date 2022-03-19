@@ -14,47 +14,33 @@
                         Contoh :Consecetur_Adipiscing_Elit_Etiam
                     </h6>
                     <br>
-                    <form>
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Nama Pemberi Rekomendasi</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1"
-                                placeholder="Nama Pemberi Rekomendasi">
-                        </div>
-                    </form>
-                    <br>
-                    <form>
+                    
+                    <form action="{{route('save_rekomendasi')}}"  method="POST" enctype="multipart/form-data">
+                        {{ csrf_field() }}
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Nomor Telpon Pemberi Rekomendasi</label>
                             <input type="text" class="form-control" id="exampleFormControlInput1"
                                 placeholder="+6285212345678">
                         </div>
-                    </form>
-                    <br>
-                    <form>
+                        <br>
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Nama Penerima Rekomendasi</label>
                             <input type="text" class="form-control" id="exampleFormControlInput1"
                                 placeholder="Nama Penerima Rekomendasi">
                         </div>
-                    </form>
-                    <br>
-                    <form>
+                        <br>
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Kode Unik Penerima Rekomendasi</label>
                             <input type="text" class="form-control" id="exampleFormControlInput1"
                                 placeholder="Kode Unik Penerima Rekomendasi">
                         </div>
-                    </form>
-                    <br>
-                    <h5>File Surat Rekomendasi</h5>
-                    <form class="box" method="post" action="" enctype="multipart/form-data">
-                        <div class="box__input">
-                            <input class="box__file" type="file" name="files[]" id="file"
-                                data-multiple-caption="{count} files selected" multiple />
-                            <br>
-                            <br>
-                            <button type="submit" class="btn btn-primary mb-2">Upload</button>
+                        <br>
+                        <div class="custom-file">
+                            <input type="file" name="file" class="custom-file-input" id="chooseFile">
+                            <label class="custom-file-label" for="chooseFile">Select file</label>
                         </div>
+                        <br>
+                            <button type="submit" class="btn btn-primary" style="border-radius: 40px; width:20%;"> Submit</button>
                     </form>
                 </div>
             </div>

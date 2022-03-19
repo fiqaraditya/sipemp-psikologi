@@ -9,7 +9,11 @@ class Document extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $guarded = ['mahasiswa_id'];
+    protected $fillable = ['email_pr1','email_pr2','status_rekomendasi','r1_id','r2_id','file_lk_path', 'file_psikotest_path'];
+    protected $attributes = [
+        'mahasiswa_id' => 0,
+     ];
 
     public function user(){
         return $this->belongsTo(User::class);

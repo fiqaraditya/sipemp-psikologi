@@ -4,7 +4,7 @@
     <div class="container" style="margin-top:3%; margin-bottom:5%">
         <h1>Form Update Pengumuman</h1>
         <br>
-        <form action="{{url('/updated-pengumuman', $pen-> id)}}"  method="POST">
+        <form action="{{url('/updated-pengumuman', $pen-> id)}}"  method="POST" enctype="multipart/form-data">
         {{ csrf_field() }}
             <div class="form-group">
                 <label for="exampleFormControlInput1">Judul</label>

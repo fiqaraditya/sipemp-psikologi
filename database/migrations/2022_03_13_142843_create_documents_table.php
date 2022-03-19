@@ -14,7 +14,6 @@ return new class extends Migration
     public function up()
     {
         Schema::create('documents', function (Blueprint $table) {
-            $table->id();
             $table->timestamps();
             $table->foreignId('mahasiswa_id');
             $table->string('email_pr1')->nullable();
@@ -22,7 +21,8 @@ return new class extends Migration
             $table->integer('status_rekomendasi')->nullable();
             $table->foreignId('r1_id')->nullable();
             $table->foreignId('r2_id')->nullable();
-            //HAHA HIHI FILEPATH
+            $table->string('file_lk_path')->nullable();
+            $table->string('file_psikotest_path')->nullable();
         });
     }
 
