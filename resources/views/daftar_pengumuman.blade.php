@@ -11,10 +11,10 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-1">
-                            <img src="img/ava.png" width="100" height="100">
+                            <img src="img/user-icon.png" width="90" height="90">
                         </div>
                         
-                       
+                
                         <div class="col-9">
                             <h3>{{ $item-> judul }}</h3>
                             <h5> Oleh {{ $item-> admin_id }} </h5>

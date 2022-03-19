@@ -28,4 +28,8 @@ class DocumentController extends Controller
     {
         return view('submit-email');
     }
+    public function kelengkapan_berkas()
+    {
+        return view('kelengkapan_berkas');
+    }
 }
