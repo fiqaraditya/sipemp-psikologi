@@ -6,7 +6,7 @@
         <div class="row" style="margin-left: 5%;margin-right:5%;padding-bottom:5%">
             <div class="shadow card">
                 <div class="card-body">
-                    <h2 class="card-title"> Slot Pengumpulan Berkas Kehidupan </h2>
+                    <h2 class="card-title"> Slot Pengumpulan Lingkungan Kehidupan</h2>
                     <h6 class="card-subtitle mb-2 text-muted">
                         Format Penamaan : <br>
                         Lorem_Ipsum_Dolor_Sit_Amet <br>

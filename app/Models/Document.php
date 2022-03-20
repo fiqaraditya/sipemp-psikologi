@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Document extends Model
 {
     use HasFactory;
-
+    protected $primarykey = "mahasiswa_id";
     protected $guarded = ['mahasiswa_id'];
     protected $fillable = ['email_pr1','email_pr2','status_rekomendasi','r1_id','r2_id','file_lk_path', 'file_psikotest_path'];
     protected $attributes = [
