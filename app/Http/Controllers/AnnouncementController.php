@@ -26,8 +26,13 @@ class AnnouncementController extends Controller
      */
     public function create()
     {
-    
-        return view("create_pengumuman");
+        if(auth()->user()->role == "admin"){
+            return view("create_pengumuman");
+        }
+        else{
+            $pengumuman = Announcement::all();
+            return view("daftar_pengumuman", compact('pengumuman'));
+        }
     }
 
     /**
@@ -87,8 +92,14 @@ class AnnouncementController extends Controller
      */
     public function edit($id)
     {
-        $pen = Announcement::findorfail($id);
-        return view('update_pengumuman', compact('pen'));
+        if(auth()->user()->role == "admin"){
+            $pen = Announcement::findorfail($id);
+            return view('update_pengumuman', compact('pen'));
+        }
+        else{
+            $pengumuman = Announcement::all();
+            return view("daftar_pengumuman", compact('pengumuman'));
+        }
     }
 
     public function download($id)
@@ -128,7 +139,7 @@ class AnnouncementController extends Controller
                 if(!empty($pen->file_path)){
                     Storage::delete($filepath_old);
                 }
-                
+
                 $pen->judul = $request->judul;
                 $pen->isi = $request->isi;
                 $pen->file_path = $filepath;
@@ -147,14 +158,20 @@ class AnnouncementController extends Controller
      */
     public function destroy($id)
     {
-        $pen = Announcement::findorfail($id);
-        $filepath = DB::table('announcements')->where('id',$id)->value('file_path');
-        $pen->delete();
-        // $filepath = Announcement::select('filepath')->where('id',$id)-> pluck()->first();
-        if(!empty($filepath)){
-            Storage::delete($filepath);
+        if(auth()->user()->role == "admin"){
+            $pen = Announcement::findorfail($id);
+            $filepath = DB::table('announcements')->where('id',$id)->value('file_path');
+            $pen->delete();
+            // $filepath = Announcement::select('filepath')->where('id',$id)-> pluck()->first();
+            if(!empty($filepath)){
+                Storage::delete($filepath);
+            }
+            // unlink(storage_path('public/announcements/3A2nSdjWgFnL8LEMzRkO8OsgP2t6Ny9hGfpEkHNB.docx'));
+            return back()->with('info', 'Pengumuman berhasil dihapus');
         }
-        // unlink(storage_path('public/announcements/3A2nSdjWgFnL8LEMzRkO8OsgP2t6Ny9hGfpEkHNB.docx'));
-        return back()->with('info', 'Pengumuman berhasil dihapus');
+        else{
+            $pengumuman = Announcement::all();
+            return view("daftar_pengumuman", compact('pengumuman'));
+        }
     }
 }
