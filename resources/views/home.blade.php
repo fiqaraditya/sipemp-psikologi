@@ -22,7 +22,11 @@
                 
                         <div class="col-9">
                             <h3>{{ $item-> judul }}</h3>
-                            <h5> Oleh {{ $item-> admin_id }} </h5>
+                            @foreach ($user as $us)
+                            @if($item->admin_id == $us->id)
+                                <h5> Oleh {{ $us-> name }} </h5>
+                            @endif
+                            @endforeach
                         </div>
                     </div>
                     <br>

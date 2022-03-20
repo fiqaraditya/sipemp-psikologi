@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Announcement;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 class AnnouncementController extends Controller
@@ -16,8 +17,11 @@ class AnnouncementController extends Controller
     public function index()
     {
         $pengumuman = Announcement::all();
-        return view("daftar_pengumuman", compact('pengumuman'));
+        $user = User::all();
+        return view("daftar_pengumuman", compact('pengumuman','user'));
     }
+       
+       
 
     /**
      * Show the form for creating a new resource.
@@ -44,11 +48,15 @@ class AnnouncementController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
+        $admin_id = auth()->user()->id;
+        //dd($admin_id);
+
         if($_FILES['file']['size'] == 0){
            
             Announcement::create([
                 'judul' => $request->judul,
-                'isi' => $request->isi
+                'isi' => $request->isi,
+                'admin_id' => auth()->user()->id
             ]);
         }
         else{
