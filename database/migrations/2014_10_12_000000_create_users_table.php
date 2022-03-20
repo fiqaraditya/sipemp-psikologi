@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('role');
             $table->string('no_pendaftaran')->unique()->nullable();
+            $table->string('profesi')->nullable();
             $table->string('status_penerimaan')->nullable();
             $table->rememberToken();
             $table->timestamps();
