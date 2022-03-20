@@ -54,11 +54,18 @@
         </div>
         <div style="margin-right:20px">
             @auth
-            <form action="/logout" method="post">
-                @csrf
-                <button type="submit" class="btn btn-primary"
-                style="background-color:#E48700; border:0px; width:80px;margin-right:50px">Keluar</button>
-            </form>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-right:200px" class="mx-auto">
+                {{-- <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/"><b>Welcome back, {{ auth()->user()->name }}</b></a>
+                </li> --}}
+                <li class="nav-item">
+                    <form action="/logout" method="post">
+                        @csrf
+                        <button type="submit" class="btn btn-primary"
+                        style="background-color:#E48700; border:0px; width:80px;margin-right:50px">Keluar</button>
+                    </form>
+                </li>
+            </ul>
             @else
             <a type="button" href="/login" class="btn btn-primary"
                 style="background-color:#E48700; border:0px; width:80px;margin-right:50px">Masuk</a>
