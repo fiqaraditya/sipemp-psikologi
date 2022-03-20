@@ -24,7 +24,7 @@ class DocumentController extends Controller
             return redirect('submit-file-1');
         }
         else{
-            $pen = DB::table('Documents')->where('mahasiswa_id', $mahasiswa_id)->first();
+            //$pen = DB::table('Documents')->where('mahasiswa_id', $mahasiswa_id)->first();
             
             $request->validate([
                 'file' => 'required|file|mimes:doc,docx,xlsx,xls,pdf,zip'
@@ -34,7 +34,8 @@ class DocumentController extends Controller
                         'public/lk',
                         $request->file('file'));
             
-            $pen->update(['file_lk_path' => $filepath]);
+            //$pen->update(['file_lk_path' => $filepath]);
+            DB::table('Documents')->where('mahasiswa_id', $mahasiswa_id)->update(['file_lk_path' => $filepath]);
             
             return redirect('kelengkapan-berkas')->with('success', 'Berkas Lingkungan berhasil ditambahkan');
         }     
@@ -55,8 +56,8 @@ class DocumentController extends Controller
             return redirect('submit-file-2');
         }
         else{
-            $pen = DB::table('Documents')->where('mahasiswa_id', $mahasiswa_id)->first();
-            
+            //$pen = DB::table('Documents')->where('mahasiswa_id', $mahasiswa_id)->first();
+
             $request->validate([
                 'file' => 'required|file|mimes:doc,docx,xlsx,xls,pdf,zip'
             ]);
@@ -65,7 +66,13 @@ class DocumentController extends Controller
                         'public/psikotest',
                         $request->file('file'));
             
-            $pen->update(['file_psikotest_path' => $filepath]);
+            
+
+            DB::table('Documents')->where('mahasiswa_id', $mahasiswa_id)->update(['file_psikotest_path' => $filepath]);
+
+            //$pen->update(['file_psikotest_path' => $filepath]);
+            
+
             
             return redirect('kelengkapan-berkas')->with('success', 'Berkas Psikotest berhasil ditambahkan');
         }    
@@ -88,20 +95,27 @@ class DocumentController extends Controller
         $mahasiswa_id = auth()->user()->id;
         //dd($admin_id);
 
-        $pen = DB::table('Documents')->where('mahasiswa_id', $mahasiswa_id)->first();
+       $pen = DB::table('Documents')->where('mahasiswa_id', $mahasiswa_id)->get()->first();
+      
         if($pen->email_pr1 == NULL){
-            dd("a");
-            dd($request->email_pr1);
-            $pen->update(['email_pr1' => $request->email_pr1]);
+            //dd("a");
+            //dd($request->email_pr1);
+            // $pen->update(['email_pr1' => $request->email_pr1]);
+            $email1 = $request->email_pr1;
+            //dd($email1);
+            DB::table('Documents')->where('mahasiswa_id', $mahasiswa_id)->update(['email_pr1' => $email1]);
             return redirect('kelengkapan-berkas')->with('success', 'Pengumuman berhasil ditambahkan');
         }
         elseif($pen->email_pr2 == NULL){
-            dd("b");
-            $pen->update(['email_pr2' => $request->email_pr1]);
+            //dd("b");
+            //$pen->update(['email_pr2' => $request->email_pr1]);
+            $email2 = $request->email_pr1; 
+            //dd($email2);
+            DB::table('Documents')->where('mahasiswa_id', $mahasiswa_id)->update(['email_pr2' => $email2]);
             return redirect('kelengkapan-berkas')->with('success', 'Pengumuman berhasil ditambahkan');
         }
         else{
-            dd("c");
+            //dd("c");
             return redirect('kelengkapan-berkas')->with('info', 'Kapasitas Pemberi Rekomendasi Sudah Penuh');
         }    
     }

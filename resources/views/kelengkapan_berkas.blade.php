@@ -32,7 +32,7 @@
         </div>  
     @else
     <div class="shadow card" style="margin-top:2%">
-        <a class="card-body" style="text-decoration:none" href="{{route('page_psikotest')}}">
+        <a class="card-body" style="text-decoration:none" href="#">
             <div class="row">
                 <div class="col-1">
                     <img src="img/doc.png" width="45" height="45">
@@ -59,7 +59,7 @@
     </div>
     @endif
 
-    @if ((auth()->user()->r1_id == NULL) || (auth()->user()->r2_id == NULL))
+    @if (DB::table('Documents')->where('mahasiswa_id', auth()->user()->id)->first()->email_pr1 == NULL ||DB::table('Documents')->where('mahasiswa_id', auth()->user()->id)->first()->email_pr2 == NULL )
         <div class="shadow card" style="margin-top:2%">
             <a class="card-body" style="text-decoration:none" href="{{route('page_email')}}">
                 <div class="row">
@@ -86,9 +86,9 @@
                 </div>
             </a>
         </div>  
-    @else
+    @elseif(DB::table('Documents')->where('mahasiswa_id', auth()->user()->id)->first()->r1_id == NULL ||DB::table('Documents')->where('mahasiswa_id', auth()->user()->id)->first()->r2_id == NULL  )
     <div class="shadow card" style="margin-top:2%">
-        <a class="card-body" style="text-decoration:none" href="{{route('page_email')}}">
+        <a class="card-body" style="text-decoration:none" href="#">
             <div class="row">
                 <div class="col-1">
                     <img src="img/doc.png" width="45" height="45">
@@ -108,7 +108,7 @@
 
             </div>
             <div class="row">
-                <h5 style="color:grey; padding:15px"> Yay, kamu telah berhasil upload berkas surat rekomendasi!</h5>
+                <h5 style="color:grey; padding:15px"> Surat rekomendasimu berhasil terkirim namun belum diisi oleh pemberi rekomendasi </h5>
                 </h5>
             </div>
         </a>
@@ -144,7 +144,7 @@
         </div>  
     @else
     <div class="shadow card" style="margin-top:2%">
-        <a class="card-body" style="text-decoration:none" href="{{route('page_lk')}}">
+        <a class="card-body" style="text-decoration:none" href="#">
             <div class="row">
                 <div class="col-1">
                     <img src="img/doc.png" width="45" height="45">
