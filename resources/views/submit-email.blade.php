@@ -40,7 +40,7 @@
                     </h6>
                     <br>
                     
-                    <form action="{{route('save_pengumuman')}}"  method="POST">
+                    <form action="{{route('save_email')}}"  method="POST">
                         {{ csrf_field() }}
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Email address</label>
