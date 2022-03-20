@@ -30,25 +30,26 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/pengumuman',[AnnouncementController::class, 'index'])->name("daftar_pengumuman")->middleware('auth');
-Route::get('/create-pengumuman',[AnnouncementController::class, 'create'])->name("create_pengumuman")->middleware('auth');;
-Route::get('/update-pengumuman/{id}',[AnnouncementController::class, 'edit'])->name("update_pengumuman")->middleware('auth');;
-Route::post('/save-pengumuman',[AnnouncementController::class, 'store'])->name("save_pengumuman")->middleware('auth');;
-Route::post('/updated-pengumuman/{id}',[AnnouncementController::class, 'update'])->name("updated_pengumuman")->middleware('auth');;
-Route::get('/delete-pengumuman/{id}',[AnnouncementController::class, 'destroy'])->name("delete_pengumuman")->middleware('auth');;
-Route::get('/download/{id}',[AnnouncementController::class, 'download'])->name('download_pengumuman')->middleware('auth');;
+
+Route::get('/pengumuman',[AnnouncementController::class, 'index'])->name("daftar_pengumuman")->middleware('auth','checkrole:admin');
+Route::get('/create-pengumuman',[AnnouncementController::class, 'create'])->name("create_pengumuman")->middleware('auth','checkrole:admin');;
+Route::get('/update-pengumuman/{id}',[AnnouncementController::class, 'edit'])->name("update_pengumuman")->middleware('auth','checkrole:admin' );;
+Route::post('/save-pengumuman',[AnnouncementController::class, 'store'])->name("save_pengumuman")->middleware('auth','checkrole:admin');;
+Route::post('/updated-pengumuman/{id}',[AnnouncementController::class, 'update'])->name("updated_pengumuman")->middleware('auth','checkrole:admin');;
+Route::get('/delete-pengumuman/{id}',[AnnouncementController::class, 'destroy'])->name("delete_pengumuman")->middleware('auth','checkrole:admin');;
+Route::get('/download/{id}',[AnnouncementController::class, 'download'])->name('download_pengumuman');
 Route::get('/about', function () {
     return view('welcome');
 });
 
-Route::get('/submit-file-1', [DocumentController::class, 'create_lk'])->name("page_lk")->middleware('auth');;
-Route::get('/save-file-1', [DocumentController::class, 'store_lk'])->name("save_lk")->middleware('auth');;
-Route::get('/submit-file-2', [DocumentController::class, 'create_psikotest'])->name("page_psikotest")->middleware('auth');;
-Route::get('/save-file-2', [DocumentController::class, 'store_psikotest'])->name("save_psikotest")->middleware('auth');;
-Route::get('/submit-email', [DocumentController::class, 'create_email'])->name("page_email")->middleware('auth');;
-Route::get('/save-email', [DocumentController::class, 'store_email'])->name("save_lk")->middleware('auth');;
-Route::get('/submit-file-3', [DocumentController::class, 'create_rekomendasi'])->name("page_rekomendasi")->middleware('auth');;
-Route::get('/save-file-3', [DocumentController::class, 'store_rekomendasi'])->name("save_rekomendasi")->middleware('auth');;
-Route::get('/kelengkapan-berkas', [DocumentController::class, 'kelengkapan_berkas'])->name("kelengkapan_berkas")->middleware('auth');
+Route::get('/submit-file-1', [DocumentController::class, 'create_lk'])->name("page_lk")->middleware('auth','checkrole:mahasiswa');
+Route::get('/save-file-1', [DocumentController::class, 'store_lk'])->name("save_lk")->middleware('auth','checkrole:mahasiswa');
+Route::get('/submit-file-2', [DocumentController::class, 'create_psikotest'])->name("page_psikotest")->middleware('auth','checkrole:mahasiswa');
+Route::get('/save-file-2', [DocumentController::class, 'store_psikotest'])->name("save_psikotest")->middleware('auth','checkrole:mahasiswa');
+Route::get('/submit-email', [DocumentController::class, 'create_email'])->name("page_email")->middleware('auth','checkrole:mahasiswa');
+Route::get('/save-email', [DocumentController::class, 'store_email'])->name("save_lk")->middleware('auth', 'cheeckrole:mahasiswa');;
+Route::get('/submit-file-3', [DocumentController::class, 'create_rekomendasi'])->name("page_rekomendasi")->middleware('auth', 'checkrole:mahasiswa');;
+Route::get('/save-file-3', [DocumentController::class, 'store_rekomendasi'])->name("save_rekomendasi")->middleware('auth', 'checkrole:mahasiswa');
+Route::get('/kelengkapan-berkas', [DocumentController::class, 'kelengkapan_berkas'])->name("kelengkapan_berkas")->middleware('auth', 'checkrole:mahasiswa');
 
 
