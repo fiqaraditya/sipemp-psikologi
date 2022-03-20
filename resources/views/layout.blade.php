@@ -35,6 +35,7 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/"><b><u>Beranda</u></b></a>
                     </li>
+                    @if (auth()->user()->role=="admin")
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{route('daftar_pengumuman')}}">Pengumuman</a>
                     </li>
@@ -47,6 +48,15 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Pendaftar</a>
                     </li>
+                    @endif
+                    @if (auth()->user()->role=="calon mahasiswa")
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{route('kelengkapan_berkas')}}">Kelengkapan Berkas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Wawancara</a>
+                    </li>
+                    @endif
                 </ul>
             </div>
             @else

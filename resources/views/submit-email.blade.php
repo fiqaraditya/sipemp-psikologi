@@ -45,7 +45,7 @@
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Email address</label>
                                 <input type="email" class="form-control" id="exampleFormControlInput1"
-                                    placeholder="name@example.com">
+                                    placeholder="name@example.com" name="email_pr1"> 
                             </div>
                         <br>
                             <button type="submit" class="btn btn-primary" style="border-radius: 40px; width:20%;"> Submit</button>
