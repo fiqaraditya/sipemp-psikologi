@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('email_pr');
             $table->foreignId('mahasiswa_key');
-            $table->string('notelp_pr');
+            $table->string('notelp_pr')->nullable();
             //FILEPATH HAHA HIHI
         });
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Document;
+use App\Models\Recommendation;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -93,17 +94,26 @@ class DocumentController extends Controller
         // dd("test");
         // dd($request->all());
         $mahasiswa_id = auth()->user()->id;
+        $no_pendaftaran = auth()->user()->no_pendaftaran ;
         //dd($admin_id);
 
        $pen = DB::table('Documents')->where('mahasiswa_id', $mahasiswa_id)->get()->first();
       
         if($pen->email_pr1 == NULL){
+            // dd($no_pendaftaran);
             //dd("a");
             //dd($request->email_pr1);
             // $pen->update(['email_pr1' => $request->email_pr1]);
             $email1 = $request->email_pr1;
             //dd($email1);
+            DB::table('Recommendations')->insert([
+                'email_pr' => $email1,
+                'mahasiswa_key' => $no_pendaftaran 
+            ]);
+
             DB::table('Documents')->where('mahasiswa_id', $mahasiswa_id)->update(['email_pr1' => $email1]);
+            
+
             return redirect('kelengkapan-berkas')->with('success', 'Pengumuman berhasil ditambahkan');
         }
         elseif($pen->email_pr2 == NULL){
@@ -111,6 +121,10 @@ class DocumentController extends Controller
             //$pen->update(['email_pr2' => $request->email_pr1]);
             $email2 = $request->email_pr1; 
             //dd($email2);
+            DB::table('Recommendations')->insert([
+                'email_pr' => $email2,
+                'mahasiswa_key' => $no_pendaftaran 
+            ]);
             DB::table('Documents')->where('mahasiswa_id', $mahasiswa_id)->update(['email_pr2' => $email2]);
             return redirect('kelengkapan-berkas')->with('success', 'Pengumuman berhasil ditambahkan');
         }
