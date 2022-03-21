@@ -14,16 +14,32 @@
                         Contoh :Consecetur_Adipiscing_Elit_Etiam
                     </h6>
                     <br>
-                    <form action="{{route('save_psikotest')}}"  method="POST" enctype="multipart/form-data">
-                        {{ csrf_field() }}
-                            <div class="custom-file">
-                                <input type="file" name="file" class="custom-file-input" id="chooseFile">
-                                <label class="custom-file-label" for="chooseFile">Select file</label>
-                            </div>
-                            <br>
-                            <button type="submit" class="btn btn-primary" style="border-radius: 40px; width:20%;"> Post </button>
-                            <button type="button" class="btn btn-danger" style="border-radius: 40px; width:20%;">Batalkan </button>
-                    </form>
+                    @if (DB::table('Documents')->where('mahasiswa_id', auth()->user()->id)->first()->file_psikotest_path == NULL)
+                        <form action="{{route('save_psikotest')}}"  method="POST" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                                <div class="custom-file">
+                                    <input type="file" name="file" class="custom-file-input" id="chooseFile">
+                                    <label class="custom-file-label" for="chooseFile">Select file</label>
+                                </div>
+                                <br>
+                                <button type="submit" class="btn btn-primary" style="border-radius: 40px; width:20%;"> Post </button>
+                                <button type="button" class="btn btn-danger" style="border-radius: 40px; width:20%;">Batalkan </button>
+                        </form>
+                    @else
+                        <form action="#"  method="POST" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                                <div class="custom-file">
+                                    <input type="file" name="file" class="custom-file-input" id="chooseFile">
+                                    <label class="custom-file-label" for="chooseFile">Select file</label>
+                                </div>
+                                <br>
+                                <a href="#">Download Dokumen</a>
+                                <br>
+                                <br>
+                                <button type="submit" class="btn btn-primary" style="border-radius: 40px; width:20%;"> Ubah </button>
+                                <button type="button" class="btn btn-danger" style="border-radius: 40px; width:20%;">Hapus </button>
+                        </form>
+                    @endif
                 </div>
             </div>
         </div>

@@ -32,7 +32,7 @@
         </div>  
     @else
     <div class="shadow card" style="margin-top:2%">
-        <a class="card-body" style="text-decoration:none" href="#">
+        <a class="card-body" style="text-decoration:none" href="{{route('page_psikotest')}}">
             <div class="row">
                 <div class="col-1">
                     <img src="img/doc.png" width="45" height="45">
@@ -88,7 +88,7 @@
         </div>  
     @elseif(DB::table('Documents')->where('mahasiswa_id', auth()->user()->id)->first()->r1_id == NULL ||DB::table('Documents')->where('mahasiswa_id', auth()->user()->id)->first()->r2_id == NULL  )
     <div class="shadow card" style="margin-top:2%">
-        <a class="card-body" style="text-decoration:none" href="#">
+        <a class="card-body" style="text-decoration:none" href="{{route('page_email')}}">
             <div class="row">
                 <div class="col-1">
                     <img src="img/doc.png" width="45" height="45">
@@ -144,7 +144,7 @@
         </div>  
     @else
     <div class="shadow card" style="margin-top:2%">
-        <a class="card-body" style="text-decoration:none" href="#">
+        <a class="card-body" style="text-decoration:none" href="{{route('page_lk')}}">
             <div class="row">
                 <div class="col-1">
                     <img src="img/doc.png" width="45" height="45">
