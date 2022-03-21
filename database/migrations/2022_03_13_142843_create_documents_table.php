@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->timestamps();
-            $table->foreignId('mahasiswa_id');
+            $table->foreignId('mahasiswa_id')->primary();
             $table->string('email_pr1')->nullable();
             $table->string('email_pr2')->nullable();
             $table->integer('status_rekomendasi')->nullable();
