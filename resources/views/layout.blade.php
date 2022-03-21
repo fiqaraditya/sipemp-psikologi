@@ -30,7 +30,7 @@
             </button>
             @auth
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-           
+
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-left:200px" class="mx-auto">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/"><b><u>Beranda</u></b></a>
@@ -40,13 +40,13 @@
                         <a class="nav-link active" aria-current="page" href="{{route('daftar_pengumuman')}}">Pengumuman</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Admin</a>
+                        <a class="nav-link active" aria-current="page" href="{{route('daftar_admin')}}">Admin</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Wawancara</a>
+                        <a class="nav-link active" aria-current="page" href="{{route('daftar_pewawancara')}}">Wawancara</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Pendaftar</a>
+                        <a class="nav-link active" aria-current="page" href="{{route('daftar_mahasiswa')}}">Pendaftar</a>
                     </li>
                     @endif
                     @if (auth()->user()->role=="calon mahasiswa")
@@ -82,7 +82,9 @@
             @endauth
 
         </div>
-    </nav> @yield('content')
+    </nav>
+    @yield('content')
+
     <footer class="mt-auto" style="width:100%;">
         <div style="width:100%; height: 100px; background-color:#58CCF4; padding:10px; display:flex; overflow:hidden; ">
             <img src="img/logo 2.png" alt=5 width="205" height="82" style="margin-left: 50px">
