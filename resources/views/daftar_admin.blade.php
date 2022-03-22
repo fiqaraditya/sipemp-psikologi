@@ -5,7 +5,7 @@
     <div class="row">
         <h1 style="margin-bottom: 1%">Daftar Admin</h1>
         @if (auth()->user()->role=="admin")
-            <a type="button" class="btn btn-primary" style="border-radius: 40px; width:20%;" href=""> Buat Admin Baru</a>
+            <a type="button" class="btn btn-primary" style="border-radius: 40px; width:20%;" href="{{route('create_admin')}}"> Buat Admin Baru</a>
          @else
 
         @endif
