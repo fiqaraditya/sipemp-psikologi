@@ -17,4 +17,8 @@ class PewawancaraController extends Controller
         $pewawancaras = User::where('role', '=', 'pewawancara')->get();
         return view("daftar_pewawancara", compact('pewawancaras'));
     }
+
+    public function create() {
+        return view('create_pewawancara');
+    }
 }
