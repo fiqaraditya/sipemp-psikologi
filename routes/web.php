@@ -36,13 +36,15 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/daftar-admin',[AdminController::class, 'index'])->name("daftar_admin")->middleware('auth','checkrole:admin');
 Route::get('/create-admin',[AdminController::class, 'create'])->name("create_admin")->middleware('auth','checkrole:admin');
-Route::post('/create-admin', [AdminController::class, 'store']);
+Route::post('/create-admin', [AdminController::class, 'store'])->name("create_admin_post")->middleware('auth','checkrole:admin');;
 
 Route::get('/daftar-mahasiswa',[MahasiswaController::class, 'index'])->name("daftar_mahasiswa")->middleware('auth','checkrole:admin');
+Route::get('/create-mahasiswa',[MahasiswaController::class, 'create'])->name("create_mahasiswa")->middleware('auth','checkrole:admin');
+Route::post('/create-mahasiswa', [MahasiswaController::class, 'store'])->name("create_mahasiswa_post")->middleware('auth','checkrole:admin');;
 
 Route::get('/daftar-pewawancara',[PewawancaraController::class, 'index'])->name("daftar_pewawancara")->middleware('auth','checkrole:admin');
 Route::get('/create-pewawancara',[PewawancaraController::class, 'create'])->name("create_pewawancara")->middleware('auth','checkrole:admin');
-
+Route::post('/create-pewawancara', [PewawancaraController::class, 'store'])->name("create_pewawancara_post")->middleware('auth','checkrole:admin');
 
 Route::get('/pengumuman',[AnnouncementController::class, 'index'])->name("daftar_pengumuman")->middleware('auth','checkrole:admin');
 Route::get('/create-pengumuman',[AnnouncementController::class, 'create'])->name("create_pengumuman")->middleware('auth','checkrole:admin');
