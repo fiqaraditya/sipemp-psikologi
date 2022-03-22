@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email_pr');
             $table->foreignId('mahasiswa_key');
             $table->string('notelp_pr')->nullable();
-            //FILEPATH HAHA HIHI
+            $table->string('file_path')->nullable();
         });
     }
 

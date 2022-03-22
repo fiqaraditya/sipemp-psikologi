@@ -18,21 +18,27 @@
                     <form action="{{route('save_rekomendasi')}}"  method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="form-group">
+                            <label for="exampleFormControlInput1">Email Pemberi Rekomendasi</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1"
+                                placeholder="Email Pemberi Rekomendasi" name="email_pr">
+                        </div>
+                        <br>
+                        <div class="form-group">
                             <label for="exampleFormControlInput1">Nomor Telpon Pemberi Rekomendasi</label>
                             <input type="text" class="form-control" id="exampleFormControlInput1"
-                                placeholder="+6285212345678">
+                                placeholder="Nomor Telpon Pemberi Rekomendasi" name="no_telp">
                         </div>
                         <br>
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Nama Penerima Rekomendasi</label>
                             <input type="text" class="form-control" id="exampleFormControlInput1"
-                                placeholder="Nama Penerima Rekomendasi">
+                                placeholder="Nama Penerima Rekomendasi" name="mahasiswa_rekomendasi">
                         </div>
                         <br>
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Kode Unik Penerima Rekomendasi</label>
                             <input type="text" class="form-control" id="exampleFormControlInput1"
-                                placeholder="Kode Unik Penerima Rekomendasi">
+                                placeholder="Kode Unik Penerima Rekomendasi" name="kode_unik_mahasiswa">
                         </div>
                         <br>
                         <div class="custom-file">

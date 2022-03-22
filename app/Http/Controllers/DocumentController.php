@@ -79,11 +79,6 @@ class DocumentController extends Controller
         }    
     }
 
-    public function create_rekomendasi()
-    {
-        return view('submit3');
-    }
-
     public function create_email()
     {
         return view('submit-email');

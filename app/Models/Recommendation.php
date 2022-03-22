@@ -10,6 +10,7 @@ class Recommendation extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $fillable = ['notelp_pr','file_path'];
 
     public function user(){
         return $this->belongsTo(User::class);
