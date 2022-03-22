@@ -8,6 +8,7 @@ use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PewawancaraController;
+use App\Http\Controllers\RecommendationController;
 use App\Models\Announcement;
 use Illuminate\Support\Facades\Route;
 
@@ -56,8 +57,8 @@ Route::get('/submit-file-2', [DocumentController::class, 'create_psikotest'])->n
 Route::post('/save-file-2', [DocumentController::class, 'store_psikotest'])->name("save_psikotest")->middleware('auth','checkrole:calon mahasiswa');
 Route::get('/submit-email', [DocumentController::class, 'create_email'])->name("page_email")->middleware('auth','checkrole:calon mahasiswa');
 Route::post('/save-email', [DocumentController::class, 'store_email'])->name("save_email");
-Route::get('/submit-file-3', [DocumentController::class, 'create_rekomendasi'])->name("page_rekomendasi")->middleware('auth', 'checkrole:calon mahasiswa');;
-Route::post('/save-file-3', [DocumentController::class, 'store_rekomendasi'])->name("save_rekomendasi")->middleware('auth', 'checkrole:calon mahasiswa');
 Route::get('/kelengkapan-berkas', [DocumentController::class, 'kelengkapan_berkas'])->name("kelengkapan_berkas")->middleware('auth', 'checkrole:calon mahasiswa');
 
+Route::get('/submit-file-3', [RecommendationController::class, 'create_rekomendasi'])->name("page_rekomendasi")->middleware('guest');
+Route::post('/save-file-3', [RecommendationController::class, 'store_rekomendasi'])->name("save_rekomendasi")->middleware('guest');
 
