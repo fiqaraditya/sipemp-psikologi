@@ -5,11 +5,11 @@
 
     <div class="card card-login" style="width: 40rem;">
         <div class="card-body">
-            <h1 class="card-text mb-4">Buat Pewawancara Baru</h1>
-            <form action="/create-pewawancara" method="post">
+            <h1 class="card-text mb-4">Buat Calon Mahasiswa Baru</h1>
+            <form action="/create-mahasiswa" method="post">
                 @csrf
                 <input type="hidden" name="role" value="pewawancara">
-                <h6>Pilih Peminatan dari Pewawancara:</h6>
+                <h6>Pilih Peminatan dari Calon Mahasiswa:</h6>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="profesi" id="profesi1" value="profesi">
                     <label class="form-check-label" for="profesi1">Psikologi Profesi</label>
@@ -28,6 +28,10 @@
                     <label class="form-check-label" for="profesi5">Psikologi Industri dan Organisasi</label>
                 </div>
                 <div class="form-floating mb-3 mt-3">
+                    <input type="text" class="form-control" id="no_pendaftaran" name="no_pendaftaran" placeholder="Nomor Pendaftaran" required>
+                    <label for="no_pendaftaran">Nomor Pendaftaran</label>
+                </div>
+                <div class="form-floating mb-3 mt-3">
                     <input type="text" class="form-control" id="name" name="name" placeholder="name" required>
                     <label for="name">Name</label>
                 </div>
@@ -39,7 +43,7 @@
                     <button class="btn btn-login text-uppercase fw-bold"
                         style="background-color:#E48700; color:white" type="submit">Register</button>
                     <a class="btn btn-outline-dark text-uppercase fw-bold my-3"
-                         type="button" href="{{route('daftar_pewawancara')}}">Back</a>
+                         type="button" href="{{route('daftar_mahasiswa')}}">Back</a>
                 </div>
             </form>
         </div>
