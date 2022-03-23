@@ -16,6 +16,12 @@ return new class extends Migration
         Schema::create('recommendations', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->unsignedBigInteger('mahasiswa_id')->unsigned();
+            $table->foreign('mahasiswa_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->string('email_pr');
             $table->string('mahasiswa_key');
             $table->string('notelp_pr')->nullable();
