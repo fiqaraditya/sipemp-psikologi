@@ -58,7 +58,7 @@ class RecommendationController extends Controller
             
            
 
-            return redirect('pengumuman')->with('success', 'Pengumuman berhasil ditambahkan');
+            return redirect('/')->with('success', 'Surat rekomendasi berhasil ditambahkan');
         }
     }
 }

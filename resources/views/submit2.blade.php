@@ -26,14 +26,14 @@
                                 <button type="button" class="btn btn-danger" style="border-radius: 40px; width:20%;">Batalkan </button>
                         </form>
                     @else
-                        <form action="#"  method="POST" enctype="multipart/form-data">
+                        <form action="{{route('save_psikotest')}}"  method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
                                 <div class="custom-file">
                                     <input type="file" name="file" class="custom-file-input" id="chooseFile">
                                     <label class="custom-file-label" for="chooseFile">Select file</label>
                                 </div>
                                 <br>
-                                <a href="#">Download Dokumen</a>
+                                <a href="{{url('/download-psikotest',auth()->user()->id)}}">Download Hasil Psikotest</a>
                                 <br>
                                 <br>
                                 <button type="submit" class="btn btn-primary" style="border-radius: 40px; width:20%;"> Ubah </button>

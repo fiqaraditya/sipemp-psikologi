@@ -64,10 +64,10 @@
         </div>
         <div style="margin-right:20px">
             @auth
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-right:200px" class="mx-auto">
-                {{-- <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/"><b>Welcome back, {{ auth()->user()->name }}</b></a>
-                </li> --}}
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-right:400px" >
+                <li class="nav-item">
+                    <h6 ><b>Welcome back, {{ auth()->user()->name }}</b></h6>
+                </li> 
                 <li class="nav-item">
                     <form action="/logout" method="post">
                         @csrf

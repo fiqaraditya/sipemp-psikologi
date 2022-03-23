@@ -42,6 +42,7 @@ class DocumentController extends Controller
         }     
     }
 
+    
     public function create_psikotest()
     {
         return view('submit2');

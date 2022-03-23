@@ -54,6 +54,12 @@ Route::post('/updated-pengumuman/{id}',[AnnouncementController::class, 'update']
 Route::get('/delete-pengumuman/{id}',[AnnouncementController::class, 'destroy'])->name("delete_pengumuman")->middleware('auth','checkrole:admin');
 Route::get('/download/{id}',[AnnouncementController::class, 'download'])->name('download_pengumuman');
 Route::get('/download-psikotest/{id}',[MahasiswaController::class, 'downloadpsikotest'])->name('download_psikotest');
+Route::get('/download-lk/{id}',[MahasiswaController::class, 'downloadlk'])->name('downloadlk');
+Route::get('/download-rekomendasi1/{id}',[MahasiswaController::class, 'downloadsr1'])->name('downloadsr1');
+Route::get('/download-rekomendasi2/{id}',[MahasiswaController::class, 'downloadsr2'])->name('downloadsr2');
+
+
+
 Route::get('/about', function () {
     return view('welcome');
 });
@@ -68,4 +74,6 @@ Route::get('/kelengkapan-berkas', [DocumentController::class, 'kelengkapan_berka
 
 Route::get('/submit-file-3', [RecommendationController::class, 'create_rekomendasi'])->name("page_rekomendasi")->middleware('guest');
 Route::post('/save-file-3', [RecommendationController::class, 'store_rekomendasi'])->name("save_rekomendasi")->middleware('guest');
+
+
 Route::get('/detail-mahasiswa/{id}', [MahasiswaController::class, 'detail'])->name("detail_calon_mahasiswa")->middleware('auth', 'checkrole:admin');
