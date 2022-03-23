@@ -72,6 +72,7 @@ class AnnouncementController extends Controller
             Announcement::create([
                 'judul' => $request->judul,
                 'isi' => $request->isi,
+                'admin_id' => auth()->user()->id,
                 'file_path' => $filepath
             ]);
 
