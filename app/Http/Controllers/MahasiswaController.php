@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Recommendation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -42,6 +43,7 @@ class MahasiswaController extends Controller
             'profesi' => 'required',
             'no_pendaftaran' => 'required'
         ]);
+        $validateUser['password'] = Hash::make($validateUser['password']);
         User::create($validateUser);
         $pen = DB::table('Users')->where('no_pendaftaran', $no_pendaftaran)->get()->first();
         $id = $pen->id;
@@ -55,7 +57,7 @@ class MahasiswaController extends Controller
         $calonmahasiswa = User::findorfail($id);
         $document = Document::all();
         $recommendation = Recommendation::all();
-        
+
         return view("detail-mahasiswa", compact('calonmahasiswa', 'document', 'recommendation'));
     }
 

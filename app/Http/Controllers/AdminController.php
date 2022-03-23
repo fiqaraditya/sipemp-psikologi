@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -30,7 +31,7 @@ class AdminController extends Controller
             'role' => 'required',
             'profesi' => 'nullable'
         ]);
-
+        $validateUser['password'] = Hash::make($validateUser['password']);
         User::create($validateUser);
         /* auth()->login($user);*/
         return redirect('/daftar-admin');
