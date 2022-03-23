@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Document;
 use App\Models\User;
+use App\Models\Recommendation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -51,12 +52,38 @@ class MahasiswaController extends Controller
     public function detail($id)
     {
         $calonmahasiswa = User::findorfail($id);
-        return view("detail_mahasiswa", compact('calonmahasiswa'));
+        $document = Document::all();
+        $recommendation = Recommendation::all();
+        return view("detail-mahasiswa", compact('calonmahasiswa', 'document', 'recommendation'));
     }
 
     public function downloadpsikotest($id)
     {
         $filepath = DB::table('documents')->where('mahasiswa_id',$id)->value('file_psikotest_path');
+        Storage::download($filepath);
+        return Storage::download($filepath);
+    }
+    public function downloadlk($id)
+    {
+        $filepath = DB::table('documents')->where('mahasiswa_id',$id)->value('file_lk_path');
+        Storage::download($filepath);
+        return Storage::download($filepath);
+    }
+
+    public function downloadsr1($id)
+    {
+        $email_pr1 =  DB::table('documents')->where('mahasiswa_id',$id)->value('email_pr1');
+        $mahasiswa_key =  DB::table('users')->where('id',$id)->value('no_pendaftaran');
+        $filepath = DB::table('recommendations')->where('mahasiswa_key',$mahasiswa_key)->where('email_pr', $email_pr1)->value('file_path');
+        Storage::download($filepath);
+        return Storage::download($filepath);
+    }
+
+    public function downloadsr2($id)
+    {
+        $email_pr1 =  DB::table('documents')->where('mahasiswa_id',$id)->value('email_pr2');
+        $mahasiswa_key =  DB::table('users')->where('id',$id)->value('no_pendaftaran');
+        $filepath = DB::table('recommendations')->where('mahasiswa_key',$mahasiswa_key)->where('email_pr', $email_pr1)->value('file_path');
         Storage::download($filepath);
         return Storage::download($filepath);
     }

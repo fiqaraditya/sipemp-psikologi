@@ -20,10 +20,10 @@ class RegisterController extends Controller
             'role' => 'required'
         ]);
 
-        /*
+        
         User::create($validateUser);
-        /*
-        auth()->login($user);*/
+        
+        // auth()->login($user);
         return redirect('/login');
 
     }
