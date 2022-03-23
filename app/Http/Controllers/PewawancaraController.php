@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 
 class PewawancaraController extends Controller
@@ -24,7 +25,7 @@ class PewawancaraController extends Controller
     }
 
     public function store(Request $request) {
-        $random_pass = Str::random(30);
+        $random_pass = "wawanpass";
         $request->request->add(['password' => $random_pass]);
         $validateUser = $request->validate([
             'name' => 'required',
@@ -35,6 +36,8 @@ class PewawancaraController extends Controller
         ]);
 
         User::create($validateUser);
+
+        Password::sendResetLink($request->only(['email']));
         /* auth()->login($user);*/
         return redirect('/daftar-pewawancara');
 
