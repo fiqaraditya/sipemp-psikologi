@@ -23,7 +23,7 @@ class RegisterController extends Controller
             'password' => 'required|min:8',
             'role' => 'required'
         ]);
-
+        $validateUser['password'] = Hash::make($validateUser['password']);
         User::create($validateUser);
 
         // auth()->login($user);
