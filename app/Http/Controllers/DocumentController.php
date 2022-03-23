@@ -110,7 +110,7 @@ class DocumentController extends Controller
             DB::table('Documents')->where('mahasiswa_id', $mahasiswa_id)->update(['email_pr1' => $email1]);
             
 
-            return redirect('kelengkapan-berkas')->with('success', 'Pengumuman berhasil ditambahkan');
+            return redirect('kelengkapan-berkas')->with('success', 'email pemberi rekomendasi berhasil ditambahkan');
         }
         elseif($pen->email_pr2 == NULL){
             //dd("b");
@@ -122,7 +122,7 @@ class DocumentController extends Controller
                 'mahasiswa_key' => $no_pendaftaran 
             ]);
             DB::table('Documents')->where('mahasiswa_id', $mahasiswa_id)->update(['email_pr2' => $email2]);
-            return redirect('kelengkapan-berkas')->with('success', 'Pengumuman berhasil ditambahkan');
+            return redirect('kelengkapan-berkas')->with('success', 'email pemberi rekomendasi berhasil ditambahkan');
         }
         else{
             //dd("c");

@@ -20,7 +20,8 @@ class MahasiswaController extends Controller
     public function index()
     {
         $calonmahasiswas = User::where('role', '=', 'calon mahasiswa')->get();
-        return view("daftar_mahasiswa", compact('calonmahasiswas'));
+        $document = Document::all();
+        return view("daftar_mahasiswa", compact('calonmahasiswas','document'));
     }
 
     public function create() {
@@ -54,6 +55,7 @@ class MahasiswaController extends Controller
         $calonmahasiswa = User::findorfail($id);
         $document = Document::all();
         $recommendation = Recommendation::all();
+        
         return view("detail-mahasiswa", compact('calonmahasiswa', 'document', 'recommendation'));
     }
 
@@ -86,6 +88,30 @@ class MahasiswaController extends Controller
         $filepath = DB::table('recommendations')->where('mahasiswa_key',$mahasiswa_key)->where('email_pr', $email_pr1)->value('file_path');
         Storage::download($filepath);
         return Storage::download($filepath);
+    }
+
+    public function terima($id)
+    {
+        DB::table('Documents')->where('mahasiswa_id', $id)->update(['status_rekomendasi' => 1]);
+        $document = Document::all();
+        $calonmahasiswas = User::where('role', '=', 'calon mahasiswa')->get();
+        return view("daftar_mahasiswa", compact('calonmahasiswas','document'));
+    }
+
+    public function tolak($id)
+    {
+        DB::table('Documents')->where('mahasiswa_id', $id)->update(['status_rekomendasi' => 0]);
+        $calonmahasiswas = User::where('role', '=', 'calon mahasiswa')->get();
+        $document = Document::all();
+        return view("daftar_mahasiswa", compact('calonmahasiswas','document'));
+    }
+
+    public function ralat($id)
+    {
+        DB::table('Documents')->where('mahasiswa_id', $id)->update(['status_rekomendasi' => NULL]);
+        $calonmahasiswas = User::where('role', '=', 'calon mahasiswa')->get();
+        $document = Document::all();
+        return view("daftar_mahasiswa", compact('calonmahasiswas','document'));
     }
 
 }
