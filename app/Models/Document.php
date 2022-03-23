@@ -15,11 +15,11 @@ class Document extends Model
         'mahasiswa_id' => 0,
      ];
 
-    public function user(){
-        return $this->belongsTo(User::class);
-    }
+    // public function user(){
+    //     return $this->belongsTo(User::class);
+    // }
 
-    public function recommendation(){
-        return $this->hasMany(Recommendation::class);
-    }
+    // public function recommendation(){
+    //     return $this->hasMany(Recommendation::class);
+    // }
 }

@@ -34,6 +34,9 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
+Route::get('/set-password/{token}', [RegisterController::class, 'setPasswordForm'])->middleware('guest')->name('password.reset');
+Route::post('/set-password', [RegisterController::class, 'setPasswordStore'])->middleware('guest')->name('password.set');
+
 Route::get('/daftar-admin',[AdminController::class, 'index'])->name("daftar_admin")->middleware('auth','checkrole:admin');
 Route::get('/create-admin',[AdminController::class, 'create'])->name("create_admin")->middleware('auth','checkrole:admin');
 Route::post('/create-admin', [AdminController::class, 'store'])->name("create_admin_post")->middleware('auth','checkrole:admin');
