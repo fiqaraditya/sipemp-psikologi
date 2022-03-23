@@ -8,7 +8,7 @@
             <h1 class="card-text mb-4">Buat Calon Mahasiswa Baru</h1>
             <form action="/create-mahasiswa" method="post">
                 @csrf
-                <input type="hidden" name="role" value="pewawancara">
+                <input type="hidden" name="role" value="calon mahasiswa">
                 <h6>Pilih Peminatan dari Calon Mahasiswa:</h6>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="profesi" id="profesi1" value="profesi">

@@ -21,7 +21,7 @@
                     </th>
                     <th scope="col">
                     <img src="img/status.png" width="18" height="18">
-                        Status</th>
+                        Status Dokumen </th>
                     <th scope="col">Aksi</th>
                 </tr>
             </thead>
@@ -31,9 +31,26 @@
 
                     <td>{{ $item-> name }}</td>
                     <td>{{ $item-> no_pendaftaran  }}</td>
-                    <td> <div
-                    style="width:200px;height:40px; background-color:red; border-radius:20px; padding:10px; font-size:8; color:white;text-align:center;">
-                            <h6>Belum Terverifikasi </td>
+                    <td> 
+                        @foreach ($document as $doc)
+                        @if ($doc->mahasiswa_id == $item->id)
+                            @if (is_null($doc-> status_rekomendasi))
+                                <div style="width:200px;height:40px; background-color:grey; border-radius:20px; padding:10px; font-size:8; color:white;text-align:center;">
+                                    <h6>Belum Terverifikasi</h6>
+                                </div>
+                            @elseif ($doc-> status_rekomendasi == 1)
+                                <div style="width:200px;height:40px; background-color:green; border-radius:20px; padding:10px; font-size:8; color:white;text-align:center;">
+                                    <h6>Lolos Verifikasi</h6> 
+                                </div>
+                            @else
+                            <div style="width:200px;height:40px; background-color:red; border-radius:20px; padding:10px; font-size:8; color:white;text-align:center;">
+                                <h6>Tidak Lolos Verifikasi</h6>
+                            </div>
+                            @endif
+                        @endif
+                    @endforeach
+
+                    </td>
                     <td>   <a type="button" class="btn btn-primary"  style="background-color:#805AD5; border:0" href="{{url('/detail-mahasiswa', $item-> id)}}"> Detail Mahasiswa</a>   </td>
 
                 </tr>

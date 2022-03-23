@@ -25,8 +25,8 @@ class RegisterController extends Controller
         ]);
 
         User::create($validateUser);
-        /*
-        auth()->login($user);*/
+
+        // auth()->login($user);
         return redirect('/login');
 
     }

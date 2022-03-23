@@ -17,7 +17,7 @@
                     </div>
                     <div class="col-1">
                         <div
-                            style="width:130px;height:40px; background-color:#C4C4C4; border-radius:20px; padding:8px; font-size:10; color:black;text-align:center">
+                            style="width:140px;height:40px; background-color:#C4C4C4; border-radius:20px; padding:8px; font-size:10; color:black;text-align:center">
                             <h6>Belum Lengkap
                             </h6>
                         </div>
@@ -32,7 +32,7 @@
         </div>  
     @else
     <div class="shadow card" style="margin-top:2%">
-        <a class="card-body" style="text-decoration:none" href="{{route('page_psikotest')}}">
+        <div class="card-body" style="text-decoration:none" >
             <div class="row">
                 <div class="col-1">
                     <img src="img/doc.png" width="45" height="45">
@@ -47,6 +47,8 @@
                         style="width:130px;height:40px; background-color:green; border-radius:20px; padding:8px; font-size:10; color:white;text-align:center;">
                         <h6>Selesai
                         </h6>
+                        <br>
+                        <a class="btn btn-primary" href="{{url('/download-psikotest',auth()->user()->id)}}">Download Hasil Psikotest</a>
                     </div>
                 </div>
 
@@ -55,7 +57,11 @@
                 <h5 style="color:grey; padding:15px"> Yay, kamu telah berhasil upload berkas hasil psikotest!</h5>
                 </h5>
             </div>
-        </a>
+            <div class="col-1">
+                    <a class="btn btn-primary" style="background-color:grey; border:0" href="{{route('page_psikotest')}}" > Ubah file
+                    </a>
+                </div>
+        </div>
     </div>
     @endif
 
@@ -73,7 +79,7 @@
                     </div>
                     <div class="col-1">
                         <div
-                            style="width:130px;height:40px; background-color:#C4C4C4; border-radius:20px; padding:8px; font-size:10; color:black;text-align:center">
+                            style="width:140px;height:40px; background-color:#C4C4C4; border-radius:20px; padding:8px; font-size:10; color:black;text-align:center">
                             <h6>Belum Lengkap
                             </h6>
                         </div>
@@ -84,9 +90,10 @@
                     <h5 style="color:grey; padding:15px"> Email pemberi rekomendasi kamu belum diisi. Yuk, segera isi!</h5>
                     </h5>
                 </div>
+                
             </a>
         </div>  
-    @elseif(DB::table('Documents')->where('mahasiswa_id', auth()->user()->id)->first()->r1_id == NULL ||DB::table('Documents')->where('mahasiswa_id', auth()->user()->id)->first()->r2_id == NULL  )
+    @else
     <div class="shadow card" style="margin-top:2%">
         <a class="card-body" style="text-decoration:none" href="{{route('page_email')}}">
             <div class="row">
@@ -105,12 +112,14 @@
                         </h6>
                     </div>
                 </div>
+                
 
             </div>
             <div class="row">
-                <h5 style="color:grey; padding:15px"> Surat rekomendasimu berhasil terkirim namun belum diisi oleh pemberi rekomendasi </h5>
+                <h5 style="color:grey; padding:15px"> Surat rekomendasimu berhasil terkirim </h5>
                 </h5>
             </div>
+           
         </a>
     </div>
     @endif
@@ -129,7 +138,7 @@
                     </div>
                     <div class="col-1">
                         <div
-                            style="width:130px;height:40px; background-color:#C4C4C4; border-radius:20px; padding:8px; font-size:10; color:black;text-align:center;">
+                            style="width:140px;height:40px; background-color:#C4C4C4; border-radius:20px; padding:8px; font-size:10; color:black;text-align:center;">
                             <h6>Belum Lengkap
                             </h6>
                         </div>
@@ -144,36 +153,50 @@
         </div>  
     @else
     <div class="shadow card" style="margin-top:2%">
-        <a class="card-body" style="text-decoration:none" href="{{route('page_lk')}}">
+        <div class="card-body" style="text-decoration:none" href="{{route('page_lk')}}">
             <div class="row">
                 <div class="col-1">
                     <img src="img/doc.png" width="45" height="45">
                 </div>
+                
 
 
                 <div class="col-9">
                     <h3 style="color:grey; padding:5px"> Lingkungan Kehidupan</h3>
+                    
                 </div>
+
                 <div class="col-1">
+               
                     <div
                         style="width:130px;height:40px; background-color:green; border-radius:20px; padding:8px; font-size:10; color:white;text-align:center; ">
                         <h6>Selesai
-                        </h6>
+                        </h6> <br>
+                        <a class="btn btn-primary" href="{{url('/download-lk',auth()->user()->id)}}">Download Lembar Kehidupan</a>
                     </div>
+                    
                 </div>
 
             </div>
+            
             <div class="row">
+                
                 <h5 style="color:grey; padding:15px"> Yay, kamu telah berhasil upload berkas Lingkungan Kehidupan!</h5>
                 </h5>
             </div>
-        </a>
+
+            <div class="col-1">
+                    <a class="btn btn-primary" style="background-color:grey; border:0" href="{{route('page_lk')}}" > Ubah file
+                    </a>
+                </div>
+                <br>
+</div>
     </div>
     @endif
 
     
     <br>
 
-
+    @include('sweetalert::alert')
 </div>
 @endsection
