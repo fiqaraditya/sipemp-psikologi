@@ -65,10 +65,10 @@
         <div style="margin-right:20px">
             @auth
             <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-right:400px" >
-                <li class="nav-item">
-                    <h6 ><b>Welcome back, {{ auth()->user()->name }}</b></h6>
+                <li class="nav-item" style="width:100%; margin-top:3%">
+                    <b>{{ auth()->user()->name }}</b>
                 </li> 
-                <li class="nav-item">
+                <li class="nav-item" style="margin-left:10%">
                     <form action="/logout" method="post">
                         @csrf
                         <button type="submit" class="btn btn-primary"
@@ -85,11 +85,11 @@
     </nav>
     @yield('content')
 
-    <footer class="mt-auto" style="width:100%;">
+    {{-- <footer class="footer">
         <div style="width:100%; height: 100px; background-color:#58CCF4; padding:10px; display:flex; overflow:hidden; ">
             <img src="img/logo 2.png" alt=5 width="205" height="82" style="margin-left: 50px">
         </div>
-    </footer>
+    </footer> --}}
 
 </body>
 
