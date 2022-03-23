@@ -26,7 +26,7 @@ class PewawancaraController extends Controller
     }
 
     public function store(Request $request) {
-        $random_pass = "wawanpass";
+        $random_pass = Str::random(16);
         $request->request->add(['password' => $random_pass]);
         $validateUser = $request->validate([
             'name' => 'required',
