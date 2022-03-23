@@ -12,7 +12,7 @@ class RegisterController extends Controller
     }
 
     public function store(Request $request) {
-        dd($request);
+        // dd($request);
         $validateUser = $request->validate([
             'name' => 'required',
             'email' => ['required', 'email', 'unique:users'],
