@@ -27,7 +27,8 @@ class MahasiswaController extends Controller
     }
 
     public function store(Request $request) {
-        $random_pass = Str::random(30);
+        // $random_pass = Str::random(30);
+        $random_pass = "Password123";
         $request->request->add(['password' => $random_pass]);
         $no_pendaftaran = $request->no_pendaftaran;
         // dd($no_pendaftaran);

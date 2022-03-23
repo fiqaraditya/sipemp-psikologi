@@ -37,6 +37,7 @@
                     @if (is_null($calonmahasiswa-> file_psikotest_path ))
                     <br>
                     @else
+                    <p>HALO AHLO HALO</p>
                     <a href="{{url('/download-psikotest',$calonmahasiswa->id)}}">Download Dokumen</a>
                     @endif
 
