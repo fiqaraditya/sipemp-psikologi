@@ -3,7 +3,7 @@
 @section('content')
 <div class="container" style="margin-top:3%; margin-bottom:5%">
     <h1 style="margin-bottom: 1%">Kelengkapan Berkas</h1>
-    @if (DB::table('Documents')->where('mahasiswa_id', auth()->user()->id)->first()->file_psikotest_path == NULL)
+    @if ($document->where('mahasiswa_id', auth()->user()->id)->first()->file_psikotest_path == NULL)
         <div class="shadow card" style="margin-top:2%">
             <a class="card-body" style="text-decoration:none" href="{{route('page_psikotest')}}">
                 <div class="row">
@@ -65,7 +65,8 @@
     </div>
     @endif
 
-    @if (DB::table('Documents')->where('mahasiswa_id', auth()->user()->id)->first()->email_pr1 == NULL ||DB::table('Documents')->where('mahasiswa_id', auth()->user()->id)->first()->email_pr2 == NULL )
+    @if ($document->where('mahasiswa_id', auth()->user()->id)->first()->email_pr1 == NULL || $document->where('mahasiswa_id', auth()->user()->id)->first()->email_pr2 == NULL )
+
         <div class="shadow card" style="margin-top:2%">
             <a class="card-body" style="text-decoration:none" href="{{route('page_email')}}">
                 <div class="row">
@@ -124,7 +125,7 @@
     </div>
     @endif
 
-    @if (DB::table('Documents')->where('mahasiswa_id', auth()->user()->id)->first()->file_lk_path == NULL)
+    @if ($document->where('mahasiswa_id', auth()->user()->id)->first()->file_lk_path == NULL)
         <div class="shadow card" style="margin-top:2%">
             <a class="card-body" style="text-decoration:none" href="{{route('page_lk')}}">
                 <div class="row">

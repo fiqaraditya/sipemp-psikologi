@@ -134,7 +134,8 @@ class DocumentController extends Controller
     }
 
     public function kelengkapan_berkas()
-    {
-        return view('kelengkapan_berkas');
+    {   
+        $document = Document::all();
+        return view('kelengkapan_berkas',compact('document'));
     }
 }
