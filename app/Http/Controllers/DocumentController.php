@@ -26,23 +26,23 @@ class DocumentController extends Controller
         }
         else{
             //$pen = DB::table('Documents')->where('mahasiswa_id', $mahasiswa_id)->first();
-            
+
             $request->validate([
                 'file' => 'required|file|mimes:doc,docx,xlsx,xls,pdf,zip'
             ]);
-    
+
             $filepath = Storage::putFile(
                         'public/lk',
                         $request->file('file'));
-            
+
             //$pen->update(['file_lk_path' => $filepath]);
             DB::table('Documents')->where('mahasiswa_id', $mahasiswa_id)->update(['file_lk_path' => $filepath]);
-            
+
             return redirect('kelengkapan-berkas')->with('success', 'Berkas Lingkungan berhasil ditambahkan');
-        }     
+        }
     }
 
-    
+
     public function create_psikotest()
     {
         return view('submit2');
@@ -63,21 +63,21 @@ class DocumentController extends Controller
             $request->validate([
                 'file' => 'required|file|mimes:doc,docx,xlsx,xls,pdf,zip'
             ]);
-    
+
             $filepath = Storage::putFile(
                         'public/psikotest',
                         $request->file('file'));
-            
-            
+
+
 
             DB::table('Documents')->where('mahasiswa_id', $mahasiswa_id)->update(['file_psikotest_path' => $filepath]);
 
             //$pen->update(['file_psikotest_path' => $filepath]);
-            
 
-            
+
+
             return redirect('kelengkapan-berkas')->with('success', 'Berkas Psikotest berhasil ditambahkan');
-        }    
+        }
     }
 
     public function create_email()
@@ -93,8 +93,11 @@ class DocumentController extends Controller
         $no_pendaftaran = auth()->user()->no_pendaftaran ;
         //dd($admin_id);
 
-       $pen = DB::table('Documents')->where('mahasiswa_id', $mahasiswa_id)->get()->first();
-      
+        $pen = DB::table('Documents')->where('mahasiswa_id', $mahasiswa_id)->get()->first();
+
+        //Karena id yg jadi patokan foreign key, jadi recomendation langsung relate user (sementara based on id)
+        //Cross check bagian ini (DB recomendation where mahasiswa_id <= 2)
+
         if($pen->email_pr1 == NULL){
             // dd($no_pendaftaran);
             //dd("a");
@@ -104,22 +107,22 @@ class DocumentController extends Controller
             //dd($email1);
             DB::table('Recommendations')->insert([
                 'email_pr' => $email1,
-                'mahasiswa_key' => $no_pendaftaran 
+                'mahasiswa_key' => $no_pendaftaran
             ]);
 
             DB::table('Documents')->where('mahasiswa_id', $mahasiswa_id)->update(['email_pr1' => $email1]);
-            
+
 
             return redirect('kelengkapan-berkas')->with('success', 'email pemberi rekomendasi berhasil ditambahkan');
         }
         elseif($pen->email_pr2 == NULL){
             //dd("b");
             //$pen->update(['email_pr2' => $request->email_pr1]);
-            $email2 = $request->email_pr1; 
+            $email2 = $request->email_pr1;
             //dd($email2);
             DB::table('Recommendations')->insert([
                 'email_pr' => $email2,
-                'mahasiswa_key' => $no_pendaftaran 
+                'mahasiswa_key' => $no_pendaftaran
             ]);
             DB::table('Documents')->where('mahasiswa_id', $mahasiswa_id)->update(['email_pr2' => $email2]);
             return redirect('kelengkapan-berkas')->with('success', 'email pemberi rekomendasi berhasil ditambahkan');
@@ -127,7 +130,7 @@ class DocumentController extends Controller
         else{
             //dd("c");
             return redirect('kelengkapan-berkas')->with('info', 'Kapasitas Pemberi Rekomendasi Sudah Penuh');
-        }    
+        }
     }
 
     public function kelengkapan_berkas()
