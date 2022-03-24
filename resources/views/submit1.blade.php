@@ -13,7 +13,7 @@
                         Contoh :Consecetur_Adipiscing_Elit_Etiam
                     </h6>
                     <br>
-                    @if (DB::table('Documents')->where('mahasiswa_id', auth()->user()->id)->first()->file_lk_path == NULL)
+                    @if ($document->where('mahasiswa_id', auth()->user()->id)->first()->file_lk_path == NULL)
                         <form action="{{route('save_lk')}}"  method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
                                 <div class="custom-file">

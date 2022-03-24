@@ -11,8 +11,9 @@ use Illuminate\Support\Facades\Storage;
 class DocumentController extends Controller
 {
     public function create_lk()
-    {
-        return view('submit1');
+    {  
+        $document = Document::all();
+        return view('submit1',compact('document'));
     }
 
     public function store_lk(Request $request)
@@ -36,7 +37,7 @@ class DocumentController extends Controller
                         $request->file('file'));
 
             //$pen->update(['file_lk_path' => $filepath]);
-            DB::table('Documents')->where('mahasiswa_id', $mahasiswa_id)->update(['file_lk_path' => $filepath]);
+            Document::where('mahasiswa_id', $mahasiswa_id)->update(['file_lk_path' => $filepath]);
 
             return redirect('kelengkapan-berkas')->with('success', 'Berkas Lingkungan berhasil ditambahkan');
         }
@@ -45,7 +46,8 @@ class DocumentController extends Controller
 
     public function create_psikotest()
     {
-        return view('submit2');
+        $document = Document::all();
+        return view('submit2',compact('document'));
     }
 
     public function store_psikotest(Request $request)
@@ -69,8 +71,7 @@ class DocumentController extends Controller
                         $request->file('file'));
 
 
-
-            DB::table('Documents')->where('mahasiswa_id', $mahasiswa_id)->update(['file_psikotest_path' => $filepath]);
+            Document::where('mahasiswa_id', $mahasiswa_id)->update(['file_psikotest_path' => $filepath]);
 
             //$pen->update(['file_psikotest_path' => $filepath]);
 
@@ -82,7 +83,9 @@ class DocumentController extends Controller
 
     public function create_email()
     {
-        return view('submit-email');
+        $document = Document::all();
+        $recommendation = Recommendation::where('mahasiswa_id',auth()->user()->id)->where('mahasiswa_key',auth()->user()->no_pendaftaran)->get();
+        return view('submit-email',compact('document','recommendation'));
     }
 
     public function store_email(Request $request)
@@ -92,8 +95,8 @@ class DocumentController extends Controller
         $mahasiswa_id = auth()->user()->id;
         $no_pendaftaran = auth()->user()->no_pendaftaran ;
         //dd($admin_id);
-
-        $pen = DB::table('Documents')->where('mahasiswa_id', $mahasiswa_id)->get()->first();
+        
+        $pen = Document::where('mahasiswa_id', $mahasiswa_id)->firstOrFail();
 
         //Karena id yg jadi patokan foreign key, jadi recomendation langsung relate user (sementara based on id)
         //Cross check bagian ini (DB recomendation where mahasiswa_id <= 2)
@@ -105,13 +108,13 @@ class DocumentController extends Controller
             // $pen->update(['email_pr1' => $request->email_pr1]);
             $email1 = $request->email_pr1;
             //dd($email1);
-            DB::table('Recommendations')->insert([
+            $inputs = [
                 'email_pr' => $email1,
-                'mahasiswa_key' => $no_pendaftaran
-            ]);
+                'mahasiswa_key' => $no_pendaftaran,
+                'mahasiswa_id' => $mahasiswa_id
+            ];
 
-            DB::table('Documents')->where('mahasiswa_id', $mahasiswa_id)->update(['email_pr1' => $email1]);
-
+            Recommendation::create($inputs);
 
             return redirect('kelengkapan-berkas')->with('success', 'email pemberi rekomendasi berhasil ditambahkan');
         }
@@ -120,11 +123,11 @@ class DocumentController extends Controller
             //$pen->update(['email_pr2' => $request->email_pr1]);
             $email2 = $request->email_pr1;
             //dd($email2);
-            DB::table('Recommendations')->insert([
+            Recommendation::create([
                 'email_pr' => $email2,
-                'mahasiswa_key' => $no_pendaftaran
+                'mahasiswa_key' => $no_pendaftaran,
+                'mahasiswa_id' => $mahasiswa_id
             ]);
-            DB::table('Documents')->where('mahasiswa_id', $mahasiswa_id)->update(['email_pr2' => $email2]);
             return redirect('kelengkapan-berkas')->with('success', 'email pemberi rekomendasi berhasil ditambahkan');
         }
         else{
@@ -136,6 +139,7 @@ class DocumentController extends Controller
     public function kelengkapan_berkas()
     {   
         $document = Document::all();
-        return view('kelengkapan_berkas',compact('document'));
+        $recommendation = Recommendation::where('mahasiswa_id',auth()->user()->id)->where('mahasiswa_key',auth()->user()->no_pendaftaran)->get();
+        return view('kelengkapan_berkas',compact('document','recommendation'));
     }
 }
