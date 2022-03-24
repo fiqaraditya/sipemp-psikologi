@@ -38,15 +38,8 @@
     <nav>
         <a class="navbar-brand" href="#"> <img src="img/logo.png" alt=5 width="290" height="115"> </a>
     </nav>
-    <div class="container-fluid" style="margin-top:2%;position: fixed;">
+    <div class="container-fluid" style="margin-top:2%;">
         @include('sweetalert::alert')
-        @if (session()->has('loginError'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ session('loginError')}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-
-        @endif
         <div class="d-flex flex-row" style="margin-left:30px display:flex">
             <div style="margin-top:20px">
                 <img src="img/icon1.png" width="400" height="400">
@@ -54,6 +47,13 @@
 
             <div class=" shadow card card-login" style="width: 40rem;border-radius: 10%;height:540px;border:0px">
                 <div class="card-body" style="margin-top: 5%;">
+                    @if (session()->has('loginError'))
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        {{ session('loginError')}}
+
+                    </div>
+
+                    @endif
                     <h5 class="card-title">Selamat Datang di SIPeMP Psikologi UI </h5>
                     <h1 class="card-text">Sign In</h1>
                     <form action="/login" method="post" style="margin-top:5%">
