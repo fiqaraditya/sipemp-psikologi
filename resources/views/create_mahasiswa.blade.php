@@ -32,12 +32,13 @@
                     <label for="no_pendaftaran">Nomor Pendaftaran</label>
                 </div>
                 <div class="form-floating mb-3 mt-3">
-                    <input type="text" class="form-control" id="name" name="name" placeholder="name" required>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="name" required value="{{ old('name') }}">
                     <label for="name">Name</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="email" name="email" placeholder="email@example.com" required>
+                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="email@example.com" required value="{{ old('email') }}">
                     <label for="email">Email address</label>
+                    @error('email')<div class="invalid-feedback">{{$message}}</div>@enderror
                 </div>
                 <div class="d-grid">
                     <button class="btn btn-login text-uppercase fw-bold"

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Password;
 
 class AdminController extends Controller
 {
@@ -24,17 +26,22 @@ class AdminController extends Controller
     }
 
     public function store(Request $request) {
+        $random_pass = Str::random(16);
+        $request->request->add(['password' => $random_pass]);
         $validateUser = $request->validate([
             'name' => 'required',
-            'email' => ['required', 'email', 'unique:users'],
-            'password' => 'required|min:8',
+            'email' => ['required', 'email:dns', 'unique:users'],
             'role' => 'required',
-            'profesi' => 'nullable'
+            'password' => 'required|min:8',
+            'profesi' => 'required'
         ]);
+
         $validateUser['password'] = Hash::make($validateUser['password']);
         User::create($validateUser);
+
+        Password::sendResetLink($request->only(['email']));
         /* auth()->login($user);*/
-        return redirect('/daftar-admin');
+        return redirect('/daftar-admin')->with('success', 'Admin baru berhasil didaftarkan');
 
     }
 }

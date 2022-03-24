@@ -38,7 +38,7 @@ class RegisterController extends Controller
     public function setPasswordStore(Request $request) {
         $validateUser = $request->validate([
             'token' => 'required',
-            'email' => ['required', 'email'],
+            'email' => ['required', 'email:dns'],
             'password' => 'required|min:8|confirmed',
         ]);
 
@@ -64,6 +64,6 @@ class RegisterController extends Controller
 
         DB::table('password_resets')->where(['email'=> $request->email])->delete();*/
 
-        return redirect('/login')->with('message', 'Your password has been changed!');
+        return redirect('/login')->with('success', 'Pembuatan password berhasil. Silahkan login');
     }
 }

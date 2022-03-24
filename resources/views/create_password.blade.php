@@ -10,12 +10,19 @@
                 @csrf
                 <input type="hidden" name="token" value="{{ $token }}">
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="email" name="email" placeholder="email@example.com" required>
+                    <input type="email" class="form-control @error('email') is-invalid @enderror"
+                    id="email" name="email" placeholder="email@example.com" required value="{{old('email')}}">
                     <label for="email">Email address</label>
+                    @error('email')
+                    <div class="invalid-feedback">{{$message}}</div>
+                    @enderror
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="password" name="password" placeholder="password" required>
+                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="password" required minlength=8>
                     <label for="password">Password</label>
+                    @error('password')
+                    <div class="invalid-feedback">{{$message}}</div>
+                    @enderror
                 </div>
                 <div class="form-floating mb-3">
                     <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Konfirmasi Password" required>

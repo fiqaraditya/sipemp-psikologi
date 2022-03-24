@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container" style="margin-top:3%; margin-bottom:5%">
+    @include('sweetalert::alert')
     <div class="row">
         <h1 style="margin-bottom: 1%">Daftar Pewawancara</h1>
         @if (auth()->user()->role=="admin")
@@ -32,7 +33,6 @@
                 @endforeach
             </tbody>
         </table>
-        @include('sweetalert::alert')
     </div>
 
 </div>
