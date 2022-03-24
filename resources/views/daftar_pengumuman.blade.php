@@ -40,8 +40,8 @@
                     </div>
                     <br>
                     <div class="row">
-                        <h5 style="font-weight: normal"> {{ $item-> isi }}
-                        </h5>
+                        <h6 style="font-weight: normal"> {!! nl2br(e($item-> isi)) !!}
+                        </h6>
                     </div>
 
                     @if (is_null($item-> file_path ))
