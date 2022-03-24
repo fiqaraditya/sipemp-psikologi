@@ -40,7 +40,7 @@
                     </div>
                     <br>
                     <div class="row">
-                        <h6 style="font-weight: normal"> {!! nl2br(e($item-> isi)) !!}
+                        <h6 style="font-weight: normal">{!! nl2br(e($item-> isi)) !!}
                         </h6>
                     </div>
 

@@ -15,7 +15,7 @@
             <div class="form-group">
                 <label for="exampleFormControlInput1">Isi Pengumuman</label>
                 <textarea class="form-control" id="exampleFormControlInput1"
-                    placeholder="Masukkan Pesan Pengumuman" rows="10" name="isi"> </textarea>
+                    placeholder="Masukkan Pesan Pengumuman" rows="10" name="isi"></textarea>
             </div>
         <br>
         <h5>Lampiran</h5>

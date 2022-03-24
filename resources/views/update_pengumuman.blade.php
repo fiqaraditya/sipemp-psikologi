@@ -14,8 +14,8 @@
        
             <div class="form-group">
                 <label for="exampleFormControlInput1">Isi Pengumuman</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1"
-                    placeholder="Masukkan Pesan Pengumuman" rows="10" name="isi" value="{{$pen-> isi}}"> 
+                <textarea class="form-control" id="exampleFormControlInput1"
+                    placeholder="Masukkan Pesan Pengumuman" rows="10" name="isi">{{($pen-> isi)}}</textarea> 
             </div>
         <br>
         <h5>Lampiran</h5>
@@ -34,7 +34,7 @@
             </div>      
             @endif
             </div>
-            <button type="submit" class="btn btn-primary" style="border-radius: 40px; width:20%;"> Ubah Pengumuman</button>
+            <button type="submit" class="btn btn-primary" style="margin-left:10%;border-radius: 40px; width:20%;"> Ubah Pengumuman</button>
             <button type="button" class="btn btn-danger" style="border-radius: 40px; width:20%;">Batalkan</button>
         </form>
         <br>
