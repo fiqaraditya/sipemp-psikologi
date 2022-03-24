@@ -65,7 +65,7 @@
     </div>
     @endif
 
-    @if ($document->where('mahasiswa_id', auth()->user()->id)->first()->email_pr1 == NULL || $document->where('mahasiswa_id', auth()->user()->id)->first()->email_pr2 == NULL )
+    @if ($recommendation->count() != 2 )
 
         <div class="shadow card" style="margin-top:2%">
             <a class="card-body" style="text-decoration:none" href="{{route('page_email')}}">
