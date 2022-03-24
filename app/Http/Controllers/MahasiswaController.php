@@ -44,8 +44,9 @@ class MahasiswaController extends Controller
             'no_pendaftaran' => 'required'
         ]);
         $validateUser['password'] = Hash::make($validateUser['password']);
+        // dd($request->id);
         User::create($validateUser);
-        $pen = DB::table('Users')->where('no_pendaftaran', $no_pendaftaran)->get()->first();
+        $pen = DB::table('Users')->where('no_pendaftaran', $no_pendaftaran)->first();
         $id = $pen->id;
         DB::table('documents')->insert(['mahasiswa_id'=>$id]);
         /* auth()->login($user);*/
