@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Crypt;
 class LoginController extends Controller
 {
     public function index()
-    {   
+    {
         return view('login');
     }
 

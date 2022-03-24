@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 
+
 class PewawancaraController extends Controller
 {
     /**
@@ -30,7 +31,7 @@ class PewawancaraController extends Controller
         $request->request->add(['password' => $random_pass]);
         $validateUser = $request->validate([
             'name' => 'required',
-            'email' => ['required', 'email', 'unique:users'],
+            'email' => ['required', 'email:dns', 'unique:users'],
             'role' => 'required',
             'password' => 'required|min:8',
             'profesi' => 'required'
@@ -41,7 +42,7 @@ class PewawancaraController extends Controller
 
         Password::sendResetLink($request->only(['email']));
         /* auth()->login($user);*/
-        return redirect('/daftar-pewawancara');
+        return redirect('/daftar-pewawancara')->with('success', 'Pewawancara baru berhasil didaftarkan');
 
     }
 }

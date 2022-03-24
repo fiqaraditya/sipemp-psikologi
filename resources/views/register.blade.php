@@ -62,6 +62,12 @@
                           Pewawancara
                         </label>
                       </div>
+                      <div class="form-check form-check-inline my-3">
+                        <input class="form-check-input" type="radio" name="role" id="role3" value="calon mahasiswa">
+                        <label class="form-check-label" for="role2">
+                          Calon Mahasiswa
+                        </label>
+                      </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="name" name="name" placeholder="name">

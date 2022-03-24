@@ -39,6 +39,14 @@
         <a class="navbar-brand" href="#"> <img src="img/logo.png" alt=5 width="290" height="115"> </a>
     </nav>
     <div class="container-fluid" style="margin-top:2%;position: fixed;">
+        @include('sweetalert::alert')
+        @if (session()->has('loginError'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('loginError')}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        @endif
         <div class="d-flex flex-row" style="margin-left:30px display:flex">
             <div style="margin-top:20px">
                 <img src="img/icon1.png" width="400" height="400">
@@ -52,7 +60,7 @@
                         @csrf
                         <h5>Email</h5>
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" autofocus required>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="name@example.com" autofocus required>
                             <label for="email">Masukkan email kamu disini</label>
                         </div>
                         <br>

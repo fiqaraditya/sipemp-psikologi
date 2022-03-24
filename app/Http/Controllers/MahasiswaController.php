@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Password;
 
 class MahasiswaController extends Controller
 {
@@ -37,7 +38,7 @@ class MahasiswaController extends Controller
         // dd($no_pendaftaran);
         $validateUser = $request->validate([
             'name' => 'required',
-            'email' => ['required', 'email', 'unique:users'],
+            'email' => ['required', 'email:dns', 'unique:users'],
             'role' => 'required',
             'password' => 'required|min:8',
             'profesi' => 'required',
@@ -46,12 +47,13 @@ class MahasiswaController extends Controller
         $validateUser['password'] = Hash::make($validateUser['password']);
         // dd($request->id);
         User::create($validateUser);
+        Password::sendResetLink($request->only(['email']));
         // $pen = DB::table('Users')->where('no_pendaftaran', $no_pendaftaran)->first();
         $pen = User::where('no_pendaftaran',$no_pendaftaran)->firstOrFail();
         $id = $pen->id;
         DB::table('documents')->insert(['mahasiswa_id'=>$id]);
         /* auth()->login($user);*/
-        return redirect('/daftar-mahasiswa');
+        return redirect('/daftar-mahasiswa')->with('success', 'Calon Mahasiswa baru berhasil didaftarkan');;
     }
 
     public function detail($id)
