@@ -97,21 +97,13 @@ class MahasiswaController extends Controller
         return view('kelengkapan_berkas',compact('document','recommendation'));
     }
 
-    public function downloadsr1($id)
+    public function downloadsr($filename)
     {
-        $email_pr1 =  DB::table('documents')->where('mahasiswa_id',$id)->value('email_pr1');
-        $mahasiswa_key =  DB::table('users')->where('id',$id)->value('no_pendaftaran');
-        $filepath = DB::table('recommendations')->where('mahasiswa_key',$mahasiswa_key)->where('email_pr', $email_pr1)->value('file_path');
-        Storage::download($filepath);
-        return Storage::download($filepath);
-    }
-
-    public function downloadsr2($id)
-    {
-        $email_pr1 =  DB::table('documents')->where('mahasiswa_id',$id)->value('email_pr2');
-        $mahasiswa_key =  DB::table('users')->where('id',$id)->value('no_pendaftaran');
-        $filepath = DB::table('recommendations')->where('mahasiswa_key',$mahasiswa_key)->where('email_pr', $email_pr1)->value('file_path');
-        Storage::download($filepath);
+        $filepath = 'public/recommendation/' . $filename;
+        // $email_pr1 =  DB::table('documents')->where('mahasiswa_id',$id)->value('email_pr1');
+        // $mahasiswa_key =  DB::table('users')->where('id',$id)->value('no_pendaftaran');
+        // $filepath = DB::table('recommendations')->where('mahasiswa_key',$mahasiswa_key)->where('email_pr', $email_pr1)->value('file_path');
+        // Storage::download($filepath);
         return Storage::download($filepath);
     }
 

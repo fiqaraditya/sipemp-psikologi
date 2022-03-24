@@ -60,8 +60,7 @@ Route::get('/download-psikotest/{id}',[MahasiswaController::class, 'downloadpsik
 Route::get('/delete-psikotest/{id}',[MahasiswaController::class, 'destroy_psikotest'])->name('delete_psikotest');
 Route::get('/download-lk/{id}',[MahasiswaController::class, 'downloadlk'])->name('downloadlk');
 Route::get('/delete-lk/{id}',[MahasiswaController::class, 'destroy_lk'])->name('delete_lk');
-Route::get('/download-rekomendasi1/{id}',[MahasiswaController::class, 'downloadsr1'])->name('downloadsr1');
-Route::get('/download-rekomendasi2/{id}',[MahasiswaController::class, 'downloadsr2'])->name('downloadsr2');
+Route::get('/download-rekomendasi/{filename}',[MahasiswaController::class, 'downloadsr'])->name('downloadsr');
 
 
 

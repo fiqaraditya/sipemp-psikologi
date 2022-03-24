@@ -48,24 +48,30 @@
                         @if($doc->mahasiswa_id == $calonmahasiswa->id)
                             @if (is_null($doc-> file_psikotest_path ))
                             @else
-                            <a  class="btn btn-primary" href="{{url('/download-psikotest',$calonmahasiswa->id)}}" style="margin-bottom: 1%">Download Hasil Psikotest</a>
+                            <a  class="btn btn-primary" href="{{url('/download-psikotest',$calonmahasiswa->id)}}" style="width:255px">Download Hasil Psikotest</a>
                             @endif
                         @endif
                     @endforeach
                     </div>
-
+                    <br>
+                    
                     <div style="display:flex">
                     <h5 style="flex-grow: 1;"> Surat Rekomendasi </h5>
+                    @php
+                        $count = 0;
+                    @endphp
                     @foreach ($recommendation as $rec)
-                    @if($rec->mahasiswa_key == $calonmahasiswa->no_pendaftaran)
-                    <div>
-                    <a  class="btn btn-primary"  href="{{url('/download-rekomendasi1',$calonmahasiswa->id)}}" style="margin-right: 1%; width:100%">Download Surat Rekomendasi 1 </a> 
-                    </div> <br>
-                    
-                    <a class="btn btn-primary" href="{{url('/download-rekomendasi2',$calonmahasiswa->id)}}" style="margin-left: 1%;">Download Surat Rekomendasi 2 </a>
-                    @break
-                   
-                    @endif
+                        
+                            @if($rec->mahasiswa_key == $calonmahasiswa->no_pendaftaran && $rec->file_path != NULL)
+                            @php
+                                $filename = str_replace('public/recommendation/','',$rec->file_path)
+                            @endphp
+                            <div style="margin-left: 1%">
+                            <a  class="btn btn-primary" style="text-align:justify;width:255px;margin-top:4%" href="{{url('/download-rekomendasi', $filename)}}" >Download Surat Rekomendasi {{++$count}} </a> 
+                            </div> 
+                        
+                            @endif
+                        
                     @endforeach
                     </div>
                     <br>
@@ -73,13 +79,13 @@
                     <div style="display:flex">
                     <h5 style="flex-grow: 1;"> Lingkungan Kehidupan </h5>
                     @foreach ($document as $doc)
-                    @if($doc->mahasiswa_id == $calonmahasiswa->id)
-                    @if (is_null($doc-> file_lk_path))
-                    <br>
-                    @else
-                    <a class="btn btn-primary" href="{{url('/download-lk',$calonmahasiswa->id)}}" style="margin-top: 1%; margin-bottom : 1%">Download Lembar Kehidupan</a>
-                    @endif
-                    @endif
+                        @if($doc->mahasiswa_id == $calonmahasiswa->id)
+                            @if (is_null($doc-> file_lk_path))
+                                <br>
+                            @else
+                                <a class="btn btn-primary" href="{{url('/download-lk',$calonmahasiswa->id)}}" style="margin-top: 1%; margin-bottom : 1%;width:255px">Download Lembar Kehidupan</a>
+                            @endif
+                        @endif
                     @endforeach
                     </div>
                 

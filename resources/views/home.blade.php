@@ -9,7 +9,7 @@
                     style="border: 0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
             </div>
             <div class="col-8" style="margin-top: 2%">
-                <h1>Pengumuman Penerimaan yayaya</h1>
+                <h1>Pengumuman Penerimaan</h1>
                 <br>
                 @foreach ($pengumuman as $item)
             <div class="shadow card" style="margin-top:2%">
