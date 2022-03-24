@@ -23,7 +23,7 @@
                                 </div>
                                 <br>
                                 <button type="submit" class="btn btn-primary" style="border-radius: 40px; width:20%;"> Post </button>
-                                <button type="button" class="btn btn-danger" style="border-radius: 40px; width:20%;">Batalkan </button>
+                                <a href="{{route('kelengkapan_berkas')}}" class="btn btn-danger" style="border-radius: 40px; width:20%;">Batalkan </a>
                         </form>
                     @else
                         <form action="{{route('save_psikotest')}}"  method="POST" enctype="multipart/form-data">
@@ -37,7 +37,7 @@
                                 <br>
                                 <br>
                                 <button type="submit" class="btn btn-primary" style="border-radius: 40px; width:20%;"> Ubah </button>
-                                <button type="button" class="btn btn-danger" style="border-radius: 40px; width:20%;">Hapus </button>
+                                <a href="{{url('/delete-psikotest',auth()->user()->id)}}" class="btn btn-danger" style="border-radius: 40px; width:20%;">Hapus </a>
                         </form>
                     @endif
                 </div>

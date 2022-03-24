@@ -69,11 +69,32 @@ class MahasiswaController extends Controller
         Storage::download($filepath);
         return Storage::download($filepath);
     }
+
+    public function destroy_psikotest($id)
+    {
+        $filepath = Document::where('mahasiswa_id', $id)->value('file_psikotest_path');
+        Storage::delete($filepath);
+        Document::where('mahasiswa_id', $id)->update(['file_psikotest_path' => NULL]);
+        $document = Document::all();
+        $recommendation = Recommendation::where('mahasiswa_id',auth()->user()->id)->where('mahasiswa_key',auth()->user()->no_pendaftaran)->get();
+        return view('kelengkapan_berkas',compact('document','recommendation'));
+    }
+
     public function downloadlk($id)
     {
         $filepath = DB::table('documents')->where('mahasiswa_id',$id)->value('file_lk_path');
         Storage::download($filepath);
         return Storage::download($filepath);
+    }
+
+    public function destroy_lk($id)
+    {
+        $filepath = Document::where('mahasiswa_id', $id)->value('file_lk_path');
+        Storage::delete($filepath);
+        Document::where('mahasiswa_id', $id)->update(['file_lk_path' => NULL]);
+        $document = Document::all();
+        $recommendation = Recommendation::where('mahasiswa_id',auth()->user()->id)->where('mahasiswa_key',auth()->user()->no_pendaftaran)->get();
+        return view('kelengkapan_berkas',compact('document','recommendation'));
     }
 
     public function downloadsr1($id)

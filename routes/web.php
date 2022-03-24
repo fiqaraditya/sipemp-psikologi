@@ -57,7 +57,9 @@ Route::post('/updated-pengumuman/{id}',[AnnouncementController::class, 'update']
 Route::get('/delete-pengumuman/{id}',[AnnouncementController::class, 'destroy'])->name("delete_pengumuman")->middleware('auth','checkrole:admin');
 Route::get('/download/{id}',[AnnouncementController::class, 'download'])->name('download_pengumuman');
 Route::get('/download-psikotest/{id}',[MahasiswaController::class, 'downloadpsikotest'])->name('download_psikotest');
+Route::get('/delete-psikotest/{id}',[MahasiswaController::class, 'destroy_psikotest'])->name('delete_psikotest');
 Route::get('/download-lk/{id}',[MahasiswaController::class, 'downloadlk'])->name('downloadlk');
+Route::get('/delete-lk/{id}',[MahasiswaController::class, 'destroy_lk'])->name('delete_lk');
 Route::get('/download-rekomendasi1/{id}',[MahasiswaController::class, 'downloadsr1'])->name('downloadsr1');
 Route::get('/download-rekomendasi2/{id}',[MahasiswaController::class, 'downloadsr2'])->name('downloadsr2');
 
