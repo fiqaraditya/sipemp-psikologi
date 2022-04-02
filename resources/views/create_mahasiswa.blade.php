@@ -11,10 +11,6 @@
                 <input type="hidden" name="role" value="calon mahasiswa">
                 <h6>Pilih Peminatan dari Calon Mahasiswa:</h6>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="profesi" id="profesi1" value="profesi">
-                    <label class="form-check-label" for="profesi1">Psikologi Profesi</label>
-                </div>
-                <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="profesi" id="profesi2" value="pendidikan">
                     <label class="form-check-label" for="profesi2">Psikologi Pendidikan</label>
                 </div><div class="form-check form-check-inline">
