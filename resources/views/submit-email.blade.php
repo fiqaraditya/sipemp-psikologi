@@ -42,31 +42,13 @@
                                 @endif
                             </tr>
                             @endforeach
-                            {{-- <tr>
-                                <th scope="row">2</th>
-                                @if ($document->where('mahasiswa_id', auth()->user()->id)->first()->email_pr2 == NULL)
-                                    <td><b>MENUNGGU INPUT EMAIL</b></td>  
-                                @else
-                                    @php
-                                        $test = $document->where('mahasiswa_id', auth()->user()->id)->first()->email_pr2
-                                    @endphp 
-                                    <td>
-                                        {{$test}}
-                                    </td>
-                                @endif
-                                @if ($document->where('mahasiswa_id', auth()->user()->id)->first()->r2_id == NULL)
-                                <td>Belum ada</td>  
-                                @else
-                                    <td>Sudah Dikumpulkan</td>
-                                @endif
-                            </tr> --}}
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
 
-        @if ($recommendation->count() != 2)
+        @if ($recommendation->count() != 4)
             <div class="row" style="margin-left: 5%;margin-right:5%;padding-bottom:2%">
                 <div class="shadow card">
                     <div class="card-body">
