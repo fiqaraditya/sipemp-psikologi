@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $pengumuman = Announcement::all();
+        $pengumuman = Announcement::all()->reverse();
         $user = User::all();
         return view('home',compact('pengumuman','user'));
     }

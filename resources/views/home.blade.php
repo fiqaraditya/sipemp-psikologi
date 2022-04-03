@@ -24,7 +24,7 @@
                             <h3>{{ $item-> judul }}</h3>
                             @foreach ($user as $us)
                             @if($item->admin_id == $us->id)
-                                <h5> Oleh {{ $us-> name }} </h5>
+                            <h6> By {{ $us-> name }} - {{ $item-> created_at->format('d F Y, H:i') }} </h6>
                             @endif
                             @endforeach
                         </div>

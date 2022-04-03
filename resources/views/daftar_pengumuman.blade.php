@@ -23,7 +23,7 @@
                             <h3>{{ $item-> judul }}</h3>
                             @foreach ($user as $us)
                             @if($item->admin_id == $us->id)
-                                <h5> Oleh {{ $us-> name }} </h5>
+                            <h6> By {{ $us-> name }} - {{ $item-> created_at->format('d F Y, H:i') }} </h6>
                             @endif
                             @endforeach
                         </div>
@@ -32,7 +32,8 @@
                                 <a class="btn btn-warning" href="{{url('/update-pengumuman',$item->id,$item->file_path)}}"> Ubah</a>
                             </div>
                             <div class="col-1">
-                                <a class="btn btn-danger" href="{{url('/delete-pengumuman',$item->id)}}" >Hapus</a>
+                                <!-- <a class="btn btn-danger delete" href="{{url('/delete-pengumuman',$item->id)}}" >Hapus</a> -->
+                                <a class="btn btn-danger delete" href="#" data-id="{{$item->id}}">Hapus</a>
                             </div>    
                         @else
                             
@@ -56,5 +57,28 @@
             @include('sweetalert::alert')
         </div>
     </div>
+    <script>
+        $('.delete').click(function(){
+            var itemid = $(this).attr('data-id');
+            swal({
+                title: "Apakah Anda yakin ingin menghapus pengumuman ini?",
+                text: "Pengumuman yang dihapus tidak dapat dikembalikan",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    window.location = "/delete-pengumuman/"+itemid;
+                    swal("Pengumuman berhasil dihapus", {
+                    icon: "success",
+                    });
+                } else {
+                  
+                }
+                });
+
+        });
+    </script>
     
 @endsection
