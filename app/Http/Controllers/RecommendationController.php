@@ -32,9 +32,9 @@ class RecommendationController extends Controller
                 'file' => 'required|file|mimes:jpg,jpeg,bmp,png,doc,docx,csv,rtf,xlsx,xls,txt,pdf,zip'
             ]);
             
-            $filepath = Storage::putFile(
+            $filepath = Storage::putFileAs(
                 'public/recommendation',
-                $request->file('file'));
+                $request->file('file'),$request->file('file')->getClientOriginalName());
                 
             Recommendation::where('email_pr', $email_pr)
                                         ->Where('mahasiswa_key', $mahasiswa_key)

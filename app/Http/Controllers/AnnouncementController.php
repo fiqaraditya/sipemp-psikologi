@@ -65,9 +65,9 @@ class AnnouncementController extends Controller
                 'file' => 'required|file|mimes:jpg,jpeg,bmp,png,doc,docx,csv,rtf,xlsx,xls,txt,pdf,zip'
             ]);
     
-            $filepath = Storage::putFile(
+            $filepath = Storage::putFileAs(
                         'public/announcements',
-                        $request->file('file'));
+                        $request->file('file'),$request->file('file')->getClientOriginalName());
     
             Announcement::create([
                 'judul' => $request->judul,
@@ -139,9 +139,9 @@ class AnnouncementController extends Controller
                 'file' => 'required|file|mimes:jpg,jpeg,bmp,png,doc,docx,csv,rtf,xlsx,xls,txt,pdf,zip'
             ]);
             
-            $filepath = Storage::putFile(
+            $filepath = Storage::putFileAs(
                 'public/announcements',
-                $request->file('file'));
+                $request->file('file'),$request->file('file')->getClientOriginalName());
                 
                 $pen = Announcement::findorfail($id);
 

@@ -35,9 +35,9 @@ class DocumentController extends Controller
                 'file' => 'required|file|mimes:doc,docx,xlsx,xls,pdf,zip'
             ]);
 
-            $filepath = Storage::putFile(
-                        'public/lk',
-                        $request->file('file'));
+            $filepath = Storage::putFileAs(
+                'public/lk',
+                $request->file('file'),$request->file('file')->getClientOriginalName());
 
             //$pen->update(['file_lk_path' => $filepath]);
             Document::where('mahasiswa_id', $mahasiswa_id)->update(['file_lk_path' => $filepath]);
@@ -69,9 +69,9 @@ class DocumentController extends Controller
                 'file' => 'required|file|mimes:doc,docx,xlsx,xls,pdf,zip'
             ]);
 
-            $filepath = Storage::putFile(
-                        'public/psikotest',
-                        $request->file('file'));
+            $filepath = Storage::putFileAs(
+                'public/psikotest',
+                $request->file('file'),$request->file('file')->getClientOriginalName());
 
 
             Document::where('mahasiswa_id', $mahasiswa_id)->update(['file_psikotest_path' => $filepath]);
