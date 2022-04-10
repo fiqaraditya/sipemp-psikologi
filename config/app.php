@@ -168,6 +168,7 @@ return [
          * Package Service Providers...
          */
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        Spatie\GoogleCalendar\GoogleCalendarServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -192,6 +193,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'GoogleCalendar' => Spatie\GoogleCalendar\GoogleCalendarFacade::class,
     ])->toArray(),
 
 ];
