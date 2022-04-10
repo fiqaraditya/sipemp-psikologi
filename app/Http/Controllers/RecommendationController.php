@@ -28,6 +28,7 @@ class RecommendationController extends Controller
             $mahasiswa_key = $request->kode_unik_mahasiswa;
             $no_telp = $request->no_telp;
             $id = User::where('no_pendaftaran', $mahasiswa_key)->first()->id;
+            $peran = $request->peran;
             $request->validate([
                 'file' => 'required|file|mimes:jpg,jpeg,bmp,png,doc,docx,csv,rtf,xlsx,xls,txt,pdf,zip'
             ]);
