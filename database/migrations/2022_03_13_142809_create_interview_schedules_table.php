@@ -17,7 +17,11 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->date('tanggal');
-            $table->time('waktu');
+            $table->string('email_pw_1');
+            $table->string('email_pw_2')->nullable();
+            $table->string('email_mahasiswa');
+            $table->time('waktu_mulai');
+            $table->time('waktu_akhir');
         });
     }
 

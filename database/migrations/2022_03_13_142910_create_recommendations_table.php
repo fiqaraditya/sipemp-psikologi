@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('mahasiswa_key');
             $table->string('notelp_pr')->nullable();
             $table->string('file_path')->nullable();
+            $table->string('peran')->nullable();
             $table->unique(['mahasiswa_id','email_pr','mahasiswa_key']);
         });
     }

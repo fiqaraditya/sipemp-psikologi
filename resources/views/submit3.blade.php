@@ -29,6 +29,21 @@
                                 placeholder="Nomor Telpon Pemberi Rekomendasi" name="no_telp">
                         </div>
                         <br>
+                        <h6>Peran Anda Terhadap Calon Mahasiswa</h6>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="peran" id="peran2" value="pembimbing akademik">
+                            <label class="form-check-label" for="peran">Pembimbing Akademik</label>
+                        </div><div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="peran" id="peran3" value="pembimbing skripsi">
+                            <label class="form-check-label" for="peran">Pembimbing Skripsi</label>
+                        </div><div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="peran" id="peran4" value="dosen yang mengenal baik">
+                            <label class="form-check-label" for="peran">Dosen yang Mengenal Baik</label>
+                        </div><div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="peran" id="peran5" value="atasan">
+                            <label class="form-check-label" for="peran">Atasan</label>
+                        </div>
+                        <br>
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Nama Penerima Rekomendasi</label>
                             <input type="text" class="form-control" id="exampleFormControlInput1"
@@ -36,7 +51,7 @@
                         </div>
                         <br>
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">Kode Unik Penerima Rekomendasi</label>
+                            <label for="exampleFormControlInput1">Nomor Ujian Penerima Rekomendasi</label>
                             <input type="text" class="form-control" id="exampleFormControlInput1"
                                 placeholder="Kode Unik Penerima Rekomendasi" name="kode_unik_mahasiswa">
                         </div>
