@@ -65,6 +65,29 @@ class MahasiswaController extends Controller
         return view("detail-mahasiswa", compact('calonmahasiswa', 'document', 'recommendation'));
     }
 
+    public function edit($id)
+    {
+        $calonmahasiswa = User::findorfail($id);
+        $document = Document::all();
+        $recommendation = Recommendation::all();
+
+        return view("edit_mahasiswa", compact('calonmahasiswa', 'document', 'recommendation'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $cm = User::findorfail($id);
+        $cm->name = $request->name;
+        $cm->email = $request->email;
+        $cm->no_pendaftaran = $request->no_pendaftaran;
+        $cm->status_penerimaan = $request->status_penerimaan;
+        $cm->save();
+
+        Document::where('mahasiswa_id', $id)->update(['status_rekomendasi' => $request->status_rekomendasi]);
+
+        return redirect()->to('detail-mahasiswa/'.$id)->with('success', 'Pengumuman berhasil diubah');
+    }
+
     public function downloadpsikotest($id)
     {
         $filepath = DB::table('documents')->where('mahasiswa_id',$id)->value('file_psikotest_path');
@@ -109,29 +132,29 @@ class MahasiswaController extends Controller
         return Storage::download($filepath);
     }
 
-    public function terima($id)
-    {
-        // $pen = User::where('no_pendaftaran',$no_pendaftaran)->firstOrFail();
-        Document::where('mahasiswa_id', $id)->update(['status_rekomendasi' => 1]);
-        $document = Document::all();
-        $calonmahasiswas = User::where('role', '=', 'calon mahasiswa')->get();
-        return view("daftar_mahasiswa", compact('calonmahasiswas','document'));
-    }
+    // public function terima($id)
+    // {
+    //     // $pen = User::where('no_pendaftaran',$no_pendaftaran)->firstOrFail();
+    //     Document::where('mahasiswa_id', $id)->update(['status_rekomendasi' => 1]);
+    //     $document = Document::all();
+    //     $calonmahasiswas = User::where('role', '=', 'calon mahasiswa')->get();
+    //     return view("daftar_mahasiswa", compact('calonmahasiswas','document'));
+    // }
 
-    public function tolak($id)
-    {
-        Document::where('mahasiswa_id', $id)->update(['status_rekomendasi' => 0]);
-        $calonmahasiswas = User::where('role', '=', 'calon mahasiswa')->get();
-        $document = Document::all();
-        return view("daftar_mahasiswa", compact('calonmahasiswas','document'));
-    }
+    // public function tolak($id)
+    // {
+    //     Document::where('mahasiswa_id', $id)->update(['status_rekomendasi' => 0]);
+    //     $calonmahasiswas = User::where('role', '=', 'calon mahasiswa')->get();
+    //     $document = Document::all();
+    //     return view("daftar_mahasiswa", compact('calonmahasiswas','document'));
+    // }
 
-    public function ralat($id)
-    {
-        Document::where('mahasiswa_id', $id)->update(['status_rekomendasi' => NULL]);
-        $calonmahasiswas = User::where('role', '=', 'calon mahasiswa')->get();
-        $document = Document::all();
-        return view("daftar_mahasiswa", compact('calonmahasiswas','document'));
-    }
+    // public function ralat($id)
+    // {
+    //     Document::where('mahasiswa_id', $id)->update(['status_rekomendasi' => NULL]);
+    //     $calonmahasiswas = User::where('role', '=', 'calon mahasiswa')->get();
+    //     $document = Document::all();
+    //     return view("daftar_mahasiswa", compact('calonmahasiswas','document'));
+    // }
 
 }

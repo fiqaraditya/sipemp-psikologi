@@ -17,9 +17,17 @@
     <!-- Custom styles for this template -->
     <link href="navbar-top-fixed.css" rel="stylesheet">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js"
+        integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 
 </head>
+<style>
+   tab3  { position:absolute;left:80px; }
+   tab2  { position:absolute;left:30px; }
+   tab1  { position:absolute;left:60px; }
+   tab0  { position:absolute;left:55px; }
+
+</style>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -40,25 +48,30 @@
                     </li>
                     @if (auth()->user()->role=="admin")
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{route('daftar_pengumuman')}}">Pengumuman</a>
+                        <a class="nav-link active" aria-current="page"
+                            href="{{route('daftar_pengumuman')}}">Pengumuman</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{route('daftar_admin')}}">Admin</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{route('daftar_pewawancara')}}">Pewawancara</a>
+                        <a class="nav-link active" aria-current="page"
+                            href="{{route('daftar_pewawancara')}}">Pewawancara</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{route('daftar_mahasiswa')}}">Pendaftar</a>
+                        <a class="nav-link active" aria-current="page"
+                            href="{{route('daftar_mahasiswa')}}">Pendaftar</a>
                     </li>
                     @endif
                     @if (auth()->user()->role=="calon mahasiswa")
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{route('kelengkapan_berkas')}}">Kelengkapan Berkas</a>
+                        <a class="nav-link active" aria-current="page"
+                            href="{{route('kelengkapan_berkas')}}">Kelengkapan Berkas</a>
                     </li>
                     @endif
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{route('daftar_jadwal_wawancara')}}">Wawancara</a>
+                        <a class="nav-link active" aria-current="page"
+                            href="{{route('daftar_jadwal_wawancara')}}">Wawancara</a>
                     </li>
                 </ul>
             </div>
@@ -67,15 +80,15 @@
         </div>
         <div style="margin-right:20px">
             @auth
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-right:400px" >
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-right:400px">
                 <li class="nav-item" style="width:100%; margin-top:3%">
                     <b>{{ auth()->user()->name }}</b>
-                </li> 
+                </li>
                 <li class="nav-item" style="margin-left:10%">
                     <form action="/logout" method="post">
                         @csrf
                         <button type="submit" class="btn btn-primary"
-                        style="background-color:#E48700; border:0px; width:80px;margin-right:50px">Keluar</button>
+                            style="background-color:#E48700; border:0px; width:80px;margin-right:50px">Keluar</button>
                     </form>
                 </li>
             </ul>
