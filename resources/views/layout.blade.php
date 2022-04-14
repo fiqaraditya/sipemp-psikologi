@@ -46,7 +46,7 @@
                         <a class="nav-link active" aria-current="page" href="{{route('daftar_admin')}}">Admin</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{route('daftar_pewawancara')}}">Wawancara</a>
+                        <a class="nav-link active" aria-current="page" href="{{route('daftar_pewawancara')}}">Pewawancara</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{route('daftar_mahasiswa')}}">Pendaftar</a>
@@ -56,10 +56,10 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{route('kelengkapan_berkas')}}">Kelengkapan Berkas</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Wawancara</a>
-                    </li>
                     @endif
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{route('daftar_jadwal_wawancara')}}">Wawancara</a>
+                    </li>
                 </ul>
             </div>
             @else
@@ -97,3 +97,5 @@
 </body>
 
 </html>
+
+@stack('scripts')

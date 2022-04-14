@@ -9,6 +9,7 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PewawancaraController;
 use App\Http\Controllers\RecommendationController;
+use App\Http\Controllers\JadwalController;
 use App\Models\Announcement;
 use Illuminate\Support\Facades\Route;
 
@@ -48,6 +49,11 @@ Route::post('/create-mahasiswa', [MahasiswaController::class, 'store'])->name("c
 Route::get('/daftar-pewawancara',[PewawancaraController::class, 'index'])->name("daftar_pewawancara")->middleware('auth','checkrole:admin');
 Route::get('/create-pewawancara',[PewawancaraController::class, 'create'])->name("create_pewawancara")->middleware('auth','checkrole:admin');
 Route::post('/create-pewawancara', [PewawancaraController::class, 'store'])->name("create_pewawancara_post")->middleware('auth','checkrole:admin');
+
+Route::get('/daftar-jadwal-wawancara',[JadwalController::class, 'index'])->name("daftar_jadwal_wawancara")->middleware('auth');
+Route::get('/create-jadwal',[JadwalController::class, 'create'])->name("create_jadwal")->middleware('auth','checkrole:admin');
+Route::post('create-jadwal/fetch', [JadwalController::class, 'fetch'])->name('JadwalController.fetch');
+Route::post('/create-jadwal',[JadwalController::class, 'create'])->name("save_jadwal")->middleware('auth','checkrole:admin');
 
 Route::get('/pengumuman',[AnnouncementController::class, 'index'])->name("daftar_pengumuman")->middleware('auth','checkrole:admin');
 Route::get('/create-pengumuman',[AnnouncementController::class, 'create'])->name("create_pengumuman")->middleware('auth','checkrole:admin');
