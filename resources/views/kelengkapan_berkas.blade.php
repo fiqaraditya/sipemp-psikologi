@@ -65,7 +65,7 @@
     </div>
     @endif
 
-    @if ($recommendation->count() != 2 )
+    @if ($recommendation->count() != 4 )
 
         <div class="shadow card" style="margin-top:2%">
             <a class="card-body" style="text-decoration:none" href="{{route('page_email')}}">

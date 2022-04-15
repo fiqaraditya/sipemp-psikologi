@@ -54,6 +54,7 @@ Route::get('/daftar-jadwal-wawancara',[JadwalController::class, 'index'])->name(
 Route::get('/create-jadwal',[JadwalController::class, 'create'])->name("create_jadwal")->middleware('auth','checkrole:admin');
 Route::post('/save-jadwal',[JadwalController::class, 'store'])->name("save_jadwal")->middleware('auth','checkrole:admin');
 Route::get('/daftar-jadwal-wawancara/{id}',[JadwalController::class, 'edit'])->name("detail_jadwal_wawancara")->middleware('auth');
+Route::post('/save-pewawancara/{id}',[JadwalController::class, 'edit_pewawancara'])->name("save_pewawancara")->middleware('auth');
 
 Route::get('/pengumuman',[AnnouncementController::class, 'index'])->name("daftar_pengumuman")->middleware('auth','checkrole:admin');
 Route::get('/create-pengumuman',[AnnouncementController::class, 'create'])->name("create_pengumuman")->middleware('auth','checkrole:admin');
