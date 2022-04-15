@@ -52,8 +52,8 @@ Route::post('/create-pewawancara', [PewawancaraController::class, 'store'])->nam
 
 Route::get('/daftar-jadwal-wawancara',[JadwalController::class, 'index'])->name("daftar_jadwal_wawancara")->middleware('auth');
 Route::get('/create-jadwal',[JadwalController::class, 'create'])->name("create_jadwal")->middleware('auth','checkrole:admin');
-Route::post('create-jadwal/fetch', [JadwalController::class, 'fetch'])->name('JadwalController.fetch');
-Route::post('/create-jadwal',[JadwalController::class, 'create'])->name("save_jadwal")->middleware('auth','checkrole:admin');
+Route::post('/save-jadwal',[JadwalController::class, 'store'])->name("save_jadwal")->middleware('auth','checkrole:admin');
+Route::get('/daftar-jadwal-wawancara/{id}',[JadwalController::class, 'edit'])->name("detail_jadwal_wawancara")->middleware('auth');
 
 Route::get('/pengumuman',[AnnouncementController::class, 'index'])->name("daftar_pengumuman")->middleware('auth','checkrole:admin');
 Route::get('/create-pengumuman',[AnnouncementController::class, 'create'])->name("create_pengumuman")->middleware('auth','checkrole:admin');

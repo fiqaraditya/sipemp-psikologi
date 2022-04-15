@@ -17,8 +17,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('schedule_id'); 
-            $table->foreignId('pewawancara_id');
-            $table->foreignId('mahasiswa_id'); 
+            $table->string('email_pw_1')->nullable();
+            $table->string('email_pw_2')->nullable();
+            $table->string('email_mahasiswa');
         });
     }
 
