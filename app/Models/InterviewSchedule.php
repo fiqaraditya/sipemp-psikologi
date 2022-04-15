@@ -9,5 +9,5 @@ class InterviewSchedule extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    protected $fillable = ['tanggal','email_pw_1','email_pw_2','email_mahasiswa','waktu_mulai','waktu_akhir'];
+    protected $fillable = ['tanggal','waktu_mulai','waktu_akhir'];
 }

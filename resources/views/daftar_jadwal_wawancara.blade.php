@@ -17,20 +17,23 @@
                     <th scope="col">
                         Tanggal</th>
                     <th scope="col">
-                        Waktu</th>
+                        Waktu Mulai</th>
+                    <th scope="col">
+                        Waktu Akhir</th>
                     <th scope="col">
                         Aksi</th>
                 </tr>
             </thead>
             <tbody>
-            {{-- @foreach ($admins as $item)
+            @foreach ($schedules as $schedule)
                 <tr>
 
-                    <td>{{ $item-> name }}</td>
-                    <td>{{ $item-> role }}</td>
-                    <td>{{ $item-> email}} </td>
+                    <td>{{ $schedule-> tanggal }}</td>
+                    <td>{{ substr($schedule-> waktu_mulai,0,-3)}}</td>
+                    <td>{{ substr($schedule-> waktu_akhir,0,-3)}} </td>
+                    <td> <a type="button" class="btn btn-primary" href="{{url('/daftar-jadwal-wawancara',$schedule->id)}}">Lihat Daftar Wawancara</a></td>
                 </tr>
-                @endforeach --}}
+                @endforeach
             </tbody>
         </table>
 

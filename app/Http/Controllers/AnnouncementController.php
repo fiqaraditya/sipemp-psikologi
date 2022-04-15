@@ -78,7 +78,7 @@ class AnnouncementController extends Controller
 
         }
 
-         return redirect('pengumuman')->with('success', 'Pengumuman berhasil ditambahkan');
+        return redirect('pengumuman')->with('success', 'Pengumuman berhasil ditambahkan');
              
     }
 
