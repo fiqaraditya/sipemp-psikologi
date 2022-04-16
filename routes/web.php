@@ -54,7 +54,7 @@ Route::get('/daftar-jadwal-wawancara',[JadwalController::class, 'index'])->name(
 Route::get('/create-jadwal',[JadwalController::class, 'create'])->name("create_jadwal")->middleware('auth','checkrole:admin');
 Route::post('/save-jadwal',[JadwalController::class, 'store'])->name("save_jadwal")->middleware('auth','checkrole:admin');
 Route::get('/daftar-jadwal-wawancara/{id}',[JadwalController::class, 'edit'])->name("detail_jadwal_wawancara")->middleware('auth');
-Route::post('/save-pewawancara/{id}',[JadwalController::class, 'edit_pewawancara'])->name("save_pewawancara")->middleware('auth');
+Route::post('/save-pewawancara',[JadwalController::class, 'edit_pewawancara'])->name("save_pewawancara")->middleware('auth');
 
 Route::get('/pengumuman',[AnnouncementController::class, 'index'])->name("daftar_pengumuman")->middleware('auth','checkrole:admin');
 Route::get('/create-pengumuman',[AnnouncementController::class, 'create'])->name("create_pengumuman")->middleware('auth','checkrole:admin');
@@ -66,6 +66,7 @@ Route::get('/download/{id}',[AnnouncementController::class, 'download'])->name('
 Route::get('/download-psikotest/{id}',[MahasiswaController::class, 'downloadpsikotest'])->name('download_psikotest');
 Route::get('/delete-psikotest/{id}',[MahasiswaController::class, 'destroy_psikotest'])->name('delete_psikotest');
 Route::get('/download-lk/{id}',[MahasiswaController::class, 'downloadlk'])->name('downloadlk');
+Route::get('/download-bekas-zip',[MahasiswaController::class, 'download_berkas_zip'])->name('download_berkas_zip');
 Route::get('/delete-lk/{id}',[MahasiswaController::class, 'destroy_lk'])->name('delete_lk');
 Route::get('/download-rekomendasi/{filename}',[MahasiswaController::class, 'downloadsr'])->name('downloadsr');
 

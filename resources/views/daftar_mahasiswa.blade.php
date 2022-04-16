@@ -4,8 +4,15 @@
 <div class="container" style="margin-top:3%; margin-bottom:5%">
     <div class="row">
         <h1 style="margin-bottom: 1%">Daftar Calon Mahasiswa</h1>
-        <a type="button" class="btn btn-primary" style="border-radius: 40px; width:20%;" href="{{route('create_mahasiswa')}}"> Buat Calon Mahasiswa Baru</a>
+        <div class="col">
+            <a type="button" class="btn btn-primary" style="border-radius: 40px; width:20%;" href="{{route('create_mahasiswa')}}"> Buat Calon Mahasiswa Baru</a>
+            <a type="button" class="btn btn-primary" style="border-radius: 40px; width:20%;" href="{{route('download_berkas_zip')}}"> Download Semua Berkas</a>
+        </div>
 
+    </div>
+    <div class="row">
+
+    
         <br>
             <table class="table">
             <thead>

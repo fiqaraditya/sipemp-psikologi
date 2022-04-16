@@ -20,35 +20,33 @@
             <div class="card-body">
                 <h5 class="card-title">Peserta Wawancara</h5>
                 <p class="card-text">Calon Mahasiswa : {{$user->name}}</p>
+                <form action="{{url('save-pewawancara/')}}"  method="POST" enctype="multipart/form-data">
+                    {{ csrf_field() }}
 
                 @if ($interview->email_pw_1 == NULL && $interview->email_pw_2 == NULL )
-                <form action="{{url('save-pewawancara/'),$schedule->id}}"  method="POST" enctype="multipart/form-data">
-                    {{ csrf_field() }}
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Pewawancara 1</label>
                             <select name="pewawancara1" id="pewawancara1" class="form-control input-lg dynamic">
-                            <option value="" selected >Email Pewawancara 1</option>
+                            <option value="" selected disabled >Email Pewawancara 1</option>
                             @foreach($pewawancaras as $pewawancara)
                                 <option value="{{ $pewawancara}}">{{ $pewawancara}}</option>
                             @endforeach
                             </select>
                         </div>
                         <br>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <fieldset disabled>
                                 <div class="form-group">
                                   <label for="disabledTextInput">Pewawancara 2 (Opsional)</label>
                                   <input type="text" id="disabledTextInput" class="form-control" placeholder="Submit Terlebih Dahulu Pewawancara 1">
                                 </div>
                             </fieldset>
-                        </div>
+                        </div> --}}
                         <br>
-                        <button type="submit" class="btn btn-primary" style="border-radius: 40px; width:20%;">Tambah Pewawancara</button>
-                    </form>      
+                        <button type="submit" class="btn btn-primary" style="border-radius: 40px; width:20%;">Tambah Pewawancara</button>     
                 
                 @elseif($interview->email_pw_1 != NULL && $interview->email_pw_2 == NULL)
-                    <form action="{{url('save-pewawancara/'),$schedule->id}}"  method="POST" enctype="multipart/form-data">
-                        {{ csrf_field() }}
+
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Pewawancara 1</label>
                             <select name="pewawancara1" id="pewawancara1" class="form-control input-lg dynamic">
@@ -70,8 +68,8 @@
                         </div>
                         <br>
                         <button type="submit" class="btn btn-primary" style="border-radius: 40px; width:20%;">Tambah Pewawancara</button>
+                        @endif
                     </form>
-                @endif
 
               
               {{-- <p class="card-text">Pewawancara 1 : {{$user->name}}</p>
