@@ -171,6 +171,7 @@ class JadwalController extends Controller
 
         $schedule = InterviewSchedule::where('id','=',$id)->get()->first();
         $interview = Interview::where('schedule_id','=',$id)->get()->first();
-        return redirect('daftar-jadwal-wawancara');
+        return redirect()->route('detail_jadwal_wawancara', ['id' => $id]);
+        //return redirect('daftar-jadwal-wawancara');
     }
 }
