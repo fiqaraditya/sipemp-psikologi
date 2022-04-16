@@ -132,6 +132,16 @@ class MahasiswaController extends Controller
         return Storage::download($filepath);
     }
 
+    public function download_berkas_zip()
+    {
+        $zip = new \ZipArchive();
+        $filename = 'dokumen mahasiswa.zip';
+        $filepath = 'public/dokumen mahasiswa/';
+        Storage::download($filepath);
+        return Storage::download($filepath);
+    }
+
+
     // public function terima($id)
     // {
     //     // $pen = User::where('no_pendaftaran',$no_pendaftaran)->firstOrFail();

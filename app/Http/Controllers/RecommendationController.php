@@ -27,20 +27,23 @@ class RecommendationController extends Controller
             $email_pr = $request->email_pr;
             $mahasiswa_key = $request->kode_unik_mahasiswa;
             $no_telp = $request->no_telp;
+            $peran = $request->peran;
             $id = User::where('no_pendaftaran', $mahasiswa_key)->first()->id;
+            $name = User::where('no_pendaftaran', $mahasiswa_key)->first()->name;
             $peran = $request->peran;
             $request->validate([
                 'file' => 'required|file|mimes:jpg,jpeg,bmp,png,doc,docx,csv,rtf,xlsx,xls,txt,pdf,zip'
             ]);
             
             $filepath = Storage::putFileAs(
-                'public/recommendation',
+                'public/dokumen mahasiswa/'.$name.'/recommendation',
                 $request->file('file'),$request->file('file')->getClientOriginalName());
                 
             Recommendation::where('email_pr', $email_pr)
                                         ->Where('mahasiswa_key', $mahasiswa_key)
                                         ->update(['notelp_pr' => $no_telp,
-                                                'file_path' => $filepath
+                                                'file_path' => $filepath,
+                                                'peran' => $peran
             ]);
 
             return redirect('/')->with('success', 'Surat rekomendasi berhasil ditambahkan');

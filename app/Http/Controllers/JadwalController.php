@@ -98,31 +98,31 @@ class JadwalController extends Controller
         return view("detail_wawancara",compact('schedule','interview','user','pewawancaras'));
     }
 
-    public function edit_pewawancara($id,$request) {
-        $schedule = InterviewSchedule::where('id','=',$id)->get()->first();
-        $interview = Interview::where('schedule_id','=',$id)->get()->first();
-        $user = User::where('email','=',$interview->email_mahasiswa)->get()->first();
-        if($interview->email_pw_1 == NULL && $interview->email_pw_2 == NULL){
-            Interview::where('schedule_id',$id)->update(['email_pw_1'=>$request->pewawancara1]);
-        }
-        elseif($interview->email_pw_1 == $request->pewawancara1 && $interview->email_pw_2 == NULL){
-            Interview::where('schedule_id',$id)->update(['email_pw_2'=>$request->pewawancara2]);
-        }
-        elseif($interview->email_pw_1 == $request->pewawancara1 && $interview->email_pw_2 == $request->pewawancara2){
-            ;
-        }
-        elseif($interview->email_pw_1 != $request->pewawancara1 && $interview->email_pw_2 == $request->pewawancara2){
-            Interview::where('schedule_id',$id)->update(['email_pw_1'=>$request->pewawancara1]);
-        }
-        elseif($interview->email_pw_1 == $request->pewawancara1 && $interview->email_pw_2 != $request->pewawancara2){
-            Interview::where('schedule_id',$id)->update(['email_pw_2'=>$request->pewawancara2]);
-        }
-        elseif($interview->email_pw_1 != $request->pewawancara1 && $interview->email_pw_2 != $request->pewawancara2 && $request->pewawancara1 == $request->pewawancara2){
-            ;
-        }
-        elseif($interview->email_pw_1 != $request->pewawancara1 && $interview->email_pw_2 != $request->pewawancara2 && $request->pewawancara1 != $request->pewawancara2){
-            Interview::where('schedule_id',$id)->update(['email_pw_1'=>$request->pewawancara1,'email_pw_2'=>$request->pewawancara2]);
-        }
+    public function edit_pewawancara($request) {
+        // $schedule = InterviewSchedule::where('id','=',$id)->get()->first();
+        // $interview = Interview::where('schedule_id','=',$id)->get()->first();
+        // $user = User::where('email','=',$interview->email_mahasiswa)->get()->first();
+        // if($interview->email_pw_1 == NULL && $interview->email_pw_2 == NULL){
+        //     Interview::where('schedule_id',$id)->update(['email_pw_1'=>$request->pewawancara1]);
+        // }
+        // elseif($interview->email_pw_1 == $request->pewawancara1 && $interview->email_pw_2 == NULL){
+        //     Interview::where('schedule_id',$id)->update(['email_pw_2'=>$request->pewawancara2]);
+        // }
+        // elseif($interview->email_pw_1 == $request->pewawancara1 && $interview->email_pw_2 == $request->pewawancara2){
+        //     ;
+        // }
+        // elseif($interview->email_pw_1 != $request->pewawancara1 && $interview->email_pw_2 == $request->pewawancara2){
+        //     Interview::where('schedule_id',$id)->update(['email_pw_1'=>$request->pewawancara1]);
+        // }
+        // elseif($interview->email_pw_1 == $request->pewawancara1 && $interview->email_pw_2 != $request->pewawancara2){
+        //     Interview::where('schedule_id',$id)->update(['email_pw_2'=>$request->pewawancara2]);
+        // }
+        // elseif($interview->email_pw_1 != $request->pewawancara1 && $interview->email_pw_2 != $request->pewawancara2 && $request->pewawancara1 == $request->pewawancara2){
+        //     ;
+        // }
+        // elseif($interview->email_pw_1 != $request->pewawancara1 && $interview->email_pw_2 != $request->pewawancara2 && $request->pewawancara1 != $request->pewawancara2){
+        //     Interview::where('schedule_id',$id)->update(['email_pw_1'=>$request->pewawancara1,'email_pw_2'=>$request->pewawancara2]);
+        // }
 
         // $user = User::where('email','=',$interview->email_mahasiswa)->get()->first();
         // $pemberi_rekomendasi = Recommendation::where('mahasiswa_key','=',$user->no_pendaftaran)->get();
@@ -171,6 +171,6 @@ class JadwalController extends Controller
 
         // $schedule = InterviewSchedule::where('id','=',$id)->get()->first();
         // $interview = Interview::where('schedule_id','=',$id)->get()->first();
-        return redirect('daftar-jadwal-wawancara')->with('success', 'Pewawancara berhasil ditambahkan/diubah');
+        return redirect('daftar-jadwal-wawancara');
     }
 }

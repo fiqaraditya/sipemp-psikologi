@@ -36,7 +36,7 @@ class DocumentController extends Controller
             ]);
 
             $filepath = Storage::putFileAs(
-                'public/lk',
+                'public/dokumen mahasiswa/'.auth()->user()->name.'/lk',
                 $request->file('file'),$request->file('file')->getClientOriginalName());
 
             //$pen->update(['file_lk_path' => $filepath]);
@@ -70,7 +70,7 @@ class DocumentController extends Controller
             ]);
 
             $filepath = Storage::putFileAs(
-                'public/psikotest',
+                'public/dokumen mahasiswa/'.auth()->user()->name.'/psikotest',
                 $request->file('file'),$request->file('file')->getClientOriginalName());
 
 
