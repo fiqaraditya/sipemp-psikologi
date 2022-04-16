@@ -4,7 +4,7 @@
 <div class="container" style="margin-top:3%; margin-bottom:5%">
     <div class="row">
         <h1 style="margin-bottom: 1%">Detail Wawancara</h1>
-        
+
         <div class="card">
             <div class="card-header text-center">
                 <h4><b>{{$schedule->tanggal}}</b></h4>
@@ -20,7 +20,7 @@
             <div class="card-body">
                 <h5 class="card-title">Peserta Wawancara</h5>
                 <p class="card-text">Calon Mahasiswa : {{$user->name}}</p>
-                <form action="{{url('save-pewawancara/')}}"  method="POST" enctype="multipart/form-data">
+                <form action="{{route('save_pewawancara', $schedule->id)}}"  method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
 
                 @if ($interview->email_pw_1 == NULL && $interview->email_pw_2 == NULL )
@@ -43,8 +43,8 @@
                             </fieldset>
                         </div> --}}
                         <br>
-                        <button type="submit" class="btn btn-primary" style="border-radius: 40px; width:20%;">Tambah Pewawancara</button>     
-                
+                        <button type="submit" class="btn btn-primary" style="border-radius: 40px; width:20%;">Tambah Pewawancara</button>
+
                 @elseif($interview->email_pw_1 != NULL && $interview->email_pw_2 == NULL)
 
                         <div class="form-group">
@@ -71,10 +71,10 @@
                         @endif
                     </form>
 
-              
+
               {{-- <p class="card-text">Pewawancara 1 : {{$user->name}}</p>
               <p class="card-text">Pewawancara 2 : {{$user->name}}</p> --}}
-              
+
             </div>
           </div>
 
