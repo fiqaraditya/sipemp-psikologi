@@ -34,7 +34,7 @@
                 <select name="mahasiswa" id="mahasiswa" class="form-control input-lg dynamic" data-dependent="pewawancara1" >
                  <option value="" selected disabled>Email Calon Mahasiswa</option>
                  @foreach($calon_mahasiswa as $mahasiswa)
-                 <option value="{{ $mahasiswa->email}}">{{ $mahasiswa->email}}</option>
+                 <option value="{{ $mahasiswa}}">{{ $mahasiswa}}</option>
                  @endforeach
                 </select>
             </div>

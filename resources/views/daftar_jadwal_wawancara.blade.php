@@ -25,13 +25,30 @@
                 </tr>
             </thead>
             <tbody>
+            @php
+                $date = "";        
+            @endphp
             @foreach ($schedules as $schedule)
+                @if ($date != $schedule->tanggal)
+                    <td><b>{{$schedule->tanggal }}</b></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    @php
+                        $date = $schedule->tanggal;
+                    @endphp
+                @endif
                 <tr>
 
-                    <td>{{ $schedule-> tanggal }}</td>
-                    <td>{{ substr($schedule-> waktu_mulai,0,-3)}}</td>
-                    <td>{{ substr($schedule-> waktu_akhir,0,-3)}} </td>
-                    <td> <a type="button" class="btn btn-primary" href="{{url('/daftar-jadwal-wawancara',$schedule->id)}}">Lihat Daftar Wawancara</a></td>
+                    <td>{{ $schedule->tanggal }}</td>
+                    <td>{{ substr($schedule->waktu_mulai,0,-3)}}</td>
+                    <td>{{ substr($schedule->waktu_akhir,0,-3)}} </td>
+                    <td> 
+                        <a type="button" class="btn btn-primary" href="{{url('/daftar-jadwal-wawancara',$schedule->id)}}">Lihat Detail Wawancara</a>
+                        @if (auth()->user()->role=="admin")
+                            <a type="button" class="btn btn-danger" href="{{url('/hapus-jadwal-wawancara',$schedule->id)}}">Hapus Wawancara</a>
+                        @endif
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
