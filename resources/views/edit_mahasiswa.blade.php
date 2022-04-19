@@ -31,6 +31,7 @@
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Status Surat Rekomendasi</label> <tab3><tab3><tab3>
                             <select name="status_rekomendasi">
+                                <option value="null">Belum diverifikasi</option>
                                 <option value="1"> Lolos Verifikasi </option>
                                 <option value="0">Tidak Lolos Verifikasi </option>
                                 </option>
@@ -41,6 +42,7 @@
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Status Penerimaan</label> <tab3><tab3><tab2>
                             <select name="status_penerimaan">
+                                <option value="null">Belum ditentukan</option>
                                 <option value="1">Lolos</option>
                                 <option value="0">Tidak Lolos</option>
                             </select>
@@ -50,7 +52,7 @@
 
                        
                         <button type="submit" class="btn btn-primary" style="border-radius: 40px; width:20%;"> Simpan</button>
-                        <button type="button" class="btn btn-danger" style="border-radius: 40px; width:20%;">Batalkan</button>
+                        <a type="button" class="btn btn-danger" style="border-radius: 40px; width:20%;" href="{{url('/detail-mahasiswa', $calonmahasiswa-> id)}}"> Batalkan</a>
 
                     </form>
 

@@ -56,6 +56,10 @@ Route::post('/save-jadwal',[JadwalController::class, 'store'])->name("save_jadwa
 Route::get('/daftar-jadwal-wawancara/{id}',[JadwalController::class, 'edit'])->name("detail_jadwal_wawancara")->middleware('auth');
 Route::post('/save-pewawancara/{id}',[JadwalController::class, 'edit_pewawancara'])->name("save_pewawancara")->middleware('auth');
 Route::get('/hapus-jadwal-wawancara/{id}',[JadwalController::class, 'hapus_wawancara'])->name("hapus_wawancara")->middleware('auth','checkrole:admin');
+Route::get('/submit-evaluasi/{id}',[JadwalController::class, 'submit_eval'])->name("submit_eval")->middleware('auth');
+Route::post('/save-evaluasi/{id}',[JadwalController::class, 'save_eval'])->name("save_eval")->middleware('auth');
+Route::get('/download-eval/{id}',[JadwalController::class, 'downloadeval'])->name('downloadeval');
+
 
 
 

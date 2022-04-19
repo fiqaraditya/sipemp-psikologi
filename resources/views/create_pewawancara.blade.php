@@ -9,24 +9,11 @@
             <form action="/create-pewawancara" method="post">
                 @csrf
                 <input type="hidden" name="role" value="pewawancara">
-                <!-- <h6>Pilih Peminatan dari Pewawancara:</h6>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="profesi" id="profesi2" value="pendidikan">
-                    <label class="form-check-label" for="profesi2">Psikologi Pendidikan</label>
-                </div><div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="profesi" id="profesi3" value="klinis dewasa">
-                    <label class="form-check-label" for="profesi3">Psikologi Klinis Dewasa</label>
-                </div><div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="profesi" id="profesi4" value="klinis anak">
-                    <label class="form-check-label" for="profesi4">Psikologi Klinis Anak</label>
-                </div><div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="profesi" id="profesi5" value="industri organisasi">
-                    <label class="form-check-label" for="profesi5">Psikologi Industri dan Organisasi</label>
-                </div> -->
 
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Pilih Peminatan dari Pewawancara </label>
                     <select name="profesi">
+                        <option value="null">  ----------- </option>
                         <option value="pendidikan"> Pendidikan </option>
                         <option value="klinis dewasa"> Klinis Dewasa </option>
                         <option value="klinis anak"> Klinis Anak </option>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Recommendation;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 use App\Models\InterviewSchedule;
 
 
@@ -79,6 +80,46 @@ class JadwalController extends Controller
         return redirect('daftar-jadwal-wawancara')->with('success', 'Jadwal berhasil dihapus');
 
     }
+
+    public function submit_eval($id) {
+
+        $interview = Interview::where('schedule_id','=',$id)->get()->first();
+        $schedule = InterviewSchedule::where('id','=',$id)->get()->first();
+        return view("submit_eval", compact('schedule','interview'));
+    }
+
+    public function downloadeval($id)
+    {
+        $filepath = DB::table('interview_schedules')->where('id',$id)->value('file_path');
+        Storage::download($filepath);
+        return Storage::download($filepath);
+    }
+
+    public function save_eval(Request $request, $id) {
+        
+        $filepath_old = DB::table('interview_schedules')->where('id',$id)->value('file_path');
+
+        $request->validate([
+            'file' => 'required|mimes:xls,xlsx'
+
+        ]);
+            
+        $filepath = Storage::putFileAs(
+            'public/schedule',
+            $request->file('file'),$request->file('file')->getClientOriginalName());
+                
+        $schedule = InterviewSchedule::findorfail($id);
+
+        if(!empty($schedule->file_path)){
+                Storage::delete($filepath_old);
+        }
+        $schedule->file_path = $filepath;
+        $schedule->note = $request->note;
+        $schedule->save();
+
+        return redirect()->route('detail_jadwal_wawancara', ['id' => $id])->with('success', 'Hasil evaluasi eawancara berhasil diubah');
+    }
+
 
     public function edit($id) {
         $schedule = InterviewSchedule::where('id','=',$id)->get()->first();

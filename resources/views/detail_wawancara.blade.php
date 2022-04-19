@@ -13,6 +13,7 @@
               <h5 class="card-title">Waktu dan Tempat Wawancara</h5>
               <p class="card-text">Waktu Mulai : {{substr($schedule->waktu_mulai,0,-3)}} </p>
               <p class="card-text">Waktu Selesai : {{substr($schedule->waktu_akhir,0,-3)}} </p>
+              <hr>
               <h5 class="card-title">Peserta Wawancara</h5>
               
               @if ( $role == 'admin')
@@ -141,6 +142,23 @@
                 @endif
                 
                 {{-- IMPLEMENT INPUT FILE EXCEL HASIL WAWANCARA--}}
+
+                <hr>
+                <h5 class="card-title">Hasil Wawancara</h5>
+                <p class="card-text">Catatan : 
+                @if (is_null($schedule->note))
+                    - </p>
+                @else
+                {{$schedule->note}} </p>
+                @endif
+
+                @if (is_null($schedule-> file_path ))
+                    <br>
+                    @else
+                    <a href="{{url('/download-eval',$schedule->id)}}">Download Hasil Evaluasi Wawancara</a>
+                    @endif
+                </div>
+                <a type="button" class="btn btn-success" style="border-radius: 40px; width:35%;" href="{{url('/submit-evaluasi',$schedule->id)}}" >Ubah hasil wawancara</a>
 
                 {{-- IMPLEMENT SET STATUS DISARANKAN & POTENSI MASALAH -> Harus ada modifikasi di attribute DB interview--}}
                 

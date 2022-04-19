@@ -35,7 +35,7 @@
                     @if ($doc->mahasiswa_id == $calonmahasiswa->id)
                     @if (is_null($doc-> status_rekomendasi))
 
-                    Belum<tab1>ditentukan </h5>
+                    Belum<tab1>diverifikasi </h5>
 
                     @elseif ($doc-> status_rekomendasi == 1)
 
@@ -48,7 +48,9 @@
                         @endforeach
 
                         <h5> Status Penerimaan <tab3><tab3><tab3> : <tab2>
-                        @if ($calonmahasiswa->status_penerimaan ==1)
+                        @if (is_null($calonmahasiswa-> status_penerimaan))
+                            Belum<tab1>ditentukan </h5>
+                            @elseif ($calonmahasiswa-> status_penerimaan == 1)
                             Lolos </h5>
                         @else
                             Tidak<tab1>Lolos </h5>
