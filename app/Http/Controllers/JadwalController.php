@@ -14,7 +14,20 @@ class JadwalController extends Controller
 {
     public function index()
     {
-        $schedules = InterviewSchedule::orderBy('tanggal','DESC')->orderBy('waktu_mulai','ASC')->orderBy('waktu_akhir','ASC')->get();
+        
+        if (auth()->user()->role =="admin") {
+            $schedules = InterviewSchedule::orderBy('tanggal','DESC')->orderBy('waktu_mulai','ASC')->orderBy('waktu_akhir','ASC')->get();
+        } else if(auth()->user()->role =="calon mahasiswa"){
+            $interview = Interview::where('email_mahasiswa','=',auth()->user()->email)->get()->first();
+            $schedules = InterviewSchedule::orderBy('tanggal','DESC')->orderBy('waktu_mulai','ASC')->orderBy('waktu_akhir','ASC')->where('id','=',$interview->id)->get();
+        } else{
+            $interview = Interview::where('email_pw_1','=',auth()->user()->email)->orWhere('email_pw_2','=',auth()->user()->email)->get(); //bentuk array multiple data
+            $schedules = InterviewSchedule::orderBy('tanggal','DESC')->orderBy('waktu_mulai','ASC')->orderBy('waktu_akhir','ASC');
+            foreach ($interview as $int) {
+                $schedules->orWhere('id','=',$int->id);
+            }
+            $schedules = $schedules->get();
+        }
         return view("daftar_jadwal_wawancara",compact('schedules'));
     }
 
@@ -128,9 +141,10 @@ class JadwalController extends Controller
         }
         $pewawancaras = array_diff($list_pewawancara,$list_pr);
         $pewawancaras = array_diff($pewawancaras,$pewawancara_same_hour);
+        $role = auth()->user()->role;
 
 
-        return view("detail_wawancara",compact('schedule','interview','user','pewawancaras','all'));
+        return view("detail_wawancara",compact('schedule','interview','user','pewawancaras','all','role'));
     }
 
     public function edit_pewawancara(Request $request, $id) {
@@ -251,6 +265,7 @@ class JadwalController extends Controller
 
         $schedule = InterviewSchedule::where('id','=',$id)->get()->first();
         $interview = Interview::where('schedule_id','=',$id)->get()->first();
+        $role = auth()->user()->role;
         return redirect()->route('detail_jadwal_wawancara', ['id' => $id]);
         //return redirect('daftar-jadwal-wawancara');
     }
