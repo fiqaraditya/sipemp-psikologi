@@ -19,6 +19,8 @@ return new class extends Migration
             $table->date('tanggal');
             $table->time('waktu_mulai');
             $table->time('waktu_akhir');
+            $table->String('note')->nullable();
+            $table->string('file_path')->nullable();
         });
     }
 
