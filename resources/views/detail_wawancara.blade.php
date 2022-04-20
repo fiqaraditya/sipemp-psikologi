@@ -160,9 +160,8 @@
                 </div>
                 <a type="button" class="btn btn-success" style="border-radius: 40px; width:35%;" href="{{url('/submit-evaluasi',$schedule->id)}}" >Ubah hasil wawancara</a>
 
-                {{-- IMPLEMENT SET STATUS DISARANKAN & POTENSI MASALAH -> Harus ada modifikasi di attribute DB interview--}}
+                @endif
                 
-              @endif
             </div>
           </div>
 

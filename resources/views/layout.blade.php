@@ -99,6 +99,7 @@
 
         </div>
     </nav>
+    <hr>
     @yield('content')
 
     {{-- <footer class="footer">

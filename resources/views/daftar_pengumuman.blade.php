@@ -20,7 +20,7 @@
                         
                 
                         <div class="col-9">
-                            <h3>{{ $item-> judul }}</h3>
+                            <h4>{{ $item-> judul }}</h4>
                             @foreach ($user as $us)
                             @if($item->admin_id == $us->id)
                             <h6> By {{ $us-> name }} - {{ $item-> created_at->format('d F Y, H:i') }} </h6>
@@ -28,12 +28,12 @@
                             @endforeach
                         </div>
                         @if (auth()->user()->role=="admin")
-                            <div class="col-1">
-                                <a class="btn btn-warning" href="{{url('/update-pengumuman',$item->id,$item->file_path)}}"> Ubah</a>
+                            <div class="col-1" style="padding-right: 0%; padding-left:0%">
+                                <a class="btn" href="{{url('/update-pengumuman',$item->id,$item->file_path)}}"> Ubah</a>
                             </div>
-                            <div class="col-1">
+                            <div class="col-1" style="padding-right: 0%; padding-left:0%">
                                 <!-- <a class="btn btn-danger delete" href="{{url('/delete-pengumuman',$item->id)}}" >Hapus</a> -->
-                                <a class="btn btn-danger delete" href="#" data-id="{{$item->id}}">Hapus</a>
+                                <a class="btn" href="#" data-id="{{$item->id}} ">Hapus</a>
                             </div>    
                         @else
                             
@@ -46,7 +46,6 @@
                     </div>
 
                     @if (is_null($item-> file_path ))
-                    <br>
                     @else
                     <a href="{{url('/download',$item->id)}}">Download Dokumen</a>
                     @endif
