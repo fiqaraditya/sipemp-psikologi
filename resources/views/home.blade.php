@@ -12,16 +12,16 @@
                 <h1>Pengumuman Penerimaan</h1>
                 <br>
                 @foreach ($pengumuman as $item)
-            <div class="shadow card" style="margin-top:2%">
+            <div class="shadow card" style="margin-top:2%;margin-bottom:49px">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-1">
-                            <img src="img/user-icon.png" width="50" height="50">
+                            <img src="img/user-icon.png" width="60" height="60">
                         </div>
                         
                 
                         <div class="col-9">
-                            <h3>{{ $item-> judul }}</h3>
+                            <h4>{{ $item-> judul }}</h4>
                             @foreach ($user as $us)
                             @if($item->admin_id == $us->id)
                             <h6> By {{ $us-> name }} - {{ $item-> created_at->format('d F Y, H:i') }} </h6>
@@ -29,14 +29,13 @@
                             @endforeach
                         </div>
                     </div>
-                    <br>
                     <div class="row">
                         <h6 style="font-weight: normal">{!! nl2br(e($item-> isi)) !!}
                         </h6>
                     </div>
 
                     @if (is_null($item-> file_path ))
-                    <br>
+                    
                     @else
                     <a href="{{url('/download',$item->id)}}">Download Dokumen</a>
                     @endif
