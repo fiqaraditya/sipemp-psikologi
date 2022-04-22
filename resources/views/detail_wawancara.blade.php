@@ -130,7 +130,9 @@
                     <p class="card-text">Email Pewawancara 2 : {{$interview->email_pw_2}} </p>    
                 @endif
               @elseif( $role == 'pewawancara')
-              <p class="card-text">Email Mahasiswa : {{$interview->email_mahasiswa}} </p>
+              <p class="card-text">Email Mahasiswa : {{$interview->email_mahasiswa}} 
+                  <a type="button" class="btn" href="{{url('/detail-mahasiswa',$user->id)}}" style="background-color:#805AD5; height:27px; font-size:13px; outline:none; color:white" > Lihat Profil </a>
+              </p>
               {{-- IMPLEMENT BUTTON DOWNLOAD BERKAS CALON MAHASISWA -> nunggu fitur fiqar yg zip kelar --}}
                     
                 @if ($interview->email_pw_1 != NULL)
