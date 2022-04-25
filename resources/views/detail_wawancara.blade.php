@@ -155,7 +155,7 @@
                 @endif
 
                 @if (is_null($schedule-> file_path ))
-                    <br>
+                    <p style="color:blue"> File hasil wawancara belum diunggah </p>
                     @else
                     <a href="{{url('/download-eval',$schedule->id)}}">Download Hasil Evaluasi Wawancara</a>
                     @endif

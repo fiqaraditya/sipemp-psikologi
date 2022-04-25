@@ -12,7 +12,7 @@
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Pilih Peminatan dari Admin </label>
                     <select name="profesi">
-                        <option value="null">  ----------- </option>
+                        <option value="" selected disabled>  Peminatan </option>
                         <option value="pendidikan"> Pendidikan </option>
                         <option value="klinis dewasa"> Klinis Dewasa </option>
                         <option value="klinis anak"> Klinis Anak </option>
