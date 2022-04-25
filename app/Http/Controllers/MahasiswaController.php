@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Document;
 use App\Models\User;
 use App\Models\Recommendation;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Password;
+
 
 class MahasiswaController extends Controller
 {
@@ -136,10 +138,46 @@ class MahasiswaController extends Controller
     public function download_berkas_zip()
     {
         $zip = new \ZipArchive();
-        $filename = 'dokumen mahasiswa.zip';
-        $filepath = 'public/dokumen mahasiswa/';
-        Storage::download($filepath);
-        return Storage::download($filepath);
+        $zip_master = 'dokumen mahasiswa.zip';
+        $zip->open($zip_master, \ZipArchive::CREATE | \ZipArchive::OVERWRITE);
+
+        $calonmahasiswas = User::where('role', '=', 'calon mahasiswa')->get();
+
+        foreach ($calonmahasiswas as $calonmahasiswa) {
+
+            $nama = $calonmahasiswa->name;
+            $no_pendaftaran = $calonmahasiswa->no_pendaftaran;
+            $base_path = $no_pendaftaran.'-'.$nama;
+            //file lk
+            $lk_mahasiswa = Document::where('mahasiswa_id', $calonmahasiswa->id)->value('file_lk_path');
+            if(!is_null($lk_mahasiswa)){
+                $lk_realpath = Storage::path($lk_mahasiswa);
+                $zip->addFile($lk_realpath, $base_path.'/'.'lk'.'/'.basename($lk_realpath));
+            }
+
+            //file psikotest
+            $psikotest_mahasiswa = Document::where('mahasiswa_id', $calonmahasiswa->id)->value('file_psikotest_path');
+            if(!is_null($lk_mahasiswa)) {
+                $psikotest_realpath = Storage::path($psikotest_mahasiswa);
+                $zip->addFile($psikotest_realpath, $base_path.'/'.'psikotest'.'/'.basename($psikotest_realpath));
+            }
+        }
+
+        $zip->close();
+
+        return response()->download($zip_master);
     }
+
+    // public function download_berkas_zip() {
+    //     $zip = new \ZipArchive();
+    //     $zip_master = "Dokumen mahasiswa.zip";
+    //     $zip->open($zip_master, \ZipArchive::CREATE | \ZipArchive::OVERWRITE);
+
+    //     $options = array('add_path' => 'sources/', 'remove_all_path' => false);
+    //     $zip->addGlob(Storage::path('public/dokumen mahasiswa').'{pdf}', GLOB_BRACE, $options);
+    //     $zip->close();
+
+    //     return response()->download($zip_master);
+    // }
 
 }
