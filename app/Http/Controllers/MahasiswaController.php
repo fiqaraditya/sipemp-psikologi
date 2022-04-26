@@ -168,6 +168,32 @@ class MahasiswaController extends Controller
         return response()->download($zip_master);
     }
 
+    public function download_berkas_zip_mahasiswa($id)
+    {
+        $calonmahasiswa = User::findorfail($id);
+
+        $zip = new \ZipArchive();
+        $zip_master = $calonmahasiswa->no_pendaftaran.'-'.$calonmahasiswa->nama;
+        $zip->open($zip_master, \ZipArchive::CREATE | \ZipArchive::OVERWRITE);
+
+        //file lk
+        $lk_mahasiswa = Document::where('mahasiswa_id', $id)->value('file_lk_path');
+        if(!is_null($lk_mahasiswa)){
+            $lk_realpath = Storage::path($lk_mahasiswa);
+            $zip->addFile($lk_realpath, 'lk'.'/'.basename($lk_realpath));
+        }
+
+        //file psikotest
+        $psikotest_mahasiswa = Document::where('mahasiswa_id', $id)->value('file_psikotest_path');
+        if(!is_null($lk_mahasiswa)) {
+            $psikotest_realpath = Storage::path($psikotest_mahasiswa);
+            $zip->addFile($psikotest_realpath, 'psikotest'.'/'.basename($psikotest_realpath));
+        }
+        $zip->close();
+
+        return response()->download($zip_master);
+
+    }
     // public function download_berkas_zip() {
     //     $zip = new \ZipArchive();
     //     $zip_master = "Dokumen mahasiswa.zip";
