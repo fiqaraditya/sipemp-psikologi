@@ -191,8 +191,8 @@ class MahasiswaController extends Controller
             }
         }
         
-        $zip->close();
         if($counter!=0){
+            $zip->close();
             return response()->download($zip_master);
         }
         else{
