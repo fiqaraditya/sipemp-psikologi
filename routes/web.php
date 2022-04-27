@@ -73,7 +73,8 @@ Route::get('/download/{id}',[AnnouncementController::class, 'download'])->name('
 Route::get('/download-psikotest/{id}',[MahasiswaController::class, 'downloadpsikotest'])->name('download_psikotest');
 Route::get('/delete-psikotest/{id}',[MahasiswaController::class, 'destroy_psikotest'])->name('delete_psikotest');
 Route::get('/download-lk/{id}',[MahasiswaController::class, 'downloadlk'])->name('downloadlk');
-Route::get('/download-bekas-zip',[MahasiswaController::class, 'download_berkas_zip'])->name('download_berkas_zip');
+Route::get('/download-berkas-zip',[MahasiswaController::class, 'download_berkas_zip'])->name('download_berkas_zip');
+Route::get('/download-berkas-zip-mahasiswa/{id}',[MahasiswaController::class, 'download_berkas_zip_mahasiswa'])->name('download_berkas_zip_mahasiswa');
 Route::get('/delete-lk/{id}',[MahasiswaController::class, 'destroy_lk'])->name('delete_lk');
 Route::get('/download-rekomendasi/{filename}',[MahasiswaController::class, 'downloadsr'])->name('downloadsr');
 

@@ -44,6 +44,7 @@
                             <label class="form-check-label" for="peran">Atasan</label>
                         </div>
                         <br>
+                        <br>
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Nama Penerima Rekomendasi</label>
                             <input type="text" class="form-control" id="exampleFormControlInput1"
