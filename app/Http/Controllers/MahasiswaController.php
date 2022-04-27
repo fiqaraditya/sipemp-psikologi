@@ -143,11 +143,11 @@ class MahasiswaController extends Controller
         $zip_master = 'dokumen mahasiswa.zip';
         $zip->open($zip_master, \ZipArchive::CREATE | \ZipArchive::OVERWRITE);
         $counter = 0 ;
-        
+
         $calonmahasiswas = User::where('role', '=', 'calon mahasiswa')->get();
-        
+
         foreach ($calonmahasiswas as $calonmahasiswa) {
-            
+
             $nama = $calonmahasiswa->name;
             $no_pendaftaran = $calonmahasiswa->no_pendaftaran;
             $base_path = $no_pendaftaran.'-'.$nama;
@@ -158,7 +158,7 @@ class MahasiswaController extends Controller
                 $zip->addFile($lk_realpath, $base_path.'/'.'lk'.'/'.basename($lk_realpath));
                 $counter++;
             }
-            
+
             //file psikotest
             $psikotest_mahasiswa = Document::where('mahasiswa_id', $calonmahasiswa->id)->value('file_psikotest_path');
             if(!is_null($psikotest_mahasiswa)) {
@@ -167,8 +167,8 @@ class MahasiswaController extends Controller
                 $zip->addFile($psikotest_realpath, $base_path.'/'.'psikotest'.'/'.basename($psikotest_realpath));
                 $counter++;
             }
-            
-            //file rekomendasi 
+
+            //file rekomendasi
             $rekomendasi_mahasiswa = Recommendation::where('mahasiswa_key', $calonmahasiswa->no_pendaftaran)->get();
             if(!is_null($rekomendasi_mahasiswa)) {
                 foreach ($rekomendasi_mahasiswa as $rekomendasi) {
@@ -177,9 +177,9 @@ class MahasiswaController extends Controller
                         $zip->addFile($rekomendasi_realpath, $base_path.'/'.'rekomendasi'.'/'.basename($rekomendasi_realpath));
                         $counter++;
                     }
-                }   
+                }
             }
-            
+
             //berkas wawancara
             $interview_mahasiswa = Interview::where('email_mahasiswa', $calonmahasiswa->email)->value('id');
             $wawancara_mahasiswa = InterviewSchedule::where('id',$interview_mahasiswa)->value('file_path');
@@ -190,9 +190,9 @@ class MahasiswaController extends Controller
                 $counter++;
             }
         }
-        $zip->close();
-        
+
         if($counter!=0){
+            $zip->close();
             return response()->download($zip_master);
         }
         else{
@@ -231,7 +231,7 @@ class MahasiswaController extends Controller
                     // dd($rekomendasi->file_path);
                     $zip->addFile($rekomendasi_realpath, 'rekomendasi'.'/'.basename($rekomendasi_realpath));
                 }
-            }   
+            }
         }
 
         //wawancara
