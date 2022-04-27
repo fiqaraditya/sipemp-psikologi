@@ -196,6 +196,8 @@ class MahasiswaController extends Controller
             return response()->download($zip_master);
         }
         else{
+            $zip->addEmptyDir('empty');
+            $zip->close();
             return redirect('daftar-mahasiswa');
         }
     }
