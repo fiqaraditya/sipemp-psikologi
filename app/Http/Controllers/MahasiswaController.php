@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Document;
+use App\Models\Interview;
+use App\Models\InterviewSchedule;
 use App\Models\User;
 use App\Models\Recommendation;
 use Exception;
@@ -157,9 +159,30 @@ class MahasiswaController extends Controller
 
             //file psikotest
             $psikotest_mahasiswa = Document::where('mahasiswa_id', $calonmahasiswa->id)->value('file_psikotest_path');
-            if(!is_null($lk_mahasiswa)) {
+            if(!is_null($psikotest_mahasiswa)) {
                 $psikotest_realpath = Storage::path($psikotest_mahasiswa);
+                // dd($psikotest_realpath);
                 $zip->addFile($psikotest_realpath, $base_path.'/'.'psikotest'.'/'.basename($psikotest_realpath));
+            }
+
+            //file rekomendasi 
+            $rekomendasi_mahasiswa = Recommendation::where('mahasiswa_key', $calonmahasiswa->no_pendaftaran)->get();
+            if(!is_null($rekomendasi_mahasiswa)) {
+                foreach ($rekomendasi_mahasiswa as $rekomendasi) {
+                    if(!is_null($rekomendasi->file_path)){
+                        $rekomendasi_realpath = Storage::path($rekomendasi->file_path);
+                        $zip->addFile($rekomendasi_realpath, $base_path.'/'.'rekomendasi'.'/'.basename($rekomendasi_realpath));
+                    }
+                }   
+            }
+
+            //berkas wawancara
+            $interview_mahasiswa = Interview::where('email_mahasiswa', $calonmahasiswa->email)->value('id');
+            $wawancara_mahasiswa = InterviewSchedule::where('id',$interview_mahasiswa)->value('file_path');
+            if(!is_null($wawancara_mahasiswa)){
+                $wawancara_realpath = Storage::path($wawancara_mahasiswa);
+                // dd($psikotest_realpath);
+                $zip->addFile($wawancara_realpath, $base_path.'/'.'wawancara'.'/'.basename($wawancara_realpath));
             }
         }
 
@@ -173,7 +196,7 @@ class MahasiswaController extends Controller
         $calonmahasiswa = User::findorfail($id);
 
         $zip = new \ZipArchive();
-        $zip_master = $calonmahasiswa->no_pendaftaran.'-'.$calonmahasiswa->nama;
+        $zip_master = $calonmahasiswa->no_pendaftaran.'-'.$calonmahasiswa->name.'.zip';
         $zip->open($zip_master, \ZipArchive::CREATE | \ZipArchive::OVERWRITE);
 
         //file lk
@@ -189,6 +212,28 @@ class MahasiswaController extends Controller
             $psikotest_realpath = Storage::path($psikotest_mahasiswa);
             $zip->addFile($psikotest_realpath, 'psikotest'.'/'.basename($psikotest_realpath));
         }
+
+        //rekomendasi
+        $rekomendasi_mahasiswa = Recommendation::where('mahasiswa_key', $calonmahasiswa->no_pendaftaran)->get();
+        if(!is_null($rekomendasi_mahasiswa)) {
+            foreach ($rekomendasi_mahasiswa as $rekomendasi) {
+                if(!is_null($rekomendasi->file_path)){
+                    $rekomendasi_realpath = Storage::path($rekomendasi->file_path);
+                    // dd($rekomendasi->file_path);
+                    $zip->addFile($rekomendasi_realpath, 'rekomendasi'.'/'.basename($rekomendasi_realpath));
+                }
+            }   
+        }
+
+        //wawancara
+        $interview_mahasiswa = Interview::where('email_mahasiswa', $calonmahasiswa->email)->value('id');
+        $wawancara_mahasiswa = InterviewSchedule::where('id',$interview_mahasiswa)->value('file_path');
+        if(!is_null($wawancara_mahasiswa)){
+            $wawancara_realpath = Storage::path($wawancara_mahasiswa);
+            // dd($psikotest_realpath);
+            $zip->addFile($wawancara_realpath, 'wawancara'.'/'.basename($wawancara_realpath));
+        }
+
         $zip->close();
 
         return response()->download($zip_master);

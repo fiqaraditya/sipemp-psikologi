@@ -148,7 +148,7 @@ class JadwalController extends Controller
         }
         foreach($same_hour as $hour){
             $pewawancarax = Interview::where('schedule_id','=',$hour->id)->get();
-            if(count($pewawancarax)!=0){
+            if(count($pewawancarax) > 1){
                 foreach($pewawancarax as $pewawancara){
                     if($pewawancara->email_pw_1 !=NULL && $pewawancara->email_pw_2 != NULL){
                         array_push($pewawancara_same_hour, $pewawancara->email_pw_1);
@@ -167,6 +167,8 @@ class JadwalController extends Controller
         
         if ($interview->email_pw_1 == NULL && $interview->email_pw_2 == NULL) {
             $pewawancara = User::orderBy('email')->where('role','=','pewawancara')->where('profesi','=',$user->profesi)->get();
+            $test = User::orderBy('email')->where('role','=','pewawancara')->where('profesi','=',$user->profesi)->get();
+            // dd($user);
         } elseif($interview->email_pw_1 != NULL && $interview->email_pw_2 == NULL) {
             $pewawancara = User::orderBy('email')->where('role','=','pewawancara')->where('email','!=',$interview->email_pw_1)->where('profesi','=',$user->profesi)->get();
 
@@ -183,6 +185,8 @@ class JadwalController extends Controller
         $pewawancaras = array_diff($list_pewawancara,$list_pr);
         $pewawancaras = array_diff($pewawancaras,$pewawancara_same_hour);
         $role = auth()->user()->role;
+
+        // dd($pewawancaras);
 
 
         return view("detail_wawancara",compact('schedule','interview','user','pewawancaras','all','role'));
