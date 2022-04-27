@@ -117,7 +117,7 @@ class JadwalController extends Controller
         $schedule->note = $request->note;
         $schedule->save();
 
-        return redirect()->route('detail_jadwal_wawancara', ['id' => $id])->with('success', 'Hasil evaluasi eawancara berhasil diubah');
+        return redirect()->route('detail_jadwal_wawancara', ['id' => $id])->with('success', 'Hasil evaluasi wawancara berhasil diubah');
     }
 
 
