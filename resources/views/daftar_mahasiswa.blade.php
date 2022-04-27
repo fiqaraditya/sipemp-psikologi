@@ -7,12 +7,13 @@
         <div class="col">
             <a type="button" class="btn btn-primary" style="border-radius: 40px; width:20%;" href="{{route('create_mahasiswa')}}"> Buat Calon Mahasiswa Baru</a>
             <a type="button" class="btn btn-primary" style="border-radius: 40px; width:20%;" href="{{route('download_berkas_zip')}}"> Download Semua Berkas</a>
+            <a type="button" class="btn btn-primary" style="border-radius: 40px; width:20%;" href="{{route('result_announcement')}}"> Kirim Email Hasil Akhir</a>
         </div>
 
     </div>
     <div class="row">
 
-    
+
         <br>
             <table class="table">
             <thead>
@@ -38,7 +39,7 @@
 
                     <td>{{ $item-> name }}</td>
                     <td>{{ $item-> no_pendaftaran  }}</td>
-                    <td> 
+                    <td>
                         @foreach ($document as $doc)
                         @if ($doc->mahasiswa_id == $item->id)
                             @if (is_null($doc-> status_rekomendasi))
@@ -47,7 +48,7 @@
                                 </div>
                             @elseif ($doc-> status_rekomendasi == 1)
                                 <div style="width:200px;height:40px; background-color:green; border-radius:20px; padding:10px; font-size:8; color:white;text-align:center;">
-                                    <h6>Lolos Verifikasi</h6> 
+                                    <h6>Lolos Verifikasi</h6>
                                 </div>
                             @else
                             <div style="width:200px;height:40px; background-color:red; border-radius:20px; padding:10px; font-size:8; color:white;text-align:center;">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AnnouncementMail;
 use App\Models\Document;
 use App\Models\Interview;
 use App\Models\InterviewSchedule;
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Mail;
 
 
 class MahasiswaController extends Controller
@@ -250,16 +252,24 @@ class MahasiswaController extends Controller
         return response()->download($zip_master);
 
     }
-    // public function download_berkas_zip() {
-    //     $zip = new \ZipArchive();
-    //     $zip_master = "Dokumen mahasiswa.zip";
-    //     $zip->open($zip_master, \ZipArchive::CREATE | \ZipArchive::OVERWRITE);
 
-    //     $options = array('add_path' => 'sources/', 'remove_all_path' => false);
-    //     $zip->addGlob(Storage::path('public/dokumen mahasiswa').'{pdf}', GLOB_BRACE, $options);
-    //     $zip->close();
+    public function result_announcement()
+    {
+        $calonmahasiswas = User::where('role', '=', 'calon mahasiswa')->get();
+        foreach ($calonmahasiswas as $calonmahasiswa) {
+            if( $calonmahasiswa->status_penerimaan == 1) {
+                $details = [
+                    'title' => 'Hasil Akhir Penerimaan Calon Mahasiswa Profesi Fakultas Psikologi UI',
+                    'name' => $calonmahasiswa->name,
+                    'no_pendaftaran' => $calonmahasiswa->no_pendaftaran,
+                    'status' => 'Diterima'
+                    ];
+                Mail::to($calonmahasiswa->email)->send(new AnnouncementMail($details));
+            }
+        }
+        return redirect('daftar-mahasiswa');
 
-    //     return response()->download($zip_master);
-    // }
+    }
+
 
 }

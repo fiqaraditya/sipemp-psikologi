@@ -103,3 +103,4 @@ Route::post('/updated-mahasiswa/{id}',[MahasiswaController::class, 'update'])->n
 Route::get('/terima/{id}', [MahasiswaController::class, 'terima'])->name("terima_calon_mahasiswa")->middleware('auth', 'checkrole:admin');
 Route::get('/tolak/{id}', [MahasiswaController::class, 'tolak'])->name("tolak_calon_mahasiswa")->middleware('auth', 'checkrole:admin');
 Route::get('/ralat/{id}', [MahasiswaController::class, 'ralat'])->name("ralat_calon_mahasiswa")->middleware('auth', 'checkrole:admin');
+Route::get('/notification-result', [MahasiswaController::class, 'result_announcement'])->name("result_announcement")->middleware('auth', 'checkrole:admin');
