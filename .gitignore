@@ -1,7 +1,7 @@
 /node_modules
 /public/hot
 /public/storage
-public/dokumen mahasiswa.zip
+# public/dokumen mahasiswa.zip
 /storage/*.key
 /vendor
 .env
