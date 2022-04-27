@@ -23,11 +23,18 @@ class JadwalController extends Controller
             $schedules = InterviewSchedule::orderBy('tanggal','DESC')->orderBy('waktu_mulai','ASC')->orderBy('waktu_akhir','ASC')->where('id','=',$interview->id)->get();
         } else{
             $interview = Interview::where('email_pw_1','=',auth()->user()->email)->orWhere('email_pw_2','=',auth()->user()->email)->get(); //bentuk array multiple data
-            $schedules = InterviewSchedule::orderBy('tanggal','DESC')->orderBy('waktu_mulai','ASC')->orderBy('waktu_akhir','ASC');
-            foreach ($interview as $int) {
-                $schedules->orWhere('id','=',$int->id);
+            if(count($interview)==0){
+                $schedules = [];
             }
-            $schedules = $schedules->get();
+            else{
+                $schedules = InterviewSchedule::orderBy('tanggal','DESC')->orderBy('waktu_mulai','ASC')->orderBy('waktu_akhir','ASC');
+                foreach ($interview as $int) {
+                    $schedules->orWhere('id','=',$int->id);
+                }
+                $schedules = $schedules->get();
+
+            }
+
         }
         return view("daftar_jadwal_wawancara",compact('schedules'));
     }
