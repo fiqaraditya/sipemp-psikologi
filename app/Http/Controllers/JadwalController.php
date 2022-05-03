@@ -20,7 +20,12 @@ class JadwalController extends Controller
             $schedules = InterviewSchedule::orderBy('tanggal','DESC')->orderBy('waktu_mulai','ASC')->orderBy('waktu_akhir','ASC')->get();
         } else if(auth()->user()->role =="calon mahasiswa"){
             $interview = Interview::where('email_mahasiswa','=',auth()->user()->email)->get()->first();
-            $schedules = InterviewSchedule::orderBy('tanggal','DESC')->orderBy('waktu_mulai','ASC')->orderBy('waktu_akhir','ASC')->where('id','=',$interview->id)->get();
+            if(count($interview)==0){
+                $schedules = [];
+            }
+            else{
+                $schedules = InterviewSchedule::orderBy('tanggal','DESC')->orderBy('waktu_mulai','ASC')->orderBy('waktu_akhir','ASC')->where('id','=',$interview->id)->get();
+            }
         } else{
             $interview = Interview::where('email_pw_1','=',auth()->user()->email)->orWhere('email_pw_2','=',auth()->user()->email)->get(); //bentuk array multiple data
             if(count($interview)==0){
