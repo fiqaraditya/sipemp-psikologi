@@ -63,11 +63,7 @@ class JadwalController extends Controller
     }
 
     public function store(Request $request) {
-        // Announcement::create([
-        //     'judul' => $request->judul,
-        //     'isi' => $request->isi,
-        //     'admin_id' => auth()->user()->id
-        // ]);
+       
         $InterviewSchedule = InterviewSchedule::create([
             'tanggal' => $request->tanggal,
             'waktu_mulai' => $request->waktu_mulai,
@@ -79,9 +75,8 @@ class JadwalController extends Controller
             'email_mahasiswa' => $request->mahasiswa,
         ]);
 
-        // dd($InterviewSchedule->id);
+        
         return redirect()->route('detail_jadwal_wawancara', ['id' => $InterviewSchedule->id]);
-        // return redirect('daftar-jadwal-wawancara')->with('success', 'Jadwal berhasil ditambahkan, silakan input pewawancara');
     }
 
     public function hapus_wawancara($id) {
@@ -141,6 +136,7 @@ class JadwalController extends Controller
         $pemberi_rekomendasi = Recommendation::where('mahasiswa_key','=',$user->no_pendaftaran)->get();
         $same_hour = InterviewSchedule::where('tanggal','=',$schedule->tanggal)->where('waktu_mulai','=',$schedule->waktu_mulai)->get();
         $existing_mahasiswa = Interview::all();
+        // dd($same_hour); --> nunjukkin jadwal
         // dd($existing_mahasiswa);
         $exist = [];
         $all = [];
@@ -160,7 +156,7 @@ class JadwalController extends Controller
         }
         foreach($same_hour as $hour){
             $pewawancarax = Interview::where('schedule_id','=',$hour->id)->get();
-            if(count($pewawancarax) > 1){
+            if(count($pewawancarax) > 0){
                 foreach($pewawancarax as $pewawancara){
                     if($pewawancara->email_pw_1 !=NULL && $pewawancara->email_pw_2 != NULL){
                         array_push($pewawancara_same_hour, $pewawancara->email_pw_1);

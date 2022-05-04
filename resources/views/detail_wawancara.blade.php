@@ -23,11 +23,8 @@
                 @if ($interview->email_pw_1 == NULL && $interview->email_pw_2 == NULL )
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Calon Mahasiswa</label>
-                            <select name="mahasiswa" id="mahasiswa" class="form-control input-lg dynamic">
+                            <select name="mahasiswa" id="mahasiswa" class="form-control input-lg dynamic" disabled>
                             <option value="{{$user->email}}" selected disabled >{{$user->email}}</option>
-                            @foreach($all as $mahasiswa)
-                                <option value="{{ $mahasiswa}}">{{ $mahasiswa}}</option>
-                            @endforeach
                             </select>
                         </div>
                         <br>
@@ -55,11 +52,8 @@
                 @elseif($interview->email_pw_1 != NULL && $interview->email_pw_2 == NULL)
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Calon Mahasiswa</label>
-                            <select name="mahasiswa" id="mahasiswa" class="form-control input-lg dynamic">
+                            <select name="mahasiswa" id="mahasiswa" class="form-control input-lg dynamic" disabled>
                             <option value="{{$user->email}}" selected disabled >{{$user->email}}</option>
-                            @foreach($all as $mahasiswa)
-                                <option value="{{ $mahasiswa}}">{{ $mahasiswa}}</option>
-                            @endforeach
                             </select>
                         </div>
                         <br>
@@ -88,11 +82,8 @@
                         @else
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Calon Mahasiswa</label>
-                                <select name="mahasiswa" id="mahasiswa" class="form-control input-lg dynamic">
+                                <select name="mahasiswa" id="mahasiswa" class="form-control input-lg dynamic" disabled>
                                 <option value="{{$user->email}}" selected disabled >{{$user->email}}</option>
-                                @foreach($all as $mahasiswa)
-                                    <option value="{{ $mahasiswa}}">{{ $mahasiswa}}</option>
-                                @endforeach
                                 </select>
                             </div>
                             <br>
