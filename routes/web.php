@@ -41,17 +41,14 @@ Route::post('/set-password', [RegisterController::class, 'setPasswordStore'])->m
 Route::get('/daftar-admin',[AdminController::class, 'index'])->name("daftar_admin")->middleware('auth','checkrole:admin');
 Route::get('/create-admin',[AdminController::class, 'create'])->name("create_admin")->middleware('auth','checkrole:admin');
 Route::post('/create-admin', [AdminController::class, 'store'])->name("create_admin_post")->middleware('auth','checkrole:admin');
-Route::get('/delete-admin/{id}',[AdminController::class, 'destroy_admin'])->name('delete_admin')->middleware('auth','checkrole:admin');
 
 Route::get('/daftar-mahasiswa',[MahasiswaController::class, 'index'])->name("daftar_mahasiswa")->middleware('auth','checkrole:admin');
 Route::get('/create-mahasiswa',[MahasiswaController::class, 'create'])->name("create_mahasiswa")->middleware('auth','checkrole:admin');
-Route::post('/create-mahasiswa', [MahasiswaController::class, 'store'])->name("create_mahasiswa_post")->middleware('auth','checkrole:admin');
-Route::get('/delete-mahasiswa/{id}',[MahasiswaController::class, 'destroy_mahasiswa'])->name('delete_mahasiswa')->middleware('auth','checkrole:admin');
+Route::post('/create-mahasiswa', [MahasiswaController::class, 'store'])->name("create_mahasiswa_post")->middleware('auth','checkrole:admin');;
 
 Route::get('/daftar-pewawancara',[PewawancaraController::class, 'index'])->name("daftar_pewawancara")->middleware('auth','checkrole:admin');
 Route::get('/create-pewawancara',[PewawancaraController::class, 'create'])->name("create_pewawancara")->middleware('auth','checkrole:admin');
 Route::post('/create-pewawancara', [PewawancaraController::class, 'store'])->name("create_pewawancara_post")->middleware('auth','checkrole:admin');
-Route::get('/delete-pewawancara/{id}',[PewawancaraController::class, 'destroy_pewawancara'])->name('delete_pewawancara')->middleware('auth','checkrole:admin');
 
 Route::get('/daftar-jadwal-wawancara',[JadwalController::class, 'index'])->name("daftar_jadwal_wawancara")->middleware('auth');
 Route::get('/create-jadwal',[JadwalController::class, 'create'])->name("create_jadwal")->middleware('auth','checkrole:admin');
