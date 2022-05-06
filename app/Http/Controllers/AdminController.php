@@ -44,4 +44,10 @@ class AdminController extends Controller
         return redirect('/daftar-admin')->with('success', 'Admin baru berhasil didaftarkan');
 
     }
+
+    public function destroy_admin($id)
+    {
+        User::where('id', $id)->delete();
+        return redirect('daftar-admin');
+    }
 }
