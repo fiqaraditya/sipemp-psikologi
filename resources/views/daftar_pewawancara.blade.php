@@ -21,7 +21,6 @@
                     <img src="img/role.png" width="16" height="16">Peran</th>
                     <th scope="col">
                     <img src="img/email.png" width="20" height="14">Email</th>
-                    <th scope="col">Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,7 +29,6 @@
                     <td>{{ $item-> name }}</td>
                     <td>{{ $item-> role }}</td>
                     <td>{{ $item-> email}} </td>
-                    <td><a type="button" class="btn btn-danger"  style="border:0" href="{{url('/delete-pewawancara', $item-> id)}}"> Hapus Pewawancara</a></td>
                 </tr>
                 @endforeach
             </tbody>

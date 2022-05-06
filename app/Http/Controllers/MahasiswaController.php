@@ -112,12 +112,6 @@ class MahasiswaController extends Controller
         return view('kelengkapan_berkas',compact('document','recommendation'));
     }
 
-    public function destroy_mahasiswa($id)
-    {
-        User::where('id', $id)->delete();
-        return redirect('daftar-mahasiswa');
-    }
-
     public function downloadlk($id)
     {
         $filepath = DB::table('documents')->where('mahasiswa_id',$id)->value('file_lk_path');
