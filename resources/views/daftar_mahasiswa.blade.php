@@ -13,10 +13,8 @@
         </div>
 
     </div>
+    <br>
     <div class="row">
-
-
-        <br>
             <table class="table">
             <thead>
                 <tr>
@@ -61,8 +59,10 @@
                     @endforeach
 
                     </td>
-                    <td>   <a type="button" class="btn btn-primary"  style="background-color:#805AD5; border:0" href="{{url('/detail-mahasiswa', $item-> id)}}"> Detail Mahasiswa</a>   </td>
-
+                    <td>   
+                        <a type="button" class="btn btn-primary"  style="background-color:#805AD5; border:0" href="{{url('/detail-mahasiswa', $item-> id)}}"> Detail Mahasiswa</a>   
+                        <a type="button" class="btn btn-danger"  style="border:0" href="{{url('/delete-mahasiswa', $item-> id)}}"> Hapus Mahasiswa</a>   
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
