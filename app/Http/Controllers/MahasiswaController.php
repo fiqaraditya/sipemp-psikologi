@@ -256,6 +256,7 @@ class MahasiswaController extends Controller
     public function result_announcement()
     {
         $calonmahasiswas = User::where('role', '=', 'calon mahasiswa')->get();
+        //send email to all calon mahasiswa
         foreach ($calonmahasiswas as $calonmahasiswa) {
             if( $calonmahasiswa->status_penerimaan == 1) {
                 $details = [
