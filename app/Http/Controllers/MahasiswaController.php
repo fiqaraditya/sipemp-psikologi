@@ -112,6 +112,12 @@ class MahasiswaController extends Controller
         return view('kelengkapan_berkas',compact('document','recommendation'));
     }
 
+    public function destroy_mahasiswa($id)
+    {
+        User::where('id', $id)->delete();
+        return redirect('daftar-mahasiswa');
+    }
+
     public function downloadlk($id)
     {
         $filepath = DB::table('documents')->where('mahasiswa_id',$id)->value('file_lk_path');
@@ -256,7 +262,6 @@ class MahasiswaController extends Controller
     public function result_announcement()
     {
         $calonmahasiswas = User::where('role', '=', 'calon mahasiswa')->get();
-        //send email to all calon mahasiswa
         foreach ($calonmahasiswas as $calonmahasiswa) {
             if( $calonmahasiswa->status_penerimaan == 1) {
                 $details = [

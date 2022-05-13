@@ -12,7 +12,6 @@ class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * 
      *
      * @return \Illuminate\Http\Response
      */
@@ -44,5 +43,11 @@ class AdminController extends Controller
         /* auth()->login($user);*/
         return redirect('/daftar-admin')->with('success', 'Admin baru berhasil didaftarkan');
 
+    }
+
+    public function destroy_admin($id)
+    {
+        User::where('id', $id)->delete();
+        return redirect('daftar-admin');
     }
 }

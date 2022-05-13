@@ -45,4 +45,11 @@ class PewawancaraController extends Controller
         return redirect('/daftar-pewawancara')->with('success', 'Pewawancara baru berhasil didaftarkan');
 
     }
+
+    public function destroy_pewawancara($id)
+    {
+        User::where('id', $id)->delete();
+        return redirect('daftar-pewawancara');
+    }
+
 }
