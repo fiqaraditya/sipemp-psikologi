@@ -8,6 +8,8 @@ use App\Models\Interview;
 use App\Models\InterviewSchedule;
 use App\Models\User;
 use App\Models\Recommendation;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+use Barryvdh\DomPDF\PDF as DomPDFPDF;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,7 +18,6 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Mail;
-
 
 class MahasiswaController extends Controller
 {
@@ -275,6 +276,14 @@ class MahasiswaController extends Controller
         }
         return redirect('daftar-mahasiswa');
 
+    }
+
+    public function download_user()
+    {
+        $calonmahasiswas = User::where('role', '=', 'calon mahasiswa')->get();
+        $pdf = FacadePdf::loadView('mahasiswa_pdf',['calonmahasiswa'=>$calonmahasiswas]);
+        return $pdf->download('list-calon-mahasiswa.pdf');
+        
     }
 
 
