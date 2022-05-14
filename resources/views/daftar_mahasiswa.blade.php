@@ -8,7 +8,8 @@
             <a type="button" class="btn btn-primary" style="border-radius: 40px; width:20%;" href="{{route('create_mahasiswa')}}"> Buat Calon Mahasiswa Baru</a>
             @if (count($calonmahasiswas) != 0)
                 <a type="button" class="btn btn-primary" style="border-radius: 40px; width:20%;" href="{{route('download_berkas_zip')}}"> Download Semua Berkas</a>
-                <a type="button" class="btn btn-primary" style="border-radius: 40px; width:20%;" href="{{route('result_announcement')}}"> Kirim Email Hasil Akhir</a>
+                {{-- <a type="button" class="btn btn-primary" style="border-radius: 40px; width:20%;" href="{{route('result_announcement')}}"> Kirim Email Hasil Akhir</a> --}}
+                <a type="button" class="btn btn-primary" style="border-radius: 40px; width:25%;" href="{{url('/download-user')}}"> Download Data Calon Mahasiswa </a>
             @endif
         </div>
 
