@@ -1,15 +1,22 @@
 @extends('layout')
 
 @section('content')
+<style>
+    th,td{
+        text-align: center;
+        vertical-align: middle;
+    }
+</style>
 <div class="container" style="margin-top:3%; margin-bottom:5%">
     <div class="row">
         <h1 style="margin-bottom: 1%">Daftar Calon Mahasiswa</h1>
         <div class="col">
             <a type="button" class="btn btn-primary" style="border-radius: 40px; width:20%;" href="{{route('create_mahasiswa')}}"> Buat Calon Mahasiswa Baru</a>
             @if (count($calonmahasiswas) != 0)
-                <a type="button" class="btn btn-primary" style="border-radius: 40px; width:20%;" href="{{route('download_berkas_zip')}}"> Download Semua Berkas</a>
+                <a type="button" class="btn btn-primary" style="border-radius: 40px; width:20%; background-color:green;" href="{{route('download_berkas_zip')}}"> Download Semua Berkas</a>
                 {{-- <a type="button" class="btn btn-primary" style="border-radius: 40px; width:20%;" href="{{route('result_announcement')}}"> Kirim Email Hasil Akhir</a> --}}
-                <a type="button" class="btn btn-primary" style="border-radius: 40px; width:25%;" href="{{url('/download-user')}}"> Download Data Calon Mahasiswa </a>
+                <a type="button" class="btn btn-primary" style="border-radius: 40px; width:25%; background-color:green;" href="{{url('/download-user')}}"> Download Data Calon Mahasiswa </a>
+                <a type="button" class="btn btn-danger" style="border-radius: 40px; width:25%;" href="{{url('/delete-mahasiswa-all')}}"> Hapus Semua Calon Mahasiswa </a>
             @endif
         </div>
 
@@ -44,16 +51,16 @@
                         @foreach ($document as $doc)
                         @if ($doc->mahasiswa_id == $item->id)
                             @if (is_null($doc-> status_rekomendasi))
-                                <div style="width:200px;height:40px; background-color:grey; border-radius:20px; padding:10px; font-size:8; color:white;text-align:center;">
-                                    <h6>Belum Terverifikasi</h6>
+                                <div style="width:auto;height:40px; background-color:grey; border-radius:20px; text-align:center; margin-right:0; padding:10px; font-size:8; color:white;text-align:center;">
+                                    <h6>Belum Dinilai</h6>
                                 </div>
                             @elseif ($doc-> status_rekomendasi == 1)
-                                <div style="width:200px;height:40px; background-color:green; border-radius:20px; padding:10px; font-size:8; color:white;text-align:center;">
-                                    <h6>Lolos Verifikasi</h6>
+                                <div style="width:auto;height:40px; background-color:green; border-radius:20px; text-align: center; margin-right:0; padding:10px; font-size:8; color:white;text-align:center;">
+                                    <h6>Disarankan</h6>
                                 </div>
                             @else
-                            <div style="width:200px;height:40px; background-color:red; border-radius:20px; padding:10px; font-size:8; color:white;text-align:center;">
-                                <h6>Tidak Lolos Verifikasi</h6>
+                            <div style="width:auto;height:40px; background-color:red; border-radius:20px; padding:10px; text-align: center; margin-right:0; font-size:8; color:white;text-align:center;">
+                                <h6>Tidak Disarankan</h6>
                             </div>
                             @endif
                         @endif
