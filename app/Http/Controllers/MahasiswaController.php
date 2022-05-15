@@ -125,8 +125,9 @@ class MahasiswaController extends Controller
         }
 
         //delete interviews of mahasiswa from DB
-        if(Interview::exists()){
+        if(InterviewSchedule::exists()){
             Interview::truncate();
+            InterviewSchedule::truncate();
         }
 
         //delete file from storage

@@ -40,37 +40,90 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             @auth
+            @php
+                $currentURL = url()->current();
+            @endphp
+            @if (str_contains($currentURL,"pewawancara"))
+                <style>
+                    #pewawancara{
+                        font-weight: bold;
+                    }
+                </style>
+            @elseif (str_contains($currentURL,"pengumuman"))
+            <style>
+                #pengumuman{
+                    font-weight: bold;
+                }
+            </style>
+            @elseif (str_contains($currentURL,"admin"))
+            <style>
+                #admin{
+                    font-weight: bold;
+                }
+            </style>
+            @elseif (str_contains($currentURL,"mahasiswa"))
+            <style>
+                #calonmahasiswa{
+                    font-weight: bold;
+                }
+            </style>
+            @elseif (str_contains($currentURL,"wawancara")||str_contains($currentURL,"jadwal"))
+            <style>
+                #wawancara{
+                    font-weight: bold;
+                }
+            </style>
+            @elseif (str_contains($currentURL,"berkas")||str_contains($currentURL,"file-1")||str_contains($currentURL,"file-2"))
+            <style>
+                #berkas{
+                    font-weight: bold;
+                }
+            </style>
+            @elseif (str_contains($currentURL,"file-3"))
+            <style></style>
+            @else
+            <style>
+                #beranda{
+                    font-weight: bold;
+                }
+            </style>
+            @endif
+            
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-left:200px" class="mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Beranda</a>
+                        <a class="nav-link active" aria-current="page" href="/" id="beranda">Beranda</a> 
                     </li>
                     @if (auth()->user()->role=="admin")
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page"
+                        <a class="nav-link active" aria-current="page" id="pengumuman"
                             href="{{route('daftar_pengumuman')}}">Pengumuman</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{route('daftar_admin')}}">Admin</a>
+                        <a class="nav-link active" aria-current="page" id="dokumen"
+                            href="{{route('daftar_mahasiswa')}}">Dokumen</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page"
+                        <a class="nav-link active" aria-current="page" id="admin" href="{{route('daftar_admin')}}">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" id="pewawancara"
                             href="{{route('daftar_pewawancara')}}">Pewawancara</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page"
-                            href="{{route('daftar_mahasiswa')}}">Pendaftar</a>
+                        <a class="nav-link active" aria-current="page" id="calonmahasiswa"
+                            href="{{route('daftar_mahasiswa')}}">Calon Mahasiswa</a>
                     </li>
                     @endif
                     @if (auth()->user()->role=="calon mahasiswa")
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page"
+                        <a class="nav-link active" aria-current="page" id="berkas"
                             href="{{route('kelengkapan_berkas')}}">Kelengkapan Berkas</a>
                     </li>
                     @endif
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page"
+                        <a class="nav-link active" aria-current="page" id="wawancara"
                             href="{{route('daftar_jadwal_wawancara')}}">Wawancara</a>
                     </li>
                 </ul>
