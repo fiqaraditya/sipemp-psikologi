@@ -44,6 +44,7 @@ Route::post('/create-admin', [AdminController::class, 'store'])->name("create_ad
 Route::get('/delete-admin/{id}',[AdminController::class, 'destroy_admin'])->name('delete_admin')->middleware('auth','checkrole:admin');
 
 Route::get('/daftar-mahasiswa',[MahasiswaController::class, 'index'])->name("daftar_mahasiswa")->middleware('auth','checkrole:admin');
+Route::get('/daftar-mahasiswa-sort',[MahasiswaController::class, 'index_sort'])->name("daftar_mahasiswa_sort")->middleware('auth','checkrole:admin');
 Route::get('/create-mahasiswa',[MahasiswaController::class, 'create'])->name("create_mahasiswa")->middleware('auth','checkrole:admin');
 Route::post('/create-mahasiswa', [MahasiswaController::class, 'store'])->name("create_mahasiswa_post")->middleware('auth','checkrole:admin');
 Route::get('/delete-mahasiswa/{id}',[MahasiswaController::class, 'destroy_mahasiswa'])->name('delete_mahasiswa')->middleware('auth','checkrole:admin');
