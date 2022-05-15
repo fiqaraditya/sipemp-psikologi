@@ -112,3 +112,14 @@ Route::get('/ralat/{id}', [MahasiswaController::class, 'ralat'])->name("ralat_ca
 Route::get('/notification-result', [MahasiswaController::class, 'result_announcement'])->name("result_announcement")->middleware('auth', 'checkrole:admin');
 
 Route::get('/download-user',[MahasiswaController::class, 'download_user'])->middleware('auth', 'checkrole:admin');
+
+Route::get('/daftar-template', [DocumentController::class, 'daftar_template'])->name("page_template")->middleware('auth','checkrole:admin');
+
+Route::get('/submit-template-lk', [DocumentController::class, 'daftar_template_lk'])->name("page_template_lk")->middleware('auth','checkrole:admin');
+Route::post('/store-template-lk', [DocumentController::class, 'store_template_lk'])->name("store_template_lk")->middleware('auth','checkrole:admin');
+
+Route::get('/submit-template-rekomendasi', [DocumentController::class, 'daftar_template_rekomendasi'])->name("page_template_rekomendasi")->middleware('auth','checkrole:admin');
+Route::post('/store-template-rekomendasi', [DocumentController::class, 'store_template_rekomendasi'])->name("store_template_rekomendasi")->middleware('auth','checkrole:admin');
+Route::get('/download-template-lk',[DocumentController::class, 'download_template_lk'])->name('downloadlk');
+Route::get('/download-template-rekomendasi',[DocumentController::class, 'download_template_rekomendasi'])->name('downloadlk');
+
