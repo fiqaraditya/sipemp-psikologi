@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Mail;
+use phpDocumentor\Reflection\PseudoTypes\False_;
 
 class MahasiswaController extends Controller
 {
@@ -31,7 +32,18 @@ class MahasiswaController extends Controller
     {
         $calonmahasiswas = User::where('role', '=', 'calon mahasiswa')->get();
         $document = Document::all();
-        return view("daftar_mahasiswa", compact('calonmahasiswas','document'));
+        $sort = False;
+        return view("daftar_mahasiswa", compact('calonmahasiswas','document','sort'));
+    }
+
+    public function index_sort()
+    {
+        $mahasiswa_d = User::where('role', '=', 'calon mahasiswa')->where('status_penerimaan', '=', 'Disarankan')->get();
+        $mahasiswa_td = User::where('role', '=', 'calon mahasiswa')->where('status_penerimaan', '=', 'Tidak Disarankan')->get();
+        $mahasiswa_bd = User::where('role', '=', 'calon mahasiswa')->where('status_penerimaan', '=', NULL)->get();
+        $document = Document::all();
+        $sort = True;
+        return view("daftar_mahasiswa", compact('mahasiswa_d','mahasiswa_td','mahasiswa_bd','document','sort'));
     }
 
     public function create() {
@@ -131,9 +143,9 @@ class MahasiswaController extends Controller
         }
 
         //delete file from storage
-        if(Storage::exists('storage/app/public/dokumen mahasiswa')){
+        if(Storage::exists('public/dokumen mahasiswa')){
             $file = new Filesystem;
-            $file->cleanDirectory('storage/app/public/dokumen mahasiswa');
+            $file->cleanDirectory('public/dokumen mahasiswa');
         }
 
         // delete user from DB
@@ -168,9 +180,9 @@ class MahasiswaController extends Controller
         }
 
         //delete file from storage
-        if(Storage::exists('storage/app/public/dokumen mahasiswa/'.$user_name)){
+        if(Storage::exists('public/dokumen mahasiswa/'.$user_name)){
             $file = new Filesystem;
-            $file->cleanDirectory('storage/app/public/dokumen mahasiswa/'.$user_name);
+            $file->cleanDirectory('public/dokumen mahasiswa/'.$user_name);
         }
         
         // delete user from DB
