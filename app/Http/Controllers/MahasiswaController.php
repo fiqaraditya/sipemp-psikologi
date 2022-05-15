@@ -11,6 +11,7 @@ use App\Models\Recommendation;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Barryvdh\DomPDF\PDF as DomPDFPDF;
 use Exception;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -113,8 +114,65 @@ class MahasiswaController extends Controller
         return view('kelengkapan_berkas',compact('document','recommendation'));
     }
 
+    public function destroy_mahasiswa_all()
+    {
+        // delete mahasiswa document from DB
+        Document::truncate();
+
+        // delete mahasiswa recommendation from DB
+        if(Recommendation::exists()){
+            Recommendation::truncate();
+        }
+
+        //delete interviews of mahasiswa from DB
+        if(Interview::exists()){
+            Interview::truncate();
+        }
+
+        //delete file from storage
+        if(Storage::exists('storage/app/public/dokumen mahasiswa')){
+            $file = new Filesystem;
+            $file->cleanDirectory('storage/app/public/dokumen mahasiswa');
+        }
+
+        // delete user from DB
+        User::where('role','calon mahasiswa')->delete();
+        return redirect('daftar-mahasiswa');
+    }
+
     public function destroy_mahasiswa($id)
     {
+        $user_name = User::where('id', $id)->get()[0]->name;
+        $no_pendaftaran = User::where('id', $id)->get()[0]->no_pendaftaran;
+        $email = User::where('id', $id)->get()[0]->email;
+
+        // delete mahasiswa document from DB
+        Document::where('mahasiswa_id', $id)->delete();
+
+        // delete mahasiswa recommendation from DB
+        $recommendation = Recommendation::where('mahasiswa_id', $id)->first();
+        if($recommendation != NULL){
+            $recommendations = Recommendation::where('mahasiswa_id', $id)->get();
+            foreach ($recommendations as $rec) {
+                $rec->delete();
+            }
+        }
+
+        //delete interviews of mahasiswa from DB
+        $interview = Interview::where('email_mahasiswa',$email)->first();
+        if($interview != NULL){
+            $id = Interview::where('email_mahasiswa',$email)->get()[0]->id;
+            Interview::where('email_mahasiswa',$email)->delete();
+            InterviewSchedule::where('id', $id)->delete();
+        }
+
+        //delete file from storage
+        if(Storage::exists('storage/app/public/dokumen mahasiswa/'.$user_name)){
+            $file = new Filesystem;
+            $file->cleanDirectory('storage/app/public/dokumen mahasiswa/'.$user_name);
+        }
+        
+        // delete user from DB
         User::where('id', $id)->delete();
         return redirect('daftar-mahasiswa');
     }

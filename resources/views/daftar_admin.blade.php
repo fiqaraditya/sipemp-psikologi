@@ -1,6 +1,12 @@
 @extends('layout')
 
 @section('content')
+<style>
+    th,td{
+        text-align: center;
+        vertical-align: middle;
+    }
+</style>
 <div class="container" style="margin-top:3%; margin-bottom:5%">
     <div class="row">
         <h1 style="margin-bottom: 1%">Daftar Admin</h1>

@@ -47,6 +47,8 @@ Route::get('/daftar-mahasiswa',[MahasiswaController::class, 'index'])->name("daf
 Route::get('/create-mahasiswa',[MahasiswaController::class, 'create'])->name("create_mahasiswa")->middleware('auth','checkrole:admin');
 Route::post('/create-mahasiswa', [MahasiswaController::class, 'store'])->name("create_mahasiswa_post")->middleware('auth','checkrole:admin');
 Route::get('/delete-mahasiswa/{id}',[MahasiswaController::class, 'destroy_mahasiswa'])->name('delete_mahasiswa')->middleware('auth','checkrole:admin');
+Route::get('/delete-mahasiswa-all',[MahasiswaController::class, 'destroy_mahasiswa_all'])->name('delete_mahasiswa_all')->middleware('auth','checkrole:admin');
+
 
 Route::get('/daftar-pewawancara',[PewawancaraController::class, 'index'])->name("daftar_pewawancara")->middleware('auth','checkrole:admin');
 Route::get('/create-pewawancara',[PewawancaraController::class, 'create'])->name("create_pewawancara")->middleware('auth','checkrole:admin');
