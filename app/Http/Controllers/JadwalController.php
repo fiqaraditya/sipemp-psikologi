@@ -103,7 +103,10 @@ class JadwalController extends Controller
     }
 
     public function save_eval(Request $request, $id) {
-        
+        $interview = Interview::where('schedule_id','=',$id)->get()->first();
+        $email = $interview->email;
+        $user = User::where('email','=',$email)->get()->first();
+
         $filepath_old = DB::table('interview_schedules')->where('id',$id)->value('file_path');
 
         $request->validate([
@@ -123,6 +126,9 @@ class JadwalController extends Controller
         $schedule->file_path = $filepath;
         $schedule->note = $request->note;
         $schedule->save();
+
+        $user->status_penerimaan = $request->note;
+        $user->save();
 
         return redirect()->route('detail_jadwal_wawancara', ['id' => $id])->with('success', 'Hasil evaluasi wawancara berhasil diubah');
     }

@@ -33,8 +33,8 @@
                             <label for="exampleFormControlInput1">Catatan</label> <tab3><tab3><tab2>
                             <select name="note">
                                 <option value="">Tidak Ada</option>
-                                <option value="Berpotensi masalah">Berpotensi masalah</option>
                                 <option value="Disarankan">Disarankan</option>
+                                <option value="Tidak Disarankan">Tidak Disarankan</option>
                             </select>
                         </div>
                     <br>

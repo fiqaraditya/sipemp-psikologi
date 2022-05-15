@@ -37,7 +37,7 @@
                     </th>
                     <th scope="col">
                     <img src="img/status.png" width="18" height="18">
-                        Status Dokumen </th>
+                        Status Mahasiswa </th>
                     <th scope="col">Aksi</th>
                 </tr>
             </thead>
@@ -48,24 +48,19 @@
                     <td>{{ $item-> name }}</td>
                     <td>{{ $item-> no_pendaftaran  }}</td>
                     <td>
-                        @foreach ($document as $doc)
-                        @if ($doc->mahasiswa_id == $item->id)
-                            @if (is_null($doc-> status_rekomendasi))
-                                <div style="width:auto;height:40px; background-color:grey; border-radius:20px; text-align:center; margin-right:0; padding:10px; font-size:8; color:white;text-align:center;">
-                                    <h6>Belum Dinilai</h6>
-                                </div>
-                            @elseif ($doc-> status_rekomendasi == 1)
-                                <div style="width:auto;height:40px; background-color:green; border-radius:20px; text-align: center; margin-right:0; padding:10px; font-size:8; color:white;text-align:center;">
-                                    <h6>Disarankan</h6>
-                                </div>
-                            @else
+                        @if (is_null($item->status_penerimaan))
+                            <div style="width:auto;height:40px; background-color:grey; border-radius:20px; text-align:center; margin-right:0; padding:10px; font-size:8; color:white;text-align:center;">
+                                <h6>Belum Dinilai</h6>
+                            </div>
+                        @elseif ($item->status_penerimaan == "Disarankan")
+                            <div style="width:auto;height:40px; background-color:green; border-radius:20px; text-align: center; margin-right:0; padding:10px; font-size:8; color:white;text-align:center;">
+                                <h6>Disarankan</h6>
+                            </div>
+                        @elseif($item->status_penerimaan == "Tidak Disarankan")
                             <div style="width:auto;height:40px; background-color:red; border-radius:20px; padding:10px; text-align: center; margin-right:0; font-size:8; color:white;text-align:center;">
                                 <h6>Tidak Disarankan</h6>
                             </div>
-                            @endif
                         @endif
-                    @endforeach
-
                     </td>
                     <td>   
                         <a type="button" class="btn btn-primary"  style="background-color:#805AD5; border:0" href="{{url('/detail-mahasiswa', $item-> id)}}"> Detail Mahasiswa</a>   
