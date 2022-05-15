@@ -81,6 +81,12 @@
             </style>
             @elseif (str_contains($currentURL,"file-3"))
             <style></style>
+            @elseif (str_contains($currentURL,"dokumen"))
+            <style>
+                #dokumen{
+                    font-weight: bold;
+                }
+            </style>
             @else
             <style>
                 #beranda{
@@ -102,7 +108,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" id="dokumen"
-                            href="{{route('daftar_mahasiswa')}}">Dokumen</a>
+                            href="{{route('page_template')}}">Dokumen</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" id="admin" href="{{route('daftar_admin')}}">Admin</a>

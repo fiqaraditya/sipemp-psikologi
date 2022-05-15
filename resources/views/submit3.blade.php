@@ -8,10 +8,11 @@
             <div class="shadow card">
                 <div class="card-body">
                     <h2 class="card-title"> Slot Pengumpulan Surat Rekomendasi </h2>
+                    <a href="{{url('/download-template-rekomendasi')}}">Download Template Rekomendasi</a>
                     <h6 class="card-subtitle mb-2 text-muted">
                         Format Penamaan : <br>
-                        Lorem_Ipsum_Dolor_Sit_Amet <br>
-                        Contoh :Consecetur_Adipiscing_Elit_Etiam
+                        REKOMENDASI_NamaCalonMahasiswa_NomorMahasiswa_NamaPemberiRekomendasi <br>
+                        Contoh :REKOMENDASI_Budi Santoso_190543243_Kurniawan Anggun
                     </h6>
                     <br>
                     

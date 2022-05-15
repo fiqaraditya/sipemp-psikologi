@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use App\Mail\RecommendationMail;
+use App\Models\Template;
 
 class DocumentController extends Controller
 {
@@ -43,6 +44,95 @@ class DocumentController extends Controller
             Document::where('mahasiswa_id', $mahasiswa_id)->update(['file_lk_path' => $filepath]);
 
             return redirect('kelengkapan-berkas')->with('success', 'Berkas Lingkungan berhasil ditambahkan');
+        }
+    }
+
+    public function daftar_template()
+    {
+        if(Template::exists()){
+            $template = Template::all()->first();
+        }
+        else{
+            $data = new Template;
+            $data->id = "1";
+            $data->save();
+            $template = Template::all()->first();
+        }
+        return view('daftar-dokumen',compact('template'));
+    }
+
+    public function daftar_template_lk()
+    {
+        $template = Template::all()->first();
+        return view('template-lk',compact('template'));
+    }
+
+    public function daftar_template_rekomendasi()
+    {
+        $template = Template::all()->first();
+        return view('template-rekomendasi',compact('template'));
+    }
+
+    public function store_template_lk(Request $request)
+    {
+        
+        if($_FILES['file']['size'] == 0){
+            return redirect('submit-template-lk');
+        }
+        else{
+            //$pen = DB::table('Documents')->where('mahasiswa_id', $mahasiswa_id)->first();
+
+            $request->validate([
+                'file' => 'required|file|mimes:doc,docx,xlsx,xls,pdf,zip'
+            ]);
+
+            $filepath = Storage::putFileAs(
+                'public/template/lk',
+                $request->file('file'),$request->file('file')->getClientOriginalName());
+
+            //$pen->update(['file_lk_path' => $filepath]);
+            Template::where('id','1')->update(['template_lk_path'=>$filepath]);
+
+            return redirect('daftar-template')->with('success', 'Tempate Lingkungan Kehidupan berhasil ditambahkan');
+        }
+    }
+
+    public function download_template_lk()
+    {
+        $filepath = Template::where('id','1')->value('template_lk_path');
+        Storage::download($filepath);
+        return Storage::download($filepath);
+    }
+
+    public function download_template_rekomendasi()
+    {
+        $filepath = Template::where('id','1')->value('template_rekomendasi_path');
+        Storage::download($filepath);
+        return Storage::download($filepath);
+    }
+
+
+    public function store_template_rekomendasi(Request $request)
+    {
+        
+        if($_FILES['file']['size'] == 0){
+            return redirect('submit-template-rekomendasi');
+        }
+        else{
+            //$pen = DB::table('Documents')->where('mahasiswa_id', $mahasiswa_id)->first();
+
+            $request->validate([
+                'file' => 'required|file|mimes:doc,docx,xlsx,xls,pdf,zip'
+            ]);
+
+            $filepath = Storage::putFileAs(
+                'public/template/rekomendasi',
+                $request->file('file'),$request->file('file')->getClientOriginalName());
+
+            //$pen->update(['file_lk_path' => $filepath]);
+            Template::where('id','1')->update(['template_rekomendasi_path'=>$filepath]);
+
+            return redirect('daftar-template')->with('success', 'Tempate Berkas Rekomendasi berhasil ditambahkan');
         }
     }
 

@@ -6,16 +6,11 @@
         <div class="row" style="margin-left: 5%;margin-right:5%;padding-bottom:5%">
             <div class="shadow card">
                 <div class="card-body">
-                    <h2 class="card-title"> Slot Pengumpulan Lembar Kehidupan</h2>
-                    <a href="{{url('/download-template-lk')}}">Download Template Lembar Kehidupan</a>
-                    <h6 class="card-subtitle mb-2 text-muted">
-                        Format Penamaan : <br>
-                        LK_NamaCalonMahasiswa_NomorMahasiswa <br>
-                        Contoh :LK_Budi Santoso_190543243
-                    </h6>
+                    <h2 class="card-title"> Slot Pengumpulan Template Berkas Rekomendasi</h2>
                     <br>
-                    @if ($document->where('mahasiswa_id', auth()->user()->id)->first()->file_lk_path == NULL)
-                        <form action="{{route('save_lk')}}"  method="POST" enctype="multipart/form-data">
+                    
+                    @if ($template->template_rekomendasi_path == NULL)
+                        <form action="{{route('store_template_rekomendasi')}}"  method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
                                 <div class="custom-file">
                                     <input type="file" name="file" class="custom-file-input" id="chooseFile">
@@ -23,25 +18,24 @@
                                 </div>
                                 <br>
                                 <button type="submit" class="btn btn-primary" style="border-radius: 40px; width:20%;"> Post </button>
-                                <a href="{{route('kelengkapan_berkas')}}" class="btn btn-danger" style="border-radius: 40px; width:20%;">Batalkan </a>
-                        </form>    
+                                <a href="{{route('page_template')}}" class="btn btn-danger" style="border-radius: 40px; width:20%;">Batalkan </a>
+                        </form>
                     @else
-                    <form action="{{route('save_lk')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('store_template_rekomendasi')}}" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
                             <div class="custom-file">
                                 <input type="file" name="file" class="custom-file-input" id="chooseFile">
                                 <label class="custom-file-label" for="chooseFile">Select file</label>
                             </div>
                             <br>
-                            <a href="{{url('/download-lk',auth()->user()->id)}}">Download Lembar Kehidupan</a>
+                            <a href="{{url('/download-template-rekomendasi')}}">Download Template Rekomendasi</a>
 
                             <br>
                             <br>
                             <button type="submit" class="btn btn-primary" style="border-radius: 40px; width:20%;"> Ubah </button>
-                            <a href="{{url('/delete-lk',auth()->user()->id)}}" class="btn btn-danger" style="border-radius: 40px; width:20%;"> Hapus </a>
-                    </form>
-                    @endif
-                    
+                            <a href="{{url('/delete-template-rekomendasi')}}" class="btn btn-danger" style="border-radius: 40px; width:20%;"> Hapus </a>
+                    </form>  
+                    @endif         
                 </div>
             </div>
         </div>
