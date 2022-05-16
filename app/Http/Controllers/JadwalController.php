@@ -129,7 +129,7 @@ class JadwalController extends Controller
         $user->status_wawancara = $request->rekomendasi;
         $user->save();
 
-        return redirect()->route('detail_jadwal_wawancara', ['id' => $id],compact('user'))->with('success', 'Hasil evaluasi wawancara berhasil diubah');
+        return redirect()->route('detail_jadwal_wawancara', ['id' => $id])->with('success', 'Hasil evaluasi wawancara berhasil diubah', ['user' => $user]);
     }
 
 
