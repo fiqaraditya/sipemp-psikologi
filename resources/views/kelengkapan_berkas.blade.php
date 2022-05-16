@@ -3,7 +3,7 @@
 @section('content')
 <div class="container" style="margin-top:3%; margin-bottom:5%">
     <h1 style="margin-bottom: 1%">Kelengkapan Berkas</h1>
-    @if ($document->where('mahasiswa_id', auth()->user()->id)->first()->file_psikotest_path == NULL)
+    <!-- @if ($document->where('mahasiswa_id', auth()->user()->id)->first()->file_psikotest_path == NULL)
         <div class="shadow card" style="margin-top:2%">
             <a class="card-body" style="text-decoration:none" href="{{route('page_psikotest')}}">
                 <div class="row">
@@ -63,7 +63,7 @@
                 </div>
         </div>
     </div>
-    @endif
+    @endif -->
 
     @if ($recommendation->count() != 4 )
 

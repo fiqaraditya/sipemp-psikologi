@@ -137,15 +137,15 @@
 
                 <hr>
                 <h5 class="card-title">Hasil Wawancara</h5>
-                <p class="card-text">Catatan : 
-                @if (is_null($schedule->note))
+                <p class="card-text">Rekomendasi : 
+                @if (is_null($user->status_wawancara))
                     - </p>
                 @else
-                {{$schedule->note}} </p>
+                {{$user->status_wawancara}} </p>
                 @endif
 
                 @if (is_null($schedule-> file_path ))
-                    <p style="color:blue"> File hasil wawancara belum diunggah </p>
+                    <p style="color:red"> File hasil wawancara belum diunggah </p>
                     @else
                     <a href="{{url('/download-eval',$schedule->id)}}">Download Hasil Evaluasi Wawancara</a>
                     @endif
