@@ -30,9 +30,8 @@
                 <form action="{{url('save-evaluasi',$schedule-> id)}}" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="form-group">
-                            <label for="exampleFormControlInput1">Catatan</label> <tab3><tab3><tab2>
-                            <select name="note">
-                                <option value="">Tidak Ada</option>
+                            <label for="exampleFormControlInput1">Rekomendasi</label> <tab3><tab3><tab2>
+                            <select name="rekomendasi">
                                 <option value="Disarankan">Disarankan</option>
                                 <option value="Tidak Disarankan">Tidak Disarankan</option>
                             </select>

@@ -38,9 +38,9 @@ class MahasiswaController extends Controller
 
     public function index_sort()
     {
-        $mahasiswa_d = User::where('role', '=', 'calon mahasiswa')->where('status_penerimaan', '=', 'Disarankan')->get();
-        $mahasiswa_td = User::where('role', '=', 'calon mahasiswa')->where('status_penerimaan', '=', 'Tidak Disarankan')->get();
-        $mahasiswa_bd = User::where('role', '=', 'calon mahasiswa')->where('status_penerimaan', '=', NULL)->get();
+        $mahasiswa_d = User::where('role', '=', 'calon mahasiswa')->where('status_wawancara', '=', 'Disarankan')->get();
+        $mahasiswa_td = User::where('role', '=', 'calon mahasiswa')->where('status_wawancara', '=', 'Tidak Disarankan')->get();
+        $mahasiswa_bd = User::where('role', '=', 'calon mahasiswa')->where('status_wawancara', '=', NULL)->get();
         $document = Document::all();
         $sort = True;
         return view("daftar_mahasiswa", compact('mahasiswa_d','mahasiswa_td','mahasiswa_bd','document','sort'));

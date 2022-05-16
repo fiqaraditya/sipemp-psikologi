@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('no_pendaftaran')->unique()->nullable();
             $table->string('profesi')->nullable();
             $table->string('status_penerimaan')->nullable();
+            $table->string('status_wawancara')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
