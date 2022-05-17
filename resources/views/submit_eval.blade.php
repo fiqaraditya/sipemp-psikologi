@@ -32,6 +32,7 @@
                     <div class="form-group">
                             <label for="exampleFormControlInput1">Rekomendasi</label> <tab3><tab3><tab2>
                             <select name="rekomendasi">
+                                <option value="" selected disabled>  Rekomendasi </option>
                                 <option value="Disarankan">Disarankan</option>
                                 <option value="Tidak Disarankan">Tidak Disarankan</option>
                             </select>

@@ -29,11 +29,11 @@
                         </div>
                         @if (auth()->user()->role=="admin")
                             <div class="col-1" style="padding-right: 0%; padding-left:0%">
-                                <a class="btn" href="{{url('/update-pengumuman',$item->id,$item->file_path)}}"> Ubah</a>
+                                <a class="btn btn-warning" href="{{url('/update-pengumuman',$item->id,$item->file_path)}}"> Ubah</a>
                             </div>
                             <div class="col-1" style="padding-right: 0%; padding-left:0%">
                                 <!-- <a class="btn btn-danger delete" href="{{url('/delete-pengumuman',$item->id)}}" >Hapus</a> -->
-                                <a class="btn" href="#" data-id="{{$item->id}} ">Hapus</a>
+                                <a class="btn btn-danger delete" href="#" data-id="{{$item->id}} ">Hapus</a>
                             </div>    
                         @else
                             

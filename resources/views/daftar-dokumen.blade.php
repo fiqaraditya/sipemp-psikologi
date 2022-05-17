@@ -48,8 +48,7 @@
                 </h5>
             </div>
             <div class="col-1">
-                    <a class="btn btn-primary" style="background-color:grey; border:0" href="{{route('page_template_lk')}}" > Ubah file
-                    </a>
+                    <a class="btn btn-warning" style=" border:0" href="{{route('page_template_lk')}}" > Ubah file</a>
                 </div>
         </div>
     </div>
@@ -103,7 +102,7 @@
                 </h5>
             </div>
             <div class="col-1">
-                    <a class="btn btn-primary" style="background-color:grey; border:0" href="{{route('page_template_rekomendasi')}}" > Ubah file
+                    <a class="btn btn-warning" style="border:0" href="{{route('page_template_rekomendasi')}}" > Ubah file
                     </a>
                 </div>
         </div>

@@ -13,7 +13,9 @@ class RecommendationController extends Controller
 {
     public function create_rekomendasi()
     {
-        return view('submit3');
+        $template = Template::all()->get();
+        $template = Template::all()->first();
+        return view('submit3', compact('document','template'));
     }
 
     public function store_rekomendasi(Request $request)

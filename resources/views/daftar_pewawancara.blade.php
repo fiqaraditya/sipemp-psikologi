@@ -36,7 +36,11 @@
                     <td>{{ $item-> name }}</td>
                     <td>{{ $item-> role }}</td>
                     <td>{{ $item-> email}} </td>
-                    <td><a type="button" class="btn btn-danger"  style="border:0" href="{{url('/delete-pewawancara', $item-> id)}}"> Hapus Pewawancara</a></td>
+                    <td>
+                        <!-- <a type="button" class="btn btn-danger"  style="border:0" href="{{url('/delete-pewawancara', $item-> id)}}"> Hapus Pewawancara</a> -->
+                        <a type="button" class="btn btn-danger delete" href="#" style="border:0" data-id="{{$item->id}} ">Hapus Pewawancara</a>
+
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
@@ -44,5 +48,28 @@
     </div>
 
 </div>
+<script>
+        $('.delete').click(function(){
+            var itemid = $(this).attr('data-id');
+            swal({
+                title: "Apakah Anda yakin ingin menghapus data pewawancara ini?",
+                text: "Data pewawancara yang dihapus tidak dapat dikembalikan",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    window.location = "/delete-pewawancara/"+itemid;
+                    swal("Pewawancara berhasil dihapus", {
+                    icon: "success",
+                    });
+                } else {
+                  
+                }
+                });
+
+        });
+</script>
 
 @endsection
