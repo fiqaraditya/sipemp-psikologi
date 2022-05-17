@@ -18,7 +18,7 @@ class PewawancaraController extends Controller
      */
     public function index()
     {
-        $pewawancaras = User::where('role', '=', 'pewawancara')->get();
+        $pewawancaras = User::where('role', '=', 'pewawancara')->orderBy('name')->get();
         return view("daftar_pewawancara", compact('pewawancaras'));
     }
 
