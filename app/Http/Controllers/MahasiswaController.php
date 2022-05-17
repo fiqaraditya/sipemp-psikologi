@@ -30,7 +30,7 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        $calonmahasiswas = User::where('role', '=', 'calon mahasiswa')->get();
+        $calonmahasiswas = User::where('role', '=', 'calon mahasiswa')->orderBy('name')->get();
         $document = Document::all();
         $sort = False;
         return view("daftar_mahasiswa", compact('calonmahasiswas','document','sort'));
@@ -38,9 +38,9 @@ class MahasiswaController extends Controller
 
     public function index_sort()
     {
-        $mahasiswa_d = User::where('role', '=', 'calon mahasiswa')->where('status_wawancara', '=', 'Disarankan')->get();
-        $mahasiswa_td = User::where('role', '=', 'calon mahasiswa')->where('status_wawancara', '=', 'Tidak Disarankan')->get();
-        $mahasiswa_bd = User::where('role', '=', 'calon mahasiswa')->where('status_wawancara', '=', NULL)->get();
+        $mahasiswa_d = User::where('role', '=', 'calon mahasiswa')->where('status_wawancara', '=', 'Disarankan')->orderBy('name')->get();
+        $mahasiswa_td = User::where('role', '=', 'calon mahasiswa')->where('status_wawancara', '=', 'Tidak Disarankan')->orderBy('name')->get();
+        $mahasiswa_bd = User::where('role', '=', 'calon mahasiswa')->where('status_wawancara', '=', NULL)->orderBy('name')->get();
         $document = Document::all();
         $sort = True;
         return view("daftar_mahasiswa", compact('mahasiswa_d','mahasiswa_td','mahasiswa_bd','document','sort'));
