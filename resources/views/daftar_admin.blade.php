@@ -38,7 +38,10 @@
                     <td>{{ $item-> name }}</td>
                     <td>{{ $item-> role }}</td>
                     <td>{{ $item-> email}} </td>
-                    <td><a type="button" class="btn btn-danger"  style="border:0" href="{{url('/delete-admin', $item-> id)}}"> Hapus Admin</a></td>
+                    <td>
+                        <a type="button" class="btn btn-danger delete" href="#" style="border:0" data-id="{{$item->id}} ">Hapus Admin</a>
+                        <!-- <a type="button" class="btn btn-danger"  style="border:0" href="{{url('/delete-admin', $item-> id)}}"> Hapus Admin</a> -->
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
@@ -49,5 +52,28 @@
 </div>
 
 </div>
+<script>
+         $('.delete').click(function(){
+            var itemid = $(this).attr('data-id');
+            swal({
+                title: "Apakah Anda yakin ingin menghapus data admin ini?",
+                text: "Data admin yang dihapus tidak dapat dikembalikan",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    window.location = "/delete-admin/"+itemid;
+                    swal("Admin berhasil dihapus", {
+                    icon: "success",
+                    });
+                } else {
+                  
+                }
+                });
+
+        });
+</script>
 
 @endsection

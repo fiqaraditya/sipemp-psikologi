@@ -5,19 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Announcement;
 use Illuminate\Http\Request;
 use App\Models\Document;
+use App\Models\Template;
 use App\Models\Recommendation;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use App\Mail\RecommendationMail;
-use App\Models\Template;
 
 class DocumentController extends Controller
 {
     public function create_lk()
     {
         $document = Document::all();
-        return view('submit1',compact('document'));
+        $template = Template::all()->first();
+        return view('submit1',compact('document','template'));
     }
 
     public function store_lk(Request $request)

@@ -8,6 +8,7 @@
     }
 </style>
 
+
 @if ($sort == False)
 <div class="container" style="margin-top:3%; margin-bottom:5%;">
     <div class="row">
@@ -20,8 +21,8 @@
                 {{-- <a type="button" class="btn btn-primary" style="border-radius: 40px; width:20%;" href="{{route('result_announcement')}}"> Kirim Email Hasil Akhir</a> --}}
                 <a type="button" class="btn btn-primary" style="border-radius: 40px; width:22%; background-color:green;" href="{{url('/download-user')}}"> Download Data Calon Mahasiswa </a>
                 <a type="button" class="btn btn-primary" style="border-radius: 40px;;background-color:#805AD5; width:15%;" href="{{url('/daftar-mahasiswa-sort')}}"> Sort Calon Mahasiswa </a>
-                <a type="button" class="btn btn-danger" style="border-radius: 40px; width:20%;" href="{{url('/delete-mahasiswa-all')}}"> Hapus Semua Calon Mahasiswa </a>
-
+                <!-- <a type="button" class="btn btn-danger" style="border-radius: 40px; width:20%;" href="{{url('/delete-mahasiswa-all')}}"> Hapus Semua Calon Mahasiswa </a> -->
+                <a type="button" class="btn btn-danger deleteall" href="#" style="border-radius: 40px; width:20%;" >Hapus Semua Calon Mahasiswa</a>
             @endif
         </div>
 
@@ -69,7 +70,9 @@
                     </td>
                     <td>   
                         <a type="button" class="btn btn-primary"  style="background-color:#805AD5; border:0" href="{{url('/detail-mahasiswa', $item-> id)}}"> Detail Mahasiswa</a>   
-                        <a type="button" class="btn btn-danger"  style="border:0" href="{{url('/delete-mahasiswa', $item-> id)}}"> Hapus Mahasiswa</a>   
+                        <!-- <a type="button" class="btn btn-danger"  style="border:0" href="{{url('/delete-mahasiswa', $item-> id)}}"> Hapus Mahasiswa</a>    -->
+                        <a type="button" class="btn btn-danger delete" href="#" style="border:0" data-id="{{$item->id}}">Hapus Mahasiswa</a>
+
                     </td>
                 </tr>
                 @endforeach
@@ -81,6 +84,7 @@
     </div>
 
 </div>
+
 
 @elseif($sort == True)
 <div class="container" style="margin-top:3%; margin-bottom:5%;">
@@ -143,7 +147,9 @@
                     </td>
                     <td>   
                         <a type="button" class="btn btn-primary"  style="background-color:#805AD5; border:0" href="{{url('/detail-mahasiswa', $item-> id)}}"> Detail Mahasiswa</a>   
-                        <a type="button" class="btn btn-danger"  style="border:0" href="{{url('/delete-mahasiswa', $item-> id)}}"> Hapus Mahasiswa</a>   
+                        <!-- <a type="button" class="btn btn-danger"  style="border:0" href="{{url('/delete-mahasiswa', $item-> id)}}"> Hapus Mahasiswa</a>    -->
+                        <a type="button" class="btn btn-danger delete" href="#" style="border:0" data-id="{{$item->id}}">Hapus Mahasiswa</a>
+
                     </td>
                 </tr>
                 @endforeach
@@ -170,7 +176,9 @@
                     </td>
                     <td>   
                         <a type="button" class="btn btn-primary"  style="background-color:#805AD5; border:0" href="{{url('/detail-mahasiswa', $item-> id)}}"> Detail Mahasiswa</a>   
-                        <a type="button" class="btn btn-danger"  style="border:0" href="{{url('/delete-mahasiswa', $item-> id)}}"> Hapus Mahasiswa</a>   
+                        <!-- <a type="button" class="btn btn-danger"  style="border:0" href="{{url('/delete-mahasiswa', $item-> id)}}"> Hapus Mahasiswa</a>    -->
+                        <a type="button" class="btn btn-danger delete" href="#" style="border:0" data-id="{{$item->id}}">Hapus Mahasiswa</a>
+
                     </td>
                 </tr>
                 @endforeach
@@ -197,7 +205,9 @@
                     </td>
                     <td>   
                         <a type="button" class="btn btn-primary"  style="background-color:#805AD5; border:0" href="{{url('/detail-mahasiswa', $item-> id)}}"> Detail Mahasiswa</a>   
-                        <a type="button" class="btn btn-danger"  style="border:0" href="{{url('/delete-mahasiswa', $item-> id)}}"> Hapus Mahasiswa</a>   
+                        <!-- <a type="button" class="btn btn-danger"  style="border:0" href="{{url('/delete-mahasiswa', $item-> id)}}"> Hapus Mahasiswa</a>    -->
+                        <a type="button" class="btn btn-danger delete" href="#" style="border:0" data-id="{{$item->id}}">Hapus Mahasiswa</a>
+
                     </td>
                 </tr>
                 @endforeach
@@ -211,5 +221,49 @@
 </div>
 @endif
 
+<script>
+        $('.delete').click(function(){
+            var itemid = $(this).attr('data-id');
+            swal({
+                title: "Apakah Anda yakin ingin menghapus data calon mahasiswa ini?",
+                text: "Data calon mahasiswa yang dihapus tidak dapat dikembalikan",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    window.location = "/delete-mahasiswa/"+itemid;
+                    swal("Calon mahasiswa berhasil dihapus", {
+                    icon: "success",
+                    });
+                } else {
+                  
+                }
+                });
+
+        });
+
+        $('.deleteall').click(function(){
+            swal({
+                title: "Apakah Anda yakin ingin menghapus seluruh data calon mahasiswa?",
+                text: "Data calon mahasiswa yang dihapus tidak dapat dikembalikan",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    window.location = "/delete-mahasiswa-all/";
+                    swal("Seluruh calon mahasiswa berhasil dihapus", {
+                    icon: "success",
+                    });
+                } else {
+                  
+                }
+                });
+
+        });
+    </script>
 
 @endsection

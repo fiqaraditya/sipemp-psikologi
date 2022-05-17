@@ -8,7 +8,11 @@
             <div class="shadow card">
                 <div class="card-body">
                     <h2 class="card-title"> Slot Pengumpulan Surat Rekomendasi </h2>
-                    <a href="{{url('/download-template-rekomendasi')}}">Download Template Rekomendasi</a>
+                    @if ($template->template_rekomendasi_path== NULL)
+                    @else
+                        <a href="{{url('/download-template-rekomendasi')}}">Download Template Rekomendasi</a>
+                    @endif 
+                   
                     <h6 class="card-subtitle mb-2 text-muted">
                         Format Penamaan : <br>
                         REKOMENDASI_NamaCalonMahasiswa_NomorMahasiswa_NamaPemberiRekomendasi <br>

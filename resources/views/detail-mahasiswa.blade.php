@@ -12,8 +12,7 @@
                     <div display="flex">
                         <h2 style="text-align:center;"> {{$calonmahasiswa->name}}</h2>
                         <div>
-                            <a style="float: right" class="btn btn-danger btn-sm"> Hapus </a>
-                            <a style="float: right;margin-right:1%" class="btn btn-primary btn-sm"
+                            <a style="float: right;margin-right:1%" class="btn btn-warning"
                                 href="{{url('/edit-detail-mahasiswa',$calonmahasiswa->id)}}"> Ubah </a>
                         </div>
                     </div>
