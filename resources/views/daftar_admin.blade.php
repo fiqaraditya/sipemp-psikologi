@@ -39,7 +39,11 @@
                     <td>{{ $item-> role }}</td>
                     <td>{{ $item-> email}} </td>
                     <td>
-                        <a type="button" class="btn btn-danger delete" href="#" style="border:0" data-id="{{$item->id}} ">Hapus Admin</a>
+                        @if (auth()->user()->name == $item->name)
+                            
+                        @else
+                            <a type="button" class="btn btn-danger delete" href="#" style="border:0" data-id="{{$item->id}} ">Hapus Admin</a>    
+                        @endif
                         <!-- <a type="button" class="btn btn-danger"  style="border:0" href="{{url('/delete-admin', $item-> id)}}"> Hapus Admin</a> -->
                     </td>
                 </tr>
