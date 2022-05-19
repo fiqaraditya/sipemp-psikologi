@@ -4,16 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Document;
 use App\Models\Recommendation;
+use App\Models\Template;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 
+
 class RecommendationController extends Controller
 {
     public function create_rekomendasi()
     {
-        $template = Template::all()->get();
+        // $template = Template::all()->get();
         $template = Template::all()->first();
         return view('submit3', compact('document','template'));
     }
