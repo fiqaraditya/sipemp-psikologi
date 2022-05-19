@@ -81,7 +81,7 @@
             </style>
             @elseif (str_contains($currentURL,"file-3"))
             <style></style>
-            @elseif (str_contains($currentURL,"dokumen"))
+            @elseif (str_contains($currentURL,"template"))
             <style>
                 #dokumen{
                     font-weight: bold;
