@@ -249,4 +249,22 @@ class DocumentController extends Controller
         $recommendation = Recommendation::where('mahasiswa_id',auth()->user()->id)->where('mahasiswa_key',auth()->user()->no_pendaftaran)->get();
         return view('kelengkapan_berkas',compact('document','recommendation'));
     }
+
+    public function destroy_template_lk()
+    {
+        $filepath = Template::all()->first()->template_lk_path;
+        Storage::delete($filepath);
+        Template::where('id',1)->update(['template_lk_path' => NULL]);
+        $template = Template::all()->first();
+        return view('template-lk',compact('template'));
+    }
+
+    public function destroy_template_rekomendasi()
+    {
+        $filepath = Template::all()->first()->template_rekomendasi_path;
+        Storage::delete($filepath);
+        Template::where('id',1)->update(['template_rekomendasi_path' => NULL]);
+        $template = Template::all()->first();
+        return view('template-rekomendasi',compact('template'));
+    }
 }

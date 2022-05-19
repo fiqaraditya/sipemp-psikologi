@@ -121,5 +121,7 @@ Route::post('/store-template-lk', [DocumentController::class, 'store_template_lk
 Route::get('/submit-template-rekomendasi', [DocumentController::class, 'daftar_template_rekomendasi'])->name("page_template_rekomendasi")->middleware('auth','checkrole:admin');
 Route::post('/store-template-rekomendasi', [DocumentController::class, 'store_template_rekomendasi'])->name("store_template_rekomendasi")->middleware('auth','checkrole:admin');
 Route::get('/download-template-lk',[DocumentController::class, 'download_template_lk'])->name('downloadlk');
+Route::get('/delete-template-lk',[DocumentController::class, 'destroy_template_lk'])->name('deletelktemplate')->middleware('auth','checkrole:admin');
+Route::get('/delete-template-rekomendasi',[DocumentController::class, 'destroy_template_rekomendasi'])->name('deleterekomendasitemplate')->middleware('auth','checkrole:admin');
 Route::get('/download-template-rekomendasi',[DocumentController::class, 'download_template_rekomendasi'])->name('downloadlk');
 
