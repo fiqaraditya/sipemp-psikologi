@@ -131,15 +131,15 @@
                     <td>{{ $item-> name }}</td>
                     <td>{{ $item-> no_pendaftaran  }}</td>
                     <td>
-                        @if (is_null($item->status_penerimaan))
+                        @if (is_null($item->status_wawancara))
                             <div style="width:auto;height:40px; background-color:grey; border-radius:20px; text-align:center; margin-right:0; padding:10px; font-size:8; color:white;text-align:center;">
                                 <h6>Belum Dinilai</h6>
                             </div>
-                        @elseif ($item->status_penerimaan == "Disarankan")
+                        @elseif ($item->status_wawancara == "Disarankan")
                             <div style="width:auto;height:40px; background-color:green; border-radius:20px; text-align: center; margin-right:0; padding:10px; font-size:8; color:white;text-align:center;">
                                 <h6>Disarankan</h6>
                             </div>
-                        @elseif($item->status_penerimaan == "Tidak Disarankan")
+                        @elseif($item->status_wawancara == "Tidak Disarankan")
                             <div style="width:auto;height:40px; background-color:red; border-radius:20px; padding:10px; text-align: center; margin-right:0; font-size:8; color:white;text-align:center;">
                                 <h6>Tidak Disarankan</h6>
                             </div>
