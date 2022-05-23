@@ -31,7 +31,7 @@
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Status Surat Rekomendasi</label> <tab3><tab3><tab3>
                             <select name="status_rekomendasi">
-                                <option value="null">Belum diverifikasi</option>
+                                <option value="">Belum diverifikasi</option>
                                 <option value="1"> Lolos Verifikasi </option>
                                 <option value="0">Tidak Lolos Verifikasi </option>
                                 </option>
@@ -42,7 +42,7 @@
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Status Penerimaan</label> <tab3><tab3><tab2>
                             <select name="status_penerimaan">
-                                <option value="null">Belum ditentukan</option>
+                                <option value="">Belum ditentukan</option>
                                 <option value="1">Lolos</option>
                                 <option value="0">Tidak Lolos</option>
                             </select>
