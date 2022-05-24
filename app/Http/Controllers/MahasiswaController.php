@@ -299,7 +299,7 @@ class MahasiswaController extends Controller
 
         //file psikotest
         $psikotest_mahasiswa = Document::where('mahasiswa_id', $id)->value('file_psikotest_path');
-        if(!is_null($lk_mahasiswa)) {
+        if(!is_null($psikotest_mahasiswa)) {
             $psikotest_realpath = Storage::path($psikotest_mahasiswa);
             $zip->addFile($psikotest_realpath, 'psikotest'.'/'.basename($psikotest_realpath));
         }

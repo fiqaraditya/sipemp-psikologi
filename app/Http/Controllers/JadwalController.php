@@ -19,7 +19,7 @@ class JadwalController extends Controller
         if (auth()->user()->role =="admin") {
             $schedules = InterviewSchedule::orderBy('tanggal','DESC')->orderBy('waktu_mulai','ASC')->orderBy('waktu_akhir','ASC')->get();
         } else if(auth()->user()->role =="calon mahasiswa"){
-            $interview = Interview::where('email_mahasiswa','=',auth()->user()->email)->get()->first();
+            $interview = Interview::where('email_mahasiswa','=',auth()->user()->email)->get();
             if(count($interview)==0){
                 $schedules = [];
             }
