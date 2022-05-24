@@ -24,14 +24,16 @@ class JadwalController extends Controller
                 $schedules = [];
             }
             else{
-                $schedules = InterviewSchedule::orderBy('tanggal','DESC')->orderBy('waktu_mulai','ASC')->orderBy('waktu_akhir','ASC')->where('id','=',$interview->id)->get();
+                $schedules = InterviewSchedule::orderBy('tanggal','DESC')->orderBy('waktu_mulai','ASC')->orderBy('waktu_akhir','ASC')->where('id','=',$interview[0]->id)->get();
             }
         } else{
             $interview = Interview::where('email_pw_1','=',auth()->user()->email)->orWhere('email_pw_2','=',auth()->user()->email)->get(); //bentuk array multiple data
             if(count($interview)==0){
+               
                 $schedules = [];
             }
             else{
+               
                 $schedules = InterviewSchedule::orderBy('tanggal','DESC')->orderBy('waktu_mulai','ASC')->orderBy('waktu_akhir','ASC');
                 foreach ($interview as $int) {
                     $schedules->orWhere('id','=',$int->id);
